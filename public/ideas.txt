@@ -1,0 +1,26 @@
+REUSABLE FUNCTIONS:
+  spawn
+  hitbox tracker
+  health tracker/changer
+  ability reset/timer
+
+
+GAME MECHANICS:
+  movement
+    -WASD
+    -Arrow keys
+  abilities
+    -mouse aim/placement
+    -character radius
+    -linear
+
+
+
+SHIP ABILITIES:
+  {BLACK TOLL} shoot mini black hole that sucks in asteroids (might have negative effects i.e. slower/weaker ship through ability duration)
+
+  {HELLS SHELL} extra shield  (expires at hp thresh hold or when timer ends.)
+    ABILITY ACTIVE -> {HELLS HEALTH} returns percentage of {HELLS SHELL}'s remaining hp to ship health.
+
+  {RELATIVITY} capture up to Nth number of space debree to circle the ship. if hit, the debree will negate projectile damage.
+    ABILITY ACTIVE -> {THIRD LAW} can launch captured debree backwards (towards black hole) to gain a small and temporary speed boost.
