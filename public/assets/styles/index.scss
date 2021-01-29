@@ -15,13 +15,9 @@ $retro: 'Press Start 2P';
   align-items: center;
 }
 
-#arena-body {
-  background-color: purple;
-  display: flex;
-  align-items: center;
-}
 
 #play-area {
+  overflow: hidden;
   // position: fixed;
 }
 
@@ -44,9 +40,12 @@ $retro: 'Press Start 2P';
   width: 100%;
   height: 100vh;
   display: flex;
+  position: fixed;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  top: 50%; right: 50%;
+  transform: translate(50%,-50%)
 }
 
 #carrot {

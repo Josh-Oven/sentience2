@@ -1,9 +1,30 @@
+const playArea = document.getElementById('play-area');
 const spaceship = document.getElementById('spaceship-container');
 const keys = {};
 keys.UP = 38;
 keys.LEFT = 37;
 keys.RIGHT = 39;
 keys.DOWN = 40;
+let pause = false;
+
+////// screen bounds ///////
+
+let windowHeight = window.innerHeight;
+let windowWidth = window.innerWidth;
+
+let setBoundaries = (height, width) => {
+  let playAreaHeight = height;
+  let playAreaWidth = width;
+  playArea.style.height = `${height}px`;
+  playArea.style.width = `${width}px`;
+}
+
+setBoundaries(windowHeight, windowWidth)
+console.log(`new height: ${playArea.style.height}`, `new width: ${playArea.style.width}`)
+
+////// screen bounds ///////
+
+/////// player movement ////////
 
 let shipRect = spaceship.getBoundingClientRect();
 // console.log(`shipRectLeft: ${shipRect.left}`, `shipRectRight: ${shipRect.right}`)
@@ -42,17 +63,24 @@ let moveCharacter = function(dx, dy){
 
 /// character control
 var detectCharacterMovement = function(){
-
-  if (keys[keys.LEFT]) {
+  if (pause == true) {
+    return;
+  }
+  // console.log('yeeeet', playAreaHeight)
+  if (keys[keys.LEFT] && character.x >= -120) {
+    console.log(character.x, windowWidth)
     moveCharacter(-1, 0);
   }
-  if ( keys[keys.RIGHT] ) {
+
+  if ( keys[keys.RIGHT] && character.x <= windowWidth) {
     moveCharacter(1, 0);
   }
-  if ( keys[keys.UP] ) {
+
+  if ( keys[keys.UP] && character.y >= 50) {
     moveCharacter(0, -1);
   }
-  if ( keys[keys.DOWN] ) {
+
+  if ( keys[keys.DOWN] && character.y <= windowHeight - 50) {
     moveCharacter(0, 1);
   }
 };
@@ -64,3 +92,5 @@ moveCharacter();
 setInterval(function(){
   detectCharacterMovement();
 }, 1000/150);
+
+/////// player movement ////////
