@@ -4,10 +4,19 @@
 $retro: 'Press Start 2P';
 
 #arena-body {
-  background-color: purple;
+  background-color: black;
   // display: flex;
   // align-items: center;
   overflow: hidden;
+}
+
+#star-container {
+  width: 100%;
+  height: 100vh;
+  border: 1px solid white;
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 #idle-screen {
