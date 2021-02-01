@@ -13,10 +13,19 @@ $retro: 'Press Start 2P';
 #star-container {
   width: 100%;
   height: 100vh;
-  border: 1px solid white;
+  // border: 1px solid white;
   position: fixed;
   display: flex;
   flex-wrap: wrap;
+  // align-items: center;
+}
+
+#star-row {
+  width: 100%;
+  height: 50px;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
 }
 
 #idle-screen {

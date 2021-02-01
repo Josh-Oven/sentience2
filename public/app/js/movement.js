@@ -20,7 +20,7 @@ let setBoundaries = (height, width) => {
 }
 
 setBoundaries(windowHeight, windowWidth)
-console.log(`new height: ${playArea.style.height}`, `new width: ${playArea.style.width}`)
+// console.log(`new height: ${playArea.style.height}`, `new width: ${playArea.style.width}`)
 
 ////// screen bounds ///////
 
@@ -68,11 +68,11 @@ var detectCharacterMovement = function(){
   }
   // console.log('yeeeet', playAreaHeight)
   if (keys[keys.LEFT] && character.x >= -120) {
-    console.log(character.x, windowWidth)
+    // console.log(character.x, windowWidth)
     moveCharacter(-1, 0);
   }
 
-  if ( keys[keys.RIGHT] && character.x <= windowWidth) {
+  if ( keys[keys.RIGHT] && character.x <= windowWidth-370) {
     moveCharacter(1, 0);
   }
 
@@ -87,6 +87,61 @@ var detectCharacterMovement = function(){
 
 /// update current position on screen
 moveCharacter();
+
+class SpaceDebree {
+  constructor(type, size, speed, image){
+    this._type = type;
+    this._size = size;
+    this._speed = speed;
+    this._image = image;
+  }
+}
+
+let createSpaceDebreeTemplate = () => {
+  let speed;
+  let image;
+  let debreeTypes = ['asteroid', 'metal salvage']
+
+  let type = debreeTypes[Math.floor(Math.random() * 2)]
+  let size = `${Math.floor(Math.random() * (100 - 50) + 50)}px`
+  if (type == 'asteroid'){
+    speed = 3
+    image = 'grey'
+  } else if (type == 'metal salvage'){
+    speed = 2
+    image = 'green'
+  }
+
+  let spaceDebree = new SpaceDebree(type, size, speed, image);
+  return spaceDebree;
+}
+
+let debreeNum = 0;
+let createSpaceDebree = () => {
+  let template = createSpaceDebreeTemplate();
+  // console.log(template._image)
+  let spaceDebree = document.createElement('div');
+  spaceDebree.id = `spaceDebree${debreeNum}`;
+  let debreeStyle = spaceDebree.style;
+
+  debreeStyle.backgroundColor = template._image;
+  debreeStyle.height = template._size;
+  debreeStyle.width = template._size;
+  debreeStyle.borderRadius = '50%';
+  debreeStyle.position = 'fixed';
+  debreeStyle.left = '100px';
+  debreeStyle.top = `${Math.floor(Math.random() * windowHeight)}px`;
+
+  console.log(debreeStyle.backgroundColor)
+  playArea.appendChild(spaceDebree)
+  debreeNum++;
+}
+
+createSpaceDebree();
+
+let objectMovement = () => {
+  debr
+}
 
 /// game loop
 setInterval(function(){

@@ -1,4 +1,6 @@
-let playArea = document.getElementById('play-area')
+let playArea = document.getElementById('play-area');
+let starRow = document.getElementById('star-row');
+let starContainer = document.getElementById('star-container');
 
 let idleScreen = document.getElementById('idle-screen');
 let pauseButton = document.getElementById('pause-button');
@@ -24,8 +26,8 @@ let Star = {
 }
 
 let createStar = () => {
-  let colors = ['white', '#ED80F9']
-  let sizes = ['5px', '10px', '20px']
+  let colors = ['white', 'white']
+  let sizes = ['5px', '10px', '15px']
   let color = colors[Math.floor(Math.random() * 2)]
   let size = sizes[Math.floor(Math.random() * 3)]
   let brightness = `.${Math.floor(Math.random() * 10)}`
@@ -37,7 +39,6 @@ let createStar = () => {
 
 let starNum = 0;
 let left = 10;
-// let top = 5;
 //////////////////////////////
 let populateBackground = () => {
   let template = createStar();
@@ -50,26 +51,24 @@ let populateBackground = () => {
   starStyle.height = template.size;
   starStyle.width = template.size;
   starStyle.opacity = template.brightness;
-  starStyle.border = '1px solid white';
-  starStyle.position = 'inline';
+  // starStyle.border = '1px solid white';
   starStyle.borderRadius = '50%';
-  // starStyle.marginLeft = '30px';
+  starStyle.marginTop = `${left}px`;
   starStyle.marginLeft = `${left}px`;
 
-  console.log('backgroundcolor', starStyle.backgroundColor)
-  console.log('height', starStyle.height)
-  console.log('width', starStyle.width)
-  console.log('opacity', starStyle.opacity)
-  console.log(newStar.id)
+  // console.log('backgroundcolor', starStyle.backgroundColor)
+  // console.log('height', starStyle.height)
+  // console.log('width', starStyle.width)
+  // console.log('opacity', starStyle.opacity)
+  // console.log(newStar.id)
 
-
-  playArea.appendChild(newStar)
+  starContainer.appendChild(newStar)
   starNum++;
-  left += Math.floor(Math.random() * 50);
+  left = Math.floor(Math.random() * 100);
   // top = Math.floor(Math.random() * 6);
 }
 
-for(let i = 0; i < 100; i++){
+for(let i = 0; i < 300; i++){
   populateBackground();
 }
 
