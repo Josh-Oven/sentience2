@@ -103,13 +103,13 @@ let createSpaceDebreeTemplate = () => {
   let debreeTypes = ['asteroid', 'metal salvage']
 
   let type = debreeTypes[Math.floor(Math.random() * 2)]
-  let size = `${Math.floor(Math.random() * (100 - 50) + 50)}px`
+  let size = Math.floor(Math.random() * (75 - 30) + 30);
   if (type == 'asteroid'){
     speed = 3
-    image = 'grey'
+    image = 'url(../assets/images/space-debree/asteroid4.png)'
   } else if (type == 'metal salvage'){
     speed = 2
-    image = 'green'
+    image = 'url(../assets/images/space-debree/asteroid1.png)'
   }
 
   let spaceDebree = new SpaceDebree(type, size, speed, image);
@@ -119,32 +119,60 @@ let createSpaceDebreeTemplate = () => {
 let debreeNum = 0;
 let createSpaceDebree = () => {
   let template = createSpaceDebreeTemplate();
-  // console.log(template._image)
+  // console.log(template._size)
   let spaceDebree = document.createElement('div');
   spaceDebree.id = `spaceDebree${debreeNum}`;
   let debreeStyle = spaceDebree.style;
 
-  debreeStyle.backgroundColor = template._image;
-  debreeStyle.height = template._size;
-  debreeStyle.width = template._size;
-  debreeStyle.borderRadius = '50%';
+  debreeStyle.backgroundImage = template._image;
+  debreeStyle.backgroundSize = 'cover';
+  debreeStyle.backgroundRepeat = 'no-repeat';
+  debreeStyle.backgroundPosition = 'center center';
+  debreeStyle.height = `${template._size}px`;
+  debreeStyle.width = `${template._size}px`;
+  // debreeStyle.border = '1px solid white';
+  // debreeStyle.borderRadius = '50%';
   debreeStyle.position = 'fixed';
-  debreeStyle.left = '100px';
-  debreeStyle.top = `${Math.floor(Math.random() * windowHeight)}px`;
+  debreeStyle.left = `-${template._size}px`;
+  debreeStyle.top = `${Math.floor(Math.random() * (windowHeight - (template._size/2)))}px`;
 
-  console.log(debreeStyle.backgroundColor)
-  playArea.appendChild(spaceDebree)
   debreeNum++;
+  playArea.appendChild(spaceDebree)
+  return spaceDebree
 }
-
-createSpaceDebree();
 
 let objectMovement = () => {
-  debr
+  let debreeLocation = -50;
+  let debreeSpeed = 5
+  let debree = createSpaceDebree()
+  let distance = windowWidth;
+  let distanceTraveled = 0;
+  let interval = setInterval(function(){
+    if(debreeLocation > (distance - 70) && pause === false){
+      clearInterval(interval);
+      debree.remove();
+    } else if (pause === true){
+      clearInterval();
+    } else {
+      debreeLocation += debreeSpeed;
+      debree.style.left = `${debreeLocation}px`;
+      // console.log(debree.style.left)
+    }
+  },1000/150)
 }
 
+// objectMovement()
+
 /// game loop
-setInterval(function(){
+let debreeLoop = setInterval(function(){
+  if (pause === true){
+    return
+  } else if (pause === false){
+    objectMovement()
+  }
+}, 1000)
+
+let characterLoop = setInterval(function(){
   detectCharacterMovement();
 }, 1000/150);
 
