@@ -130,7 +130,7 @@ let createSpaceDebree = () => {
   debreeStyle.backgroundPosition = 'center center';
   debreeStyle.height = `${template._size}px`;
   debreeStyle.width = `${template._size}px`;
-  // debreeStyle.border = '1px solid white';
+  debreeStyle.border = '1px solid white';
   // debreeStyle.borderRadius = '50%';
   debreeStyle.position = 'fixed';
   debreeStyle.left = `-${template._size}px`;
@@ -138,6 +138,7 @@ let createSpaceDebree = () => {
 
   debreeNum++;
   playArea.appendChild(spaceDebree)
+  positionTracker(spaceDebree)
   return spaceDebree
 }
 
@@ -159,6 +160,18 @@ let objectMovement = () => {
       // console.log(debree.style.left)
     }
   },1000/150)
+}
+
+let positionTracker = (debree) => {
+
+  let leftLength = debree.style.left.length;
+  let debreeLeft = debree.style.left.split('')
+  console.log(debreeLeft)
+
+  console.log('debree left length: ', leftLength)
+
+  console.log('debree ID:', debree.id, 'debree right position:', debree.style.right);
+  console.log('spaceship left position:', spaceship.style.left);
 }
 
 // objectMovement()
