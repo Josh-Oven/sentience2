@@ -109,7 +109,7 @@ let createSpaceDebreeTemplate = () => {
     image = 'url(../assets/images/space-debree/asteroid4.png)'
   } else if (type == 'metal salvage'){
     speed = 2
-    image = 'url(../assets/images/space-debree/asteroid1.png)'
+    image = 'url(../assets/images/space-debree/asteroid1_150.png)'
   }
 
   let spaceDebree = new SpaceDebree(type, size, speed, image);
@@ -163,15 +163,61 @@ let objectMovement = () => {
 }
 
 let positionTracker = (debree) => {
+  let debreeId = debree.id;
+  let windowWidth = window.innerWidth;
 
-  let leftLength = debree.style.left.length;
-  let debreeLeft = debree.style.left.split('')
-  console.log(debreeLeft)
+  let interval = setInterval(function(){
+    let spaceshipRect = spaceship.getBoundingClientRect();
+    let st = spaceshipRect.top
+    let sr = spaceshipRect.right
+    let sb = spaceshipRect.bottom
+    let sl = spaceshipRect.left
+    let sy = spaceshipRect.top + spaceshipRect.height / 2;
+    let sx = spaceshipRect.left + spaceshipRect.width / 2;
+    let debreeRect = debree.getBoundingClientRect()
+    let dt = debreeRect.top
+    let dr = debreeRect.bottom
+    let db = debreeRect.right
+    let dl = debreeRect.left
+    let dy = debreeRect.top + debreeRect.height / 2;
+    let dx = debreeRect.left + debreeRect.width / 2;
 
-  console.log('debree left length: ', leftLength)
+    let distanceFinder = () => {
+      let distance = Math.sqrt(
+        Math.pow(sx - dx, 2) + Math.pow(sy - dy, 2)
+      )
+      return distance
+    }
 
-  console.log('debree ID:', debree.id, 'debree right position:', debree.style.right);
-  console.log('spaceship left position:', spaceship.style.left);
+    let distance = distanceFinder();
+    // console.log(`distance: ${distanceFinder()}`)
+
+    if (debreeRect.left < (windowWidth - 70) && pause === false){
+      // console.log(`left ${spaceshipRect.left}`)
+      return;
+    } else if (pause === true) {
+      clearInterval(interval)
+    } else {
+      // console.log(`debree: ${debree.id} cleared`)
+      clearInterval(interval);
+    }
+
+
+
+    if (distance < 1000) {
+      console.log(distance)
+      console.log('ouch left')
+      spaceship.style.border = '1px solid red';
+      setTimeout(function(){
+        spaceship.style.border = '1px solid white';
+      }, 1000/150)
+    }
+  },1000/150)
+
+  // console.log(window.innerWidth);
+  // console.log(`debree id: ${debree.id}`)
+  // console.log(`ship rect left: ${spaceshipRect.left}`)
+  // console.log(`debree rect right: ${debreeRect.right}`)
 }
 
 // objectMovement()
