@@ -130,7 +130,7 @@ let createSpaceDebree = () => {
   debreeStyle.backgroundPosition = 'center center';
   debreeStyle.height = `${template._size}px`;
   debreeStyle.width = `${template._size}px`;
-  debreeStyle.border = '1px solid white';
+  // debreeStyle.border = '1px solid white';
   // debreeStyle.borderRadius = '50%';
   debreeStyle.position = 'fixed';
   debreeStyle.left = `-${template._size}px`;
@@ -176,8 +176,8 @@ let positionTracker = (debree) => {
     let sx = spaceshipRect.left + spaceshipRect.width / 2;
     let debreeRect = debree.getBoundingClientRect()
     let dt = debreeRect.top
-    let dr = debreeRect.bottom
-    let db = debreeRect.right
+    let dr = debreeRect.right
+    let db = debreeRect.bottom
     let dl = debreeRect.left
     let dy = debreeRect.top + debreeRect.height / 2;
     let dx = debreeRect.left + debreeRect.width / 2;
@@ -189,37 +189,60 @@ let positionTracker = (debree) => {
       return distance
     }
 
-    let distance = distanceFinder();
-    // console.log(`distance: ${distanceFinder()}`)
+    let distance = distanceFinder(spaceshipRect, debree);
 
-    if (debreeRect.left < (windowWidth - 70) && pause === false){
-      // console.log(`left ${spaceshipRect.left}`)
-      return;
-    } else if (pause === true) {
-      clearInterval(interval)
-    } else {
-      // console.log(`debree: ${debree.id} cleared`)
-      clearInterval(interval);
-    }
-
-
-
-    if (distance < 1000) {
-      console.log(distance)
-      console.log('ouch left')
-      spaceship.style.border = '1px solid red';
-      setTimeout(function(){
-        spaceship.style.border = '1px solid white';
-      }, 1000/150)
+    if (distance < spaceshipRect.width - debreeRect.width && dr > sl) {
+      if (db > st && dt < sb && relativityStatus === false) {
+        clearInterval(interval);
+        debree.remove();
+        // console.log('ouch')
+        spaceship.style.border = '1px solid red';
+        setTimeout(function(){
+          spaceship.style.border = 'none';
+        }, 1000)
+      } else if (db > st && dt < sb && relativityStatus === true) {
+        relativity(debree)
+        debree.remove();
+      } else {
+        return;
+      }
     }
   },1000/150)
+}
+let relativityStatus = true;
+let debreeOne = document.getElementById('object-one')
+let debreeTwo = document.getElementById('object-two')
+let debreeThree = document.getElementById('object-three')
+let debreeFour = document.getElementById('object-four')
 
-  // console.log(window.innerWidth);
-  // console.log(`debree id: ${debree.id}`)
-  // console.log(`ship rect left: ${spaceshipRect.left}`)
-  // console.log(`debree rect right: ${debreeRect.right}`)
+let relativity = (debree) => {
+  if (debreeOne.style.backgroundImage === '') {
+    debreeOne.style.backgroundImage = debree.style.backgroundImage;
+    debreeOne.style.backgroundSize = debree.style.backgroundSize;
+    debreeOne.style.backgroundRepeat = debree.style.backgroundRepeat;
+    debreeOne.style.backgroundPosition = debree.style.backgroundPosition;
+  }
+  else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage === '') {
+    debreeTwo.style.backgroundImage = debree.style.backgroundImage;
+    debreeTwo.style.backgroundSize = debree.style.backgroundSize;
+    debreeTwo.style.backgroundRepeat = debree.style.backgroundRepeat;
+    debreeTwo.style.backgroundPosition = debree.style.backgroundPosition;
+  }
+  else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage != '' && debreeThree.style.backgroundImage === '') {
+    debreeThree.style.backgroundImage = debree.style.backgroundImage;
+    debreeThree.style.backgroundSize = debree.style.backgroundSize;
+    debreeThree.style.backgroundRepeat = debree.style.backgroundRepeat;
+    debreeThree.style.backgroundPosition = debree.style.backgroundPosition;
+  }
+  else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage != '' && debreeThree.style.backgroundImage != '') {
+    debreeFour.style.backgroundImage = debree.style.backgroundImage;
+    debreeFour.style.backgroundSize = debree.style.backgroundSize;
+    debreeFour.style.backgroundRepeat = debree.style.backgroundRepeat;
+    debreeFour.style.backgroundPosition = debree.style.backgroundPosition;
+  }
 }
 
+// relativity(debree);
 // objectMovement()
 
 /// game loop
