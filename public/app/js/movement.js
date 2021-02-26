@@ -5,6 +5,7 @@ keys.UP = 38;
 keys.LEFT = 37;
 keys.RIGHT = 39;
 keys.DOWN = 40;
+keys.RELATIVITY = 32;
 let pause = false;
 
 ////// screen bounds ///////
@@ -62,7 +63,7 @@ let moveCharacter = function(dx, dy){
 };
 
 /// character control
-var detectCharacterMovement = function(){
+let detectCharacterMovement = function(){
   if (pause == true) {
     return;
   }
@@ -82,6 +83,16 @@ var detectCharacterMovement = function(){
 
   if ( keys[keys.DOWN] && character.y <= windowHeight - 50) {
     moveCharacter(0, 1);
+  }
+
+  if (keys[keys.RELATIVITY]) {
+    console.log('relativity activating');
+    relativityStatus = true;
+    keys.RELATIVITY = 0;
+    setTimeout(()=>{
+      relativityStatus = false;
+      keys.RELATIVITY = 32;
+    },5000)
   }
 };
 
@@ -121,7 +132,7 @@ let createSpaceDebree = () => {
   let template = createSpaceDebreeTemplate();
   // console.log(template._size)
   let spaceDebree = document.createElement('div');
-  spaceDebree.id = `spaceDebree${debreeNum}`;
+  spaceDebree.id = `spaceDebree`;
   let debreeStyle = spaceDebree.style;
 
   debreeStyle.backgroundImage = template._image;
@@ -138,7 +149,24 @@ let createSpaceDebree = () => {
 
   debreeNum++;
   playArea.appendChild(spaceDebree)
-  positionTracker(spaceDebree)
+  positionTracker(spaceship, spaceDebree)
+
+    if (debreeOne.style.backgroundImage != '') {
+      positionTracker(debreeOne, spaceDebree)
+    }
+
+    if (debreeTwo.style.backgroundImage != '') {
+      positionTracker(debreeTwo, spaceDebree)
+    }
+
+    if (debreeThree.style.backgroundImage != '') {
+      positionTracker(debreeThree, spaceDebree)
+    }
+
+    if (debreeFour.style.backgroundImage != '') {
+      positionTracker(debreeFour, spaceDebree)
+    }
+
   return spaceDebree
 }
 
@@ -162,60 +190,119 @@ let objectMovement = () => {
   },1000/150)
 }
 
-let positionTracker = (debree) => {
-  let debreeId = debree.id;
-  let windowWidth = window.innerWidth;
+let positionTracker = (item1, item2) => {
 
   let interval = setInterval(function(){
-    let spaceshipRect = spaceship.getBoundingClientRect();
-    let st = spaceshipRect.top
-    let sr = spaceshipRect.right
-    let sb = spaceshipRect.bottom
-    let sl = spaceshipRect.left
-    let sy = spaceshipRect.top + spaceshipRect.height / 2;
-    let sx = spaceshipRect.left + spaceshipRect.width / 2;
-    let debreeRect = debree.getBoundingClientRect()
-    let dt = debreeRect.top
-    let dr = debreeRect.right
-    let db = debreeRect.bottom
-    let dl = debreeRect.left
-    let dy = debreeRect.top + debreeRect.height / 2;
-    let dx = debreeRect.left + debreeRect.width / 2;
+
+    let item1Rect = item1.getBoundingClientRect();
+    let oneT = item1Rect.top
+    let oneR = item1Rect.right
+    let oneB = item1Rect.bottom
+    let oneL = item1Rect.left
+    let oneY = item1Rect.top + item1Rect.height / 2;
+    let oneX = item1Rect.left + item1Rect.width / 2;
+
+    let item2Rect = item2.getBoundingClientRect()
+    let twoT = item2Rect.top
+    let twoR = item2Rect.right
+    let twoB = item2Rect.bottom
+    let twoL = item2Rect.left
+    let twoY = item2Rect.top + item2Rect.height / 2;
+    let twoX = item2Rect.left + item2Rect.width / 2;
 
     let distanceFinder = () => {
       let distance = Math.sqrt(
-        Math.pow(sx - dx, 2) + Math.pow(sy - dy, 2)
+        Math.pow(oneX - twoX, 2) + Math.pow(oneY - twoY, 2)
       )
       return distance
     }
 
-    let distance = distanceFinder(spaceshipRect, debree);
+    let distance = distanceFinder(item1Rect, item2);
+    let collision;
 
-    if (distance < spaceshipRect.width - debreeRect.width && dr > sl) {
-      if (db > st && dt < sb && relativityStatus === false) {
+    if (distance < item1Rect.width - item2Rect.width && twoR > oneL) {
+      if (twoB > oneT && twoT < oneB) {
+        collision = true;
         clearInterval(interval);
-        debree.remove();
-        // console.log('ouch')
-        spaceship.style.border = '1px solid red';
-        setTimeout(function(){
-          spaceship.style.border = 'none';
-        }, 1000)
-      } else if (db > st && dt < sb && relativityStatus === true) {
-        relativity(debree)
-        debree.remove();
-      } else {
+        // console.log('collision')
+      }
+       else {
         return;
       }
     }
+
+    if (distance < item1Rect.width + item2Rect.width && twoL > oneR) {
+      if (twoT < oneB && twoB > oneT) {
+        collision = true;
+        clearInterval(interval);
+        // console.log('collision')
+      }
+       else {
+        return;
+      }
+    }
+
+    // asteroid collision //
+    if (item2.id === 'spaceDebree' && collision === true) {
+      asteroidCollision(item2, item1, interval)
+      // clearInterval(interval);
+    }
+
+    // spaceship collision //
+    if (item1 === spaceship && collision === true)  {
+      spaceshipCollision(item1, item2, interval)
+      // clearInterval(interval);
+    }
+
+    collision = false;
   },1000/150)
 }
-let relativityStatus = true;
+
+///////////////////// collisions //////////////////
+
+/// asteroid collision
+let asteroidCollision = (asteroid, item1, interval) => {
+  if (item1 === spaceship) {
+    console.log('spaceship hit')
+  }
+
+  if (item1 === debreeOne || item1=== debreeTwo || item1 === debreeThree || item1 === debreeFour) {
+    item1.style.backgroundImage = '';
+    console.log('blocked!')
+  }
+
+  asteroid.remove();
+}
+//////////////////////
+
+let abilityStatus = false;
+
+/// spaceship collision
+let spaceshipCollision = (spaceship, item1, interval) => {
+
+  if (item1.id === 'spaceDebree' && relativityStatus === true){
+    relativity(item1)
+  }
+
+  if (item1.id === 'spaceDebree') {
+    spaceship.style.border = '2px solid red';
+    setTimeout(()=>{
+      spaceship.style.border = 'none';
+    },2000)
+  }
+}
+///////////////////////
+
+///////////////////////////////////////////////////
+
+let relativityStatus = false;
 let debreeOne = document.getElementById('object-one')
 let debreeTwo = document.getElementById('object-two')
 let debreeThree = document.getElementById('object-three')
 let debreeFour = document.getElementById('object-four')
 
 let relativity = (debree) => {
+
   if (debreeOne.style.backgroundImage === '') {
     debreeOne.style.backgroundImage = debree.style.backgroundImage;
     debreeOne.style.backgroundSize = debree.style.backgroundSize;
@@ -241,9 +328,6 @@ let relativity = (debree) => {
     debreeFour.style.backgroundPosition = debree.style.backgroundPosition;
   }
 }
-
-// relativity(debree);
-// objectMovement()
 
 /// game loop
 let debreeLoop = setInterval(function(){

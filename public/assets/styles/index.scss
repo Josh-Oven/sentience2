@@ -38,17 +38,17 @@ $retro: 'Press Start 2P';
 
   #relativity-container {
     position: absolute;
-    top: -140%;
-    left: -50%;
+    top: -215%;
+    left: -60%;
     // transform: translate(50%,-50%);
-    width: 180%;
-    height: 420%;
+    width: 220.5%;
+    height: 551%;
     // border-radius: 50%;
     // border: 1px solid yellow;
     animation-iteration-count:infinite;
     animation-timing-function:linear;
     animation-name:orbit;
-    animation-duration:3s;
+    animation-duration:.7s;
 
     #object-one {
       position: absolute;
@@ -61,8 +61,8 @@ $retro: 'Press Start 2P';
     }
     #object-two {
       position: absolute;
-      top: 45%;
-      left: 90%;
+      top: 90%;
+      left: 45%;
       width: 15%;
       height: 15%;
       // border-radius: 50%;
@@ -70,8 +70,8 @@ $retro: 'Press Start 2P';
     }
     #object-three {
       position: absolute;
-      top: 90%;
-      left: 45%;
+      top: 45%;
+      left: 90%;
       width: 15%;
       height: 15%;
       // border-radius: 50%;
