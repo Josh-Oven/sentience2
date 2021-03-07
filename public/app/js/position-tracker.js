@@ -12,14 +12,13 @@ let debreeTwo = groundWork.debreeTwo;
 let debreeThree = groundWork.debreeThree;
 let debreeFour = groundWork.debreeFour;
 let returnRelativityStatus = characterMovement.returnRelativityStatus;
-let relativityStatus = returnRelativityStatus();
 let relativity = abilities.relativity;
 
 let positionTracker = (item1, item2, relativityStatus) => {
   // console.log('position', relativityStatus)
 
   let interval = setInterval(function(){
-
+    let relativityStatus = returnRelativityStatus();
 
     // console.log(interval)
     let item1Rect = item1.getBoundingClientRect();
