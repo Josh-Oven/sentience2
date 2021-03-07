@@ -47,7 +47,7 @@ export {
   }
 
 let starPopulate = () => {
-  for(let i = 0; i < 300; i++){
+  for(let i = 0; i < 400; i++){
     appendStar();
   }
 }
