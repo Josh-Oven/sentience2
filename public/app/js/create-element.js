@@ -2,11 +2,13 @@ export {
   appendSpaceDebree
 }
 
+import * as abilities from './abilities.js'
 import * as objects from './objects.js';
 import * as tracker from './position-tracker.js';
 import * as groundWork from './groundwork.js'
 import * as characterMovement from './character-movement.js'
 let returnRelativityStatus = characterMovement.returnRelativityStatus;
+let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 
 
 let positionTracker = tracker.positionTracker;
@@ -46,8 +48,9 @@ let createSpaceDebreeTemplate = () => {
 
 let appendSpaceDebree = () => {
   let relativityStatus = returnRelativityStatus();
+  let blackTollStatus = returnBlackTollStatus();
   let template = createSpaceDebreeTemplate();
-  // console.log(template._size)
+  
   let spaceDebree = document.createElement('div');
   spaceDebree.id = `spaceDebree`;
   let debreeStyle = spaceDebree.style;
@@ -63,8 +66,9 @@ let appendSpaceDebree = () => {
   debreeStyle.left = `-${template._size}px`;
   debreeStyle.top = `${Math.floor(Math.random() * (windowHeight - (template._size/2)))}px`;
 
-  playArea.appendChild(spaceDebree)
-  positionTracker(spaceship, spaceDebree, relativityStatus)
+    if (blackTollStatus === true) {
+      positionTracker(abilities.blackToll(), spaceDebree)
+    }
 
     if (debreeOne.style.backgroundImage != '') {
       positionTracker(debreeOne, spaceDebree, relativityStatus)
@@ -82,5 +86,7 @@ let appendSpaceDebree = () => {
       positionTracker(debreeFour, spaceDebree, relativityStatus)
     }
 
+    playArea.appendChild(spaceDebree)
+    positionTracker(spaceship, spaceDebree, relativityStatus)
   return spaceDebree
 }

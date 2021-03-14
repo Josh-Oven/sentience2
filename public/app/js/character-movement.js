@@ -2,7 +2,8 @@ export {
   detectCharacterMovement,
   keys,
   moveCharacter,
-  returnRelativityStatus
+  returnRelativityStatus,
+  returnBlackTollStatus
   // cooldownActivate
 }
 
@@ -12,11 +13,12 @@ let pause = groundWork.pause;
 let windowWidth = groundWork.windowWidth;
 let windowHeight = groundWork.windowHeight;
 let relativityStatus = groundWork.relativityStatus;
+let blackTollStatus = groundWork.blackTollStatus;
 import * as objects from './objects.js';
+import * as abilities from './abilities.js'
 let relativityIcon = objects.relativity;
 
 let cooldownBlock = document.getElementById('cooldown-block')
-let cooldownOpacity = document.getElementById('cooldown-opacity')
 
 const keys = {};
 keys.UP = 38;
@@ -24,6 +26,7 @@ keys.LEFT = 37;
 keys.RIGHT = 39;
 keys.DOWN = 40;
 keys.RELATIVITY = 32;
+keys.BLACKTOLL = 87;
 
 let shipRect = spaceship.getBoundingClientRect();
 let charX = shipRect.left + shipRect.width / 2;
@@ -36,7 +39,6 @@ let character = {
   element: spaceship
 };
 
-/// key detection (better to use addEventListener, but this will do)
 document.body.onkeyup =
 document.body.onkeydown = function(e){
 
@@ -82,10 +84,10 @@ let detectCharacterMovement = () => {
     moveCharacter(0, 1);
   }
 
-
   if (keys[keys.RELATIVITY]) {
     console.log('relativity activating');
     cooldownBlock.style.display = 'block';
+    // relativityIcon.html.style.backgroundColor = 'rgba(0,0,0,1)'
     relativityStatus = true;
     keys.RELATIVITY = 0;
     returnRelativityStatus();
@@ -93,11 +95,33 @@ let detectCharacterMovement = () => {
     setTimeout(()=>{
       relativityStatus = false;
       returnRelativityStatus();
+    },6000)
+
+    setTimeout(()=>{
       keys.RELATIVITY = 32;
       cooldownBlock.style.display = 'none'
     },relativityIcon.cooldown)
 
     return relativityStatus;
+  }
+
+  if (keys[keys.BLACKTOLL]) {
+    console.log('blacktoll')
+    blackTollStatus = true;
+    returnBlackTollStatus();
+    abilities.blackToll();
+    keys.BLACKTOLL = 0;
+    let blackHoleElement = document.getElementById('black-toll');
+
+    setTimeout(()=>{
+      blackTollStatus = false;
+      blackHoleElement.style.backgroundImage = '';
+      blackHoleElement.remove()
+      returnBlackTollStatus();
+      keys.BLACKTOLL = 87
+      console.log(blackHoleElement)
+    },7000)
+    return blackTollStatus;
   }
   // return relativityStatus;
 };
@@ -105,6 +129,10 @@ let detectCharacterMovement = () => {
 let returnRelativityStatus = () => {
   // console.log(relativityStatus)
   return relativityStatus;
+}
+
+let returnBlackTollStatus = () => {
+  return blackTollStatus;
 }
 
 /// update current position on screen

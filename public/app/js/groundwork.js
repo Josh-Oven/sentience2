@@ -8,7 +8,8 @@ export {
   windowHeight,
   windowWidth,
   pause,
-  relativityStatus
+  relativityStatus,
+  blackTollStatus
 }
 
 let pause = false;
@@ -21,3 +22,4 @@ let spaceship = document.getElementById('spaceship-container');
 let windowHeight = window.innerHeight;
 let windowWidth = window.innerWidth;
 let relativityStatus = false;
+let blackTollStatus = false;

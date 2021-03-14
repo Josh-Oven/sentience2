@@ -1,7 +1,8 @@
 export {
   spaceship,
   SpaceDebree,
-  relativity
+  relativity,
+  blackToll
 }
 
 const spaceship = {
@@ -33,6 +34,28 @@ const relativity = {
   cooldown: 20000,
   html: document.getElementById('relativity')
 }
+const blackToll = {
+  thumbnail: '../assets/images/abilities/black-toll.png',
+  image: '../assets/images/abilities/black-toll.png',
+  cooldown: 20000,
+  html: '',
+  css: function(){
+    let template = document.createElement('div')
+    let style = template.style;
+    style.backgroundPosition = 'center center';
+    style.backgroundRepeat = 'no-repeat';
+    style.backgroundImage = `url(${this.image})`;
+    style.backgroundSize = 'cover';
+    style.position = 'absolute';
+    style.height = '150px';
+    style.width = '150px';
+    style.left = '-125%';
+    style.top = '-50%';
+    return template;
+  }
+}
+
+
 
 // const asteroid = {
 //   currentBuffs: [],

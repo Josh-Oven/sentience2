@@ -1,7 +1,13 @@
 export {
-  relativity
+  relativity,
+  blackToll
 }
 
+import * as tracker from './position-tracker.js'
+import * as groundwork from './groundwork.js'
+let spaceship = groundwork.spaceship
+import * as objects from './objects.js'
+let blackTollObject = objects.blackToll
 import * as groundWork from './groundwork.js';
 let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
@@ -34,4 +40,12 @@ let relativity = (debree) => {
     debreeFour.style.backgroundRepeat = debree.style.backgroundRepeat;
     debreeFour.style.backgroundPosition = debree.style.backgroundPosition;
   }
+}
+
+let blackToll = () => {
+  let shipRect = spaceship.getBoundingClientRect();
+  let blackHole = blackTollObject.css();
+  blackHole.id = 'black-toll'
+  spaceship.appendChild(blackHole)
+  return blackHole
 }
