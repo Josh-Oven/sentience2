@@ -87,3 +87,46 @@ $retro: 'Press Start 2P';
   border-radius: 50%;
   // z-index: 11;
 }
+
+#ability-bar {
+  position: absolute;
+  left: 40%;
+  bottom: 100px;
+  width: 400px;
+  height: 75px;
+  // border: 1px solid white;s
+  z-index: 10;
+
+  #relativity {
+    width: 75px;
+    height: 75px;
+    border-radius: 5px;
+    background-image: url('../assets/images/abilities/relativity_thumb.png');
+    background-size: cover;
+    overflow: hidden;
+
+    #cooldown-opacity {
+      display: none;
+      position: absolute;
+      margin-left: 0;
+      width: 75px;
+      height: 75px;
+      background-color: rgba(0, 0, 0, .9);
+    }
+
+    #cooldown-block {
+      display: none;
+      // position: absolute;
+      width: 75px;
+      height: 75px;
+      background-color: gray;
+      border-radius: 5px;
+      animation: cooldown 21s;
+    }
+  }
+}
+
+@keyframes cooldown {
+  from {margin-left: 0%}
+  to {margin-left: 100%}
+}

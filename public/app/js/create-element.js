@@ -21,7 +21,7 @@ let playArea = groundWork.playArea;
 //////////////////////////////////////////////////////////
 
 let debreeTypes = ['asteroid', 'metal salvage']
-let asteroidImages = ['url(../assets/images/space-debree/asteroid4.png)', 'url(../assets/images/space-debree/asteroid1_150.png)']
+let asteroidImages = ['url(../assets/images/space-debree/asteroid4.png)', 'url(../assets/images/space-debree/asteroid1_150.png)', 'url(../assets/images/space-debree/asteroid2_150.png)']
 let metalImages = ['url(../assets/images/space-debree/metal-salvage1.gif)', 'url(../assets/images/space-debree/metal-salvage2.png)']
 
 let createSpaceDebreeTemplate = () => {
@@ -32,7 +32,7 @@ let createSpaceDebreeTemplate = () => {
 
   if (type === 'asteroid'){
     speed = 3
-    image = asteroidImages[Math.floor(Math.random() * 2)]
+    image = asteroidImages[Math.floor(Math.random() * 3)]
   } else if (type == 'metal salvage'){
     speed = 2
     image = metalImages[Math.floor(Math.random() * 2)]

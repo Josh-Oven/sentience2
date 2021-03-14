@@ -1,6 +1,7 @@
 export {
   spaceship,
-  SpaceDebree
+  SpaceDebree,
+  relativity
 }
 
 const spaceship = {
@@ -25,12 +26,20 @@ class SpaceDebree {
   }
 }
 
-const asteroid = {
-  currentBuffs: [],
-  currentDebuffs: [],
-  availableBuffs: [],
-  availableDebuffs: []
+///////////// abilities /////////////
+// let relativityHtml = document.getElementById('relativity');
+const relativity = {
+  thumbnail: '../assets/images/abilities/relativity_thumb.png',
+  cooldown: 20000,
+  html: document.getElementById('relativity')
 }
+
+// const asteroid = {
+//   currentBuffs: [],
+//   currentDebuffs: [],
+//   availableBuffs: [],
+//   availableDebuffs: []
+// }
 
 // const debuff = {
 //     name: 'Shield Sabotage',
@@ -44,14 +53,14 @@ const asteroid = {
 // console.log(typeof(10 + 'seconds'))
 // console.log(debuff.desc)
 
-class Debuff {
-  constructor(name, desc, img, family, type){
-    this.name = name;
-    this.desc = desc;
-    this.img = img;
-    this.family = family;
-    this.type = type;
-  }
-}
-
-let asteroidCss = '';
+// class Debuff {
+//   constructor(name, desc, img, family, type){
+//     this.name = name;
+//     this.desc = desc;
+//     this.img = img;
+//     this.family = family;
+//     this.type = type;
+//   }
+// }
+//
+// let asteroidCss = '';

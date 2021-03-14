@@ -4,6 +4,7 @@ import * as starBackground from './star-background.js';
 import * as groundWork from './groundwork.js'
 import * as characterMovement from './character-movement.js'
 let detectCharacterMovement = characterMovement.detectCharacterMovement;
+// let cooldownActivate = characterMovement.cooldownActivate;
 let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
 let debreeThree = groundWork.debreeThree;
@@ -15,6 +16,7 @@ let windowHeight = groundWork.windowHeight;
 let windowWidth = groundWork.windowWidth;
 let pause = groundWork.pause;
 let relativityStatus = groundWork.relativityStatus;
+let cooldownBlock = document.getElementById('cooldown-block');
 
 starBackground.starPopulate();
 
@@ -52,7 +54,7 @@ let objectMovement = () => {
 /// game loop
 let debreeLoop = setInterval(function(){
   if (pause === true){
-    clearInterval();
+    clearInterval(debreeLoop);
     return
   } else if (pause === false){
     objectMovement()
@@ -61,7 +63,7 @@ let debreeLoop = setInterval(function(){
 
 let characterLoop = setInterval(function(){
   if (pause === true){
-    clearInterval();
+    clearInterval(characterLoop);
     return
   } else if (pause === false){
     detectCharacterMovement();
@@ -76,6 +78,7 @@ idleScreen.style.display = 'none';
 pauseButton.addEventListener('click', (()=>{
   idleScreen.style.display = 'flex';
   pause = true;
+  console.log('pause')
 }));
 
 idlePauseButton.addEventListener('click', (()=>{

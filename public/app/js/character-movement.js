@@ -3,6 +3,7 @@ export {
   keys,
   moveCharacter,
   returnRelativityStatus
+  // cooldownActivate
 }
 
 import * as groundWork from './groundwork.js';
@@ -11,6 +12,11 @@ let pause = groundWork.pause;
 let windowWidth = groundWork.windowWidth;
 let windowHeight = groundWork.windowHeight;
 let relativityStatus = groundWork.relativityStatus;
+import * as objects from './objects.js';
+let relativityIcon = objects.relativity;
+
+let cooldownBlock = document.getElementById('cooldown-block')
+let cooldownOpacity = document.getElementById('cooldown-opacity')
 
 const keys = {};
 keys.UP = 38;
@@ -54,7 +60,6 @@ let moveCharacter = function(dx, dy){
 
 /// character control
 let detectCharacterMovement = () => {
-  // console.log(relativityStatus)
   if (pause == true) {
     console.log('paused')
     return;
@@ -77,16 +82,21 @@ let detectCharacterMovement = () => {
     moveCharacter(0, 1);
   }
 
+
   if (keys[keys.RELATIVITY]) {
     console.log('relativity activating');
+    cooldownBlock.style.display = 'block';
     relativityStatus = true;
-    returnRelativityStatus();
     keys.RELATIVITY = 0;
+    returnRelativityStatus();
+
     setTimeout(()=>{
       relativityStatus = false;
       returnRelativityStatus();
       keys.RELATIVITY = 32;
-    },6000)
+      cooldownBlock.style.display = 'none'
+    },relativityIcon.cooldown)
+
     return relativityStatus;
   }
   // return relativityStatus;
