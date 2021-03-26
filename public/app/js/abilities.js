@@ -13,6 +13,9 @@ let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
 let debreeThree = groundWork.debreeThree;
 let debreeFour = groundWork.debreeFour;
+import * as characterMovement from './character-movement.js'
+let returnRelativityStatus = characterMovement.returnRelativityStatus;
+let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 
 let relativity = (debree) => {
 
@@ -47,5 +50,13 @@ let blackToll = () => {
   let blackHole = blackTollObject.css();
   blackHole.id = 'black-toll'
   spaceship.appendChild(blackHole)
+  setTimeout(()=>{
+    let blackTollStatus = returnBlackTollStatus();
+    let blackHoleElement = document.getElementById('black-toll');
+    blackTollStatus = false;
+    returnBlackTollStatus();
+    blackHoleElement.remove();
+    console.log(blackHole);
+  },7000)
   return blackHole
 }

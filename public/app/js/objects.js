@@ -34,11 +34,12 @@ const relativity = {
   cooldown: 20000,
   html: document.getElementById('relativity')
 }
+
 const blackToll = {
-  thumbnail: '../assets/images/abilities/black-toll.png',
-  image: '../assets/images/abilities/black-toll.png',
+  thumbnail: '../assets/images/abilities/black-toll-thumb.png',
+  image: '../assets/images/abilities/black-toll-light-animation.gif',
   cooldown: 20000,
-  html: '',
+  html: document.getElementById('black-toll'),
   css: function(){
     let template = document.createElement('div')
     let style = template.style;

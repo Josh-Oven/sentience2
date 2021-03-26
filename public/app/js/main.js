@@ -38,11 +38,13 @@ let objectMovement = () => {
   let distance = windowWidth;
   let distanceTraveled = 0;
   let interval = setInterval(function(){
-    if(debreeLocation > (distance - 70) && pause === false){
+    if(debreeLocation > distance && pause === false){
       clearInterval(interval);
+      interval = 0;
       debree.remove();
+      // console.log(debree)
     } else if (pause === true){
-      clearInterval();
+      return;
     } else {
       debreeLocation += debreeSpeed;
       debree.style.left = `${debreeLocation}px`;
@@ -54,7 +56,7 @@ let objectMovement = () => {
 /// game loop
 let debreeLoop = setInterval(function(){
   if (pause === true){
-    clearInterval(debreeLoop);
+    // clearInterval(debreeLoop);
     return
   } else if (pause === false){
     objectMovement()
@@ -63,7 +65,7 @@ let debreeLoop = setInterval(function(){
 
 let characterLoop = setInterval(function(){
   if (pause === true){
-    clearInterval(characterLoop);
+    // clearInterval(characterLoop);
     return
   } else if (pause === false){
     detectCharacterMovement();

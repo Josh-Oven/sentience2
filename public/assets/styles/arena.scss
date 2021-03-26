@@ -11,7 +11,8 @@ $retro: 'Press Start 2P';
 }
 
 #star-container {
-  margin-top: -5%;
+  // z-index: 1;
+  // margin-top: -5%;
   width: 100%;
   height: 100vh;
   // border: 1px solid white;
@@ -24,7 +25,7 @@ $retro: 'Press Start 2P';
 #star-row {
   width: 100%;
   height: 50px;
-  border: 1px solid white;
+  // border: 1px solid white;
   display: flex;
   align-items: center;
 }
@@ -36,7 +37,7 @@ $retro: 'Press Start 2P';
   position: fixed;
   // border: 1px solid black;
   background-color: rgba(0, 0, 0, .9);
-  z-index: 10;
+  z-index: 100;
 }
 
 #pause-text-container {
@@ -55,13 +56,14 @@ $retro: 'Press Start 2P';
 }
 
 #pause-button-container {
+  // border:1px solid white;
   width: 50px;
   height: 50px;
-  display: fixed;
+  // position: fixed;
   margin-top: 10px;
   margin-left: 10px;
   // border: 1px solid black;
-  z-index: 11;
+  z-index: 20;
 }
 
 #pause-button {
@@ -69,7 +71,7 @@ $retro: 'Press Start 2P';
   height: 100%;
   background: violet;
   border-radius: 50%;
-  z-index: 11;
+  z-index: 20;
 }
 
 #idle-pause-button-container {
@@ -90,11 +92,13 @@ $retro: 'Press Start 2P';
 
 #ability-bar {
   position: absolute;
+  display: flex;
+  justify-content: space-around;
   left: 40%;
   bottom: 100px;
-  width: 400px;
+  width: auto;
   height: 75px;
-  // border: 1px solid white;s
+  // border: 1px solid yellow;
   z-index: 10;
 
   #relativity {
@@ -106,6 +110,27 @@ $retro: 'Press Start 2P';
     overflow: hidden;
 
     #cooldown-block {
+      display: none;
+      // position: absolute;
+      width: 75px;
+      height: 75px;
+      background-color: black;
+      border-radius: 5px;
+      animation: cooldown 21s;
+      opacity: .9;
+    }
+  }
+
+  #blacktoll-icon {
+    margin-left: 10px;
+    width: 75px;
+    height: 75px;
+    border-radius: 5px;
+    background-image: url('../assets/images/abilities/black-toll-thumb.png');
+    background-size: cover;
+    overflow: hidden;
+
+    #cooldown-block-blacktoll {
       display: none;
       // position: absolute;
       width: 75px;

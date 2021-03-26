@@ -17,8 +17,10 @@ let blackTollStatus = groundWork.blackTollStatus;
 import * as objects from './objects.js';
 import * as abilities from './abilities.js'
 let relativityIcon = objects.relativity;
+let blackTollIcon = objects.blackToll;
 
 let cooldownBlock = document.getElementById('cooldown-block')
+let tollCooldownBlock = document.getElementById('cooldown-block-blacktoll')
 
 const keys = {};
 keys.UP = 38;
@@ -87,7 +89,6 @@ let detectCharacterMovement = () => {
   if (keys[keys.RELATIVITY]) {
     console.log('relativity activating');
     cooldownBlock.style.display = 'block';
-    // relativityIcon.html.style.backgroundColor = 'rgba(0,0,0,1)'
     relativityStatus = true;
     keys.RELATIVITY = 0;
     returnRelativityStatus();
@@ -106,24 +107,25 @@ let detectCharacterMovement = () => {
   }
 
   if (keys[keys.BLACKTOLL]) {
+    tollCooldownBlock.style.display = 'block';
+    keys.BLACKTOLL = 0;
     console.log('blacktoll')
     blackTollStatus = true;
     returnBlackTollStatus();
     abilities.blackToll();
-    keys.BLACKTOLL = 0;
-    let blackHoleElement = document.getElementById('black-toll');
 
     setTimeout(()=>{
       blackTollStatus = false;
-      blackHoleElement.style.backgroundImage = '';
-      blackHoleElement.remove()
       returnBlackTollStatus();
-      keys.BLACKTOLL = 87
-      console.log(blackHoleElement)
+      // console.log(blackHoleElement);
     },7000)
+
+    setTimeout(()=>{
+      tollCooldownBlock.style.display = 'none';
+      keys.BLACKTOLL = 87;
+    },blackTollIcon.cooldown)
     return blackTollStatus;
   }
-  // return relativityStatus;
 };
 
 let returnRelativityStatus = () => {

@@ -7,6 +7,7 @@ export {
 import * as abilities from './abilities.js';
 import * as characterMovement from './character-movement.js';
 import * as groundWork from './groundwork.js';
+let windowWidth = groundWork.windowWidth
 let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
 let debreeThree = groundWork.debreeThree;
@@ -46,14 +47,29 @@ let positionTracker = (item1, item2, relativityStatus) => {
       return distance
     }
 
+    let rightBorder = windowWidth;
     let distance = distanceFinder(item1Rect, item2);
     let collision;
+
+    if(item1.id === 'spaceDebree'|| item2.id === 'spaceDebree'){
+      if(oneR > windowWidth){
+        console.log('border')
+        clearInterval(interval)
+        interval = 0;
+      }
+      if(twoR > windowWidth){
+        console.log('border')
+        clearInterval(interval)
+        interval = 0;
+      }
+    }
 
     if (distance < item1Rect.width - item2Rect.width && twoR > oneL) {
       if (twoB > oneT && twoT < oneB) {
         collision = true;
-        // clearInterval(interval);
-        // console.log('collision')
+        clearInterval(interval);
+        interval = 0;
+        console.log(interval)
       }
        else {
         return;
@@ -63,8 +79,9 @@ let positionTracker = (item1, item2, relativityStatus) => {
     if (distance < item1Rect.width + item2Rect.width && twoL > oneR) {
       if (twoT < oneB && twoB > oneT) {
         collision = true;
-        // clearInterval(interval);
-        // console.log('collision')
+        clearInterval(interval);
+        interval = 0;
+        console.log(interval)
       }
        else {
         return;
@@ -101,7 +118,8 @@ let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
     console.log('blocked!')
   }
   asteroid.remove()
-  clearInterval(interval)
+  // clearInterval(interval)
+  // console.log(interval)
 }
 ///////////////////////
 

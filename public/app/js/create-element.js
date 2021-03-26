@@ -9,6 +9,8 @@ import * as groundWork from './groundwork.js'
 import * as characterMovement from './character-movement.js'
 let returnRelativityStatus = characterMovement.returnRelativityStatus;
 let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
+// let relativityStatus = groundWork.relativityStatus;
+// let blackTollStatus = groundWork.blackTollStatus;
 
 
 let positionTracker = tracker.positionTracker;
@@ -47,10 +49,9 @@ let createSpaceDebreeTemplate = () => {
 ////////////////////////////////////////////////////////
 
 let appendSpaceDebree = () => {
-  let relativityStatus = returnRelativityStatus();
-  let blackTollStatus = returnBlackTollStatus();
   let template = createSpaceDebreeTemplate();
-  
+  let blackTollStatus = returnBlackTollStatus();
+  let relativityStatus = returnRelativityStatus();
   let spaceDebree = document.createElement('div');
   spaceDebree.id = `spaceDebree`;
   let debreeStyle = spaceDebree.style;
@@ -67,7 +68,7 @@ let appendSpaceDebree = () => {
   debreeStyle.top = `${Math.floor(Math.random() * (windowHeight - (template._size/2)))}px`;
 
     if (blackTollStatus === true) {
-      positionTracker(abilities.blackToll(), spaceDebree)
+      positionTracker(document.getElementById('black-toll'), spaceDebree)
     }
 
     if (debreeOne.style.backgroundImage != '') {
