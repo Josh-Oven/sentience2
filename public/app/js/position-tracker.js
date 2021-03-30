@@ -113,9 +113,14 @@ let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
     console.log('spaceship hit')
   }
 
-  if (relativityStatus != true && item1 === debreeOne || item1 === debreeTwo || item1 === debreeThree || item1 === debreeFour) {
-    item1.style.backgroundImage = '';
-    console.log('blocked!')
+  if (item1 === debreeOne || item1 === debreeTwo || item1 === debreeThree || item1 === debreeFour) {
+    if (relativityStatus === true){
+      asteroid.remove()
+      return;
+    } else {
+      item1.style.backgroundImage = '';
+      console.log('blocked!')
+    }
   }
   asteroid.remove()
   // clearInterval(interval)
@@ -130,7 +135,7 @@ let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
     relativity(item1)
   }
 
-  if (item1.id === 'spaceDebree') {
+  if (item1.id === 'spaceDebree' && relativityStatus === false) {
     spaceship.style.border = '2px solid red';
     setTimeout(()=>{
       spaceship.style.border = 'none';

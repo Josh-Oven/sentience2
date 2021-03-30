@@ -2,3 +2,4 @@
 /dist
 /server
 /.git
+/package-lock.json

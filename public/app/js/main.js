@@ -54,14 +54,25 @@ let objectMovement = () => {
 }
 
 /// game loop
+
+let counter = 3000;
+// let myFunction = function(){
+//     counter -= 250;
+//     console.log(counter);
+//     timeout = setTimeout(myFunction, counter);
+// }
+// let timeout = setTimeout(myFunction, counter);
+
+
 let debreeLoop = setInterval(function(){
+  // frequency = 4000;
   if (pause === true){
     // clearInterval(debreeLoop);
     return
   } else if (pause === false){
     objectMovement()
   }
-}, 1000)
+}, counter)
 
 let characterLoop = setInterval(function(){
   if (pause === true){

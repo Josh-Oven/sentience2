@@ -91,10 +91,12 @@ let detectCharacterMovement = () => {
     cooldownBlock.style.display = 'block';
     relativityStatus = true;
     keys.RELATIVITY = 0;
+    spaceship.style.border = '2px solid yellow';
     returnRelativityStatus();
 
     setTimeout(()=>{
       relativityStatus = false;
+      spaceship.style.border = 'none';
       returnRelativityStatus();
     },6000)
 
