@@ -20,24 +20,28 @@ let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 let relativity = (debree) => {
 
   if (debreeOne.style.backgroundImage === '') {
+    // debreeOne.style.transform = `rotate(90deg)`;
     debreeOne.style.backgroundImage = debree.style.backgroundImage;
     debreeOne.style.backgroundSize = debree.style.backgroundSize;
     debreeOne.style.backgroundRepeat = debree.style.backgroundRepeat;
     debreeOne.style.backgroundPosition = debree.style.backgroundPosition;
   }
   else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage === '') {
+    // debreeTwo.style.transform = `rotate(90deg)`;
     debreeTwo.style.backgroundImage = debree.style.backgroundImage;
     debreeTwo.style.backgroundSize = debree.style.backgroundSize;
     debreeTwo.style.backgroundRepeat = debree.style.backgroundRepeat;
     debreeTwo.style.backgroundPosition = debree.style.backgroundPosition;
   }
   else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage != '' && debreeThree.style.backgroundImage === '') {
+    // debreeThree.style.transform = `rotate(90deg)`;
     debreeThree.style.backgroundImage = debree.style.backgroundImage;
     debreeThree.style.backgroundSize = debree.style.backgroundSize;
     debreeThree.style.backgroundRepeat = debree.style.backgroundRepeat;
     debreeThree.style.backgroundPosition = debree.style.backgroundPosition;
   }
   else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage != '' && debreeThree.style.backgroundImage != '') {
+    // debreeFour.style.transform = `rotate(90deg)`;
     debreeFour.style.backgroundImage = debree.style.backgroundImage;
     debreeFour.style.backgroundSize = debree.style.backgroundSize;
     debreeFour.style.backgroundRepeat = debree.style.backgroundRepeat;

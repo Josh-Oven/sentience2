@@ -10,6 +10,7 @@ let debreeTwo = groundWork.debreeTwo;
 let debreeThree = groundWork.debreeThree;
 let debreeFour = groundWork.debreeFour;
 let appendSpaceDebree = createElement.appendSpaceDebree;
+let appendOrb = createElement.appendOrb;
 let playArea = groundWork.playArea;
 let spaceship = groundWork.spaceship;
 let windowHeight = groundWork.windowHeight;
@@ -35,12 +36,14 @@ let objectMovement = () => {
   let location = -50;
   let debreeSpeed = 5;
   let debree = appendSpaceDebree(relativityStatus)
+  // let orb = appendOrb();
   let distance = windowWidth;
   let distanceTraveled = 0;
   let interval = setInterval(function(){
     if(location > distance && pause === false){
       clearInterval(interval);
       interval = 0;
+      // orb.remove();
       debree.remove();
       // console.log(debree)
     } else if (pause === true){
@@ -48,15 +51,38 @@ let objectMovement = () => {
     } else {
       location += debreeSpeed;
       debree.style.left = `${location}px`;
+      // orb.style.left = `${location}px`;
       // console.log(debree.style.left)
+    }
+  },1000/150)
+}
+
+let orbMovement = () => {
+  let location = -50;
+  let orbSpeed = 3;
+  let orb = appendOrb();
+  let distance = windowWidth;
+  let distanceTraveled = 0;
+  let interval = setInterval(function(){
+    if(location > distance && pause === false){
+      clearInterval(interval);
+      interval = 0;
+      // orb.remove();
+      orb.remove();
+      // console.log(debree)
+    } else if (pause === true){
+      return;
+    } else {
+      location += orbSpeed;
+      orb.style.left = `${location}px`;
     }
   },1000/150)
 }
 
 /// game loop
 
-let counter = 20000;
-let frequency = 5000;
+let counter = 5000;
+let frequency = 4000;
 let counterInterval = setInterval(() => {
   if (pause === true){
     return;
@@ -93,7 +119,15 @@ let debreeLoop = setInterval(function(){
     objectMovement()
   }
 }, frequency)
-let newDebreeLoop = debreeLoop;
+
+let orbLoop = setInterval(function(){
+  // console.log(counter)
+   if (pause === true){
+    return
+  } else if (pause === false){
+    orbMovement()
+  }
+}, 3000)
 
 let characterLoop = setInterval(function(){
   if (pause === true){

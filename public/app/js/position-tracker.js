@@ -7,6 +7,7 @@ export {
 import * as abilities from './abilities.js';
 import * as characterMovement from './character-movement.js';
 import * as groundWork from './groundwork.js';
+let score = groundWork.score;
 let windowWidth = groundWork.windowWidth
 let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
@@ -76,7 +77,7 @@ let positionTracker = (item1, item2, relativityStatus) => {
       }
     }
 
-    if (distance < item1Rect.width + item2Rect.width && twoL > oneR) {
+    if (distance < item1Rect.width - item2Rect.width && twoL > oneR) {
       if (twoT < oneB && twoB > oneT) {
         collision = true;
         clearInterval(interval);
@@ -129,6 +130,7 @@ let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
 ///////////////////////
 
 /// spaceship collision
+let newScore = 0;
 let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
 
   if (item1.id === 'spaceDebree' && relativityStatus === true){
@@ -140,6 +142,16 @@ let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
     setTimeout(()=>{
       spaceship.style.border = 'none';
     },2000)
+  }
+
+  if (item1.id === 'pointOrb' || item1.id === 'fuelOrb' || item1.id === 'healthOrb'){
+
+    if (item1.id === 'pointOrb') {
+      newScore += 10;
+      score.innerHTML = newScore;
+    }
+    console.log(item1.id)
+    item1.remove()
   }
 }
 ///////////////////////

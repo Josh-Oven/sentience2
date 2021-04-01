@@ -10,6 +10,47 @@ $retro: 'Press Start 2P';
   overflow: hidden;
 }
 
+#score-wrapper {
+  width: auto;
+  height: auto;
+  // border: 1px solid white;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  top: 1%;
+  left: 50%;
+  transform: translate(-50%);
+
+  #score-text-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    #score-text {
+      font-size: 30px;
+      font-family: $retro;
+      color: white;
+    }
+  }
+
+  #score-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    #score {
+      font-size: 30px;
+      font-family: $retro;
+      color: violet;
+    }
+  }
+}
+
 #star-container {
   // z-index: 1;
   // margin-top: -5%;
@@ -59,7 +100,7 @@ $retro: 'Press Start 2P';
   // border:1px solid white;
   width: 50px;
   height: 50px;
-  // position: fixed;
+  position: fixed;
   margin-top: 10px;
   margin-left: 10px;
   // border: 1px solid black;

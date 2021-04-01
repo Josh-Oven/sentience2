@@ -9,10 +9,13 @@ export {
   windowWidth,
   pause,
   relativityStatus,
-  blackTollStatus
+  blackTollStatus,
+  score
 }
 
+
 let pause = false;
+let score = document.getElementById('score')
 let debreeOne = document.getElementById('object-one');
 let debreeTwo = document.getElementById('object-two');
 let debreeThree = document.getElementById('object-three');

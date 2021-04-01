@@ -24,6 +24,25 @@ const spaceship = {
   css: ''
 }
 
+// class Collectables {
+//   constructor(css) {
+//     this._css = function(){
+//       let template = document.createElement('div')
+//       let style = template.style;
+//       let size = this.size()
+//       style.backgroundPosition = 'center center';
+//       style.backgroundRepeat = 'no-repeat';
+//       style.backgroundImage = `url(${this.image[Math.floor(Math.random() * this.image.length)]})`;
+//       style.backgroundSize = 'cover';
+//       style.position = 'fixed';
+//       style.height = `${size}px`;
+//       style.width = `${size}px`;
+//       style.left = `-${size}px`;
+//       return template;
+//     }
+//   }
+// }
+
 class SpaceDebree {
   constructor(size, speed, css){
     this._size = size;
@@ -77,18 +96,20 @@ const salvage = {
 }
 
 class Orb {
-  constructor(size, image, points, health, fuel){
+  constructor(type, size, points, health, fuel, css){
+    this._type = type;
     this._size = size;
-    this._image = image;
     this._points = points;
     this._health = health;
     this._fuel = fuel;
+    this._css = css;
   }
 }
 
 const pointOrb = {
-  size: `50px`,
-  image: ``,
+  type: 'pointOrb',
+  size: 50,
+  image: `../assets/images/orbs/point-orb.png`,
   points: 50,
   health: 0,
   fuel: 0,
@@ -99,17 +120,18 @@ const pointOrb = {
     style.backgroundRepeat = 'no-repeat';
     style.backgroundImage = `url(${this.image})`;
     style.backgroundSize = 'cover';
-    style.position = 'absolute';
-    style.height = this.size;
-    style.width = this.size;
-    style.left = this.size;
+    style.position = 'fixed';
+    style.height = `${this.size}px`;
+    style.width = `${this.size}px`;
+    style.left = `-${this.size}px`;
     return template;
   }
 }
 
 const fuelOrb = {
-  size: `50px`,
-  image: ``,
+  type: 'fuelOrb',
+  size: 50,
+  image: `../assets/images/orbs/fuel-orb.png`,
   points: 0,
   health: 0,
   fuel: 10,
@@ -120,17 +142,18 @@ const fuelOrb = {
     style.backgroundRepeat = 'no-repeat';
     style.backgroundImage = `url(${this.image})`;
     style.backgroundSize = 'cover';
-    style.position = 'absolute';
-    style.height = this.size;
-    style.width = this.size;
-    style.left = this.size;
+    style.position = 'fixed';
+    style.height = `${this.size}px`;
+    style.width = `${this.size}px`;
+    style.left = `-${this.size}px`;
     return template;
   }
 }
 
 const healthOrb = {
-  size: `50px`,
-  image: ``,
+  type: 'healthOrb',
+  size: 50,
+  image: `../assets/images/orbs/health-orb.png`,
   points: 0,
   health: 20,
   fuel: 0,
@@ -141,10 +164,10 @@ const healthOrb = {
     style.backgroundRepeat = 'no-repeat';
     style.backgroundImage = `url(${this.image})`;
     style.backgroundSize = 'cover';
-    style.position = 'absolute';
-    style.height = this.size;
-    style.width = this.size;
-    style.left = this.size;
+    style.position = 'fixed';
+    style.height = `${this.size}px`;
+    style.width = `${this.size}px`;
+    style.left = `-${this.size}pxpx`;
     return template;
   }
 }

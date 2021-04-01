@@ -29,6 +29,7 @@ keys.RIGHT = 39;
 keys.DOWN = 40;
 keys.RELATIVITY = 32;
 keys.BLACKTOLL = 87;
+keys.PAUSE = 27;
 
 let shipRect = spaceship.getBoundingClientRect();
 let charX = shipRect.left + shipRect.width / 2;
@@ -64,25 +65,40 @@ let moveCharacter = function(dx, dy){
 
 /// character control
 let detectCharacterMovement = () => {
+  let shipRect = spaceship.getBoundingClientRect();
+  let idleScreen = document.getElementById('idle-screen');
+  let pauseButton = document.getElementById('pause-button');
+  let idlePauseButton = document.getElementById('idle-pause-button');
+  idleScreen.style.display = 'none';
+  if (keys[keys.PAUSE]) {
+    if (pause === false) {
+      idleScreen.style.display = 'flex';
+      pause = true;
+      return pause
+    } else if (pause === true) {
+      idleScreen.style.display = 'none';
+      pause = false;
+    }
+  }
   if (pause == true) {
     console.log('paused')
     return;
   }
   // console.log('yeeeet', playAreaHeight)
-  if (keys[keys.LEFT] && character.x >= -120) {
+  if (keys[keys.LEFT] && character.x >= 0) {
     // console.log(character.x, windowWidth)
     moveCharacter(-1, 0);
   }
 
-  if ( keys[keys.RIGHT] && character.x <= windowWidth-370) {
+  if ( keys[keys.RIGHT] && character.x <= windowWidth-shipRect.width) {
     moveCharacter(1, 0);
   }
 
-  if ( keys[keys.UP] && character.y >= 50) {
+  if ( keys[keys.UP] && character.y >= 1) {
     moveCharacter(0, -1);
   }
 
-  if ( keys[keys.DOWN] && character.y <= windowHeight - 50) {
+  if ( keys[keys.DOWN] && shipRect.bottom <= windowHeight) {
     moveCharacter(0, 1);
   }
 
@@ -137,6 +153,10 @@ let returnRelativityStatus = () => {
 
 let returnBlackTollStatus = () => {
   return blackTollStatus;
+}
+
+let returnPauseStatus = () => {
+  return pause;
 }
 
 /// update current position on screen

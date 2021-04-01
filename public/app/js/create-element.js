@@ -1,5 +1,6 @@
 export {
-  appendSpaceDebree
+  appendSpaceDebree,
+  appendOrb
 }
 
 import * as abilities from './abilities.js'
@@ -42,13 +43,14 @@ let createSpaceDebreeTemplate = () => {
 let orbArray = [pointOrb, fuelOrb, healthOrb]
 let createOrbTemplate = () => {
   let orbType = orbArray[Math.floor(Math.random() * 3)];
+  let type = orbType.type;
   let size = orbType.size;
-  let image = orbType.image;
   let points = orbType.points;
   let health = orbType.health;
   let fuel = orbType.fuel;
+  let css = orbType.css();
 
-  let orb = new Orb(size, image, points, health, fuel);
+  let orb = new Orb(type, size, points, health, fuel, css);
   return orb;
 }
 // createOrbTemplate();
@@ -88,4 +90,16 @@ let appendSpaceDebree = () => {
     playArea.appendChild(spaceDebree)
     positionTracker(spaceship, spaceDebree, relativityStatus)
   return spaceDebree
+}
+
+let appendOrb = () => {
+  let orbTemplate = createOrbTemplate();
+  let orb = document.createElement('div');
+  orb = orbTemplate._css;
+  orb.id = orbTemplate._type;
+  orb.style.top = `${Math.floor(Math.random() * (windowHeight - (orbTemplate._size/2)))}px`;
+
+  playArea.appendChild(orb)
+  positionTracker(spaceship, orb)
+return orb;
 }
