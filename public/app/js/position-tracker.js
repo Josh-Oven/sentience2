@@ -53,12 +53,12 @@ let positionTracker = (item1, item2, relativityStatus) => {
 
     if(item1.id === 'spaceDebree'|| item2.id === 'spaceDebree'){
       if(oneR > windowWidth){
-        console.log('border')
+        // console.log('border')
         clearInterval(interval)
         interval = 0;
       }
       if(twoR > windowWidth){
-        console.log('border')
+        // console.log('border')
         clearInterval(interval)
         interval = 0;
       }
@@ -69,7 +69,7 @@ let positionTracker = (item1, item2, relativityStatus) => {
         collision = true;
         clearInterval(interval);
         interval = 0;
-        console.log(interval)
+        // console.log(interval)
       }
        else {
         return;

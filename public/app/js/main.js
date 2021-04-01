@@ -32,13 +32,13 @@ let setBoundaries = (height, width) => {
 setBoundaries(windowHeight, windowWidth)
 
 let objectMovement = () => {
-  let debreeLocation = -50;
-  let debreeSpeed = 5
+  let location = -50;
+  let debreeSpeed = 5;
   let debree = appendSpaceDebree(relativityStatus)
   let distance = windowWidth;
   let distanceTraveled = 0;
   let interval = setInterval(function(){
-    if(debreeLocation > distance && pause === false){
+    if(location > distance && pause === false){
       clearInterval(interval);
       interval = 0;
       debree.remove();
@@ -46,8 +46,8 @@ let objectMovement = () => {
     } else if (pause === true){
       return;
     } else {
-      debreeLocation += debreeSpeed;
-      debree.style.left = `${debreeLocation}px`;
+      location += debreeSpeed;
+      debree.style.left = `${location}px`;
       // console.log(debree.style.left)
     }
   },1000/150)
@@ -55,24 +55,45 @@ let objectMovement = () => {
 
 /// game loop
 
-let counter = 3000;
-// let myFunction = function(){
-//     counter -= 250;
-//     console.log(counter);
-//     timeout = setTimeout(myFunction, counter);
-// }
-// let timeout = setTimeout(myFunction, counter);
+let counter = 20000;
+let frequency = 5000;
+let counterInterval = setInterval(() => {
+  if (pause === true){
+    return;
+  } else if (counter <= 0){
+    counter = 20000;
+    return;
+  } else {
+    counter -= 1000;
+  }
+    // console.log(counter)
+  if (counter <= 0){
+    clearInterval(debreeLoop);
+    debreeLoop = 0;
+    if (frequency != 500){
+      frequency -= 500;
+    }
+    debreeLoop = setInterval(function(){
+       if (pause === true){
+        return
+      } else if (pause === false){
+        objectMovement()
+      }
+      // console.log(`frequency: ${frequency}`)
+    }, frequency)
+  }
+},1000)
 
 
 let debreeLoop = setInterval(function(){
-  // frequency = 4000;
-  if (pause === true){
-    // clearInterval(debreeLoop);
+  // console.log(counter)
+   if (pause === true){
     return
   } else if (pause === false){
     objectMovement()
   }
-}, counter)
+}, frequency)
+let newDebreeLoop = debreeLoop;
 
 let characterLoop = setInterval(function(){
   if (pause === true){
@@ -82,6 +103,7 @@ let characterLoop = setInterval(function(){
     detectCharacterMovement();
   }
 }, 1000/150);
+
 
 let idleScreen = document.getElementById('idle-screen');
 let pauseButton = document.getElementById('pause-button');
