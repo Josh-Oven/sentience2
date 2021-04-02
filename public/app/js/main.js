@@ -18,6 +18,7 @@ let windowWidth = groundWork.windowWidth;
 let pause = groundWork.pause;
 let relativityStatus = groundWork.relativityStatus;
 let cooldownBlock = document.getElementById('cooldown-block');
+let travelDistance = groundWork.travelDistance;
 
 starBackground.starPopulate();
 
@@ -31,6 +32,12 @@ let setBoundaries = (height, width) => {
 0}
 
 setBoundaries(windowHeight, windowWidth)
+
+let shipDistance = 0;
+let setTravelDistance = () => {
+  shipDistance += 1;
+  travelDistance.innerHTML = `  ${shipDistance}ly`;
+}
 
 let objectMovement = () => {
   let location = -50;
@@ -67,9 +74,7 @@ let orbMovement = () => {
     if(location > distance && pause === false){
       clearInterval(interval);
       interval = 0;
-      // orb.remove();
       orb.remove();
-      // console.log(debree)
     } else if (pause === true){
       return;
     } else {
@@ -135,6 +140,7 @@ let characterLoop = setInterval(function(){
     return
   } else if (pause === false){
     detectCharacterMovement();
+    setTravelDistance();
   }
 }, 1000/150);
 

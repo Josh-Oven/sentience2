@@ -8,7 +8,9 @@ export {
   fuelOrb,
   healthOrb,
   asteroid,
-  salvage
+  salvage,
+  healthBar,
+  fuelBar
 }
 
 const spaceship = {
@@ -22,6 +24,54 @@ const spaceship = {
     },
   condition: 'oof',
   css: ''
+}
+
+const healthBar = {
+  totalSegments: 10,
+  currentSegments: 10,
+  html: document.getElementById('health-slider'),
+  addHealth: function(){
+    if (this.currentSegments === this.totalSegments){
+      return;
+    } else {
+      this.currentSegments += 1;
+      let healthPercentage = this.currentSegments * 10;
+      this.html.style.left = `${healthPercentage - 100}%`
+    }
+  },
+  removeHealth: function(){
+    if (this.currentSegments === 0){
+      return;
+    } else {
+      this.currentSegments -= 1;
+      let healthPercentage = this.currentSegments * 10;
+      this.html.style.left = `${healthPercentage - 100}%`
+    }
+  }
+}
+const fuelBar = {
+  totalSegments: 20,
+  currentSegments: 0,
+  html: document.getElementById('fuel-slider'),
+  addFuel: function(){
+    if (this.currentSegments === this.totalSegments){
+      return;
+    } else {
+      this.currentSegments += 1;
+      console.log(this.currentSegments)
+      let fuelPercentage = this.currentSegments * 5;
+      this.html.style.left = `${fuelPercentage - 100}%`
+    }
+  },
+  removeFuel: function(){
+    if (this.currentSegments === 0){
+      return;
+    } else {
+      this.currentSegments -= 1;
+      let healthPercentage = this.currentSegments * 10;
+      this.html.style.left = `${healthPercentage - 100}%`
+    }
+  }
 }
 
 // class Collectables {
@@ -109,7 +159,7 @@ class Orb {
 const pointOrb = {
   type: 'pointOrb',
   size: 50,
-  image: `../assets/images/orbs/point-orb.png`,
+  image: `../assets/images/orbs/point-orb-v2.png`,
   points: 50,
   health: 0,
   fuel: 0,
@@ -131,7 +181,7 @@ const pointOrb = {
 const fuelOrb = {
   type: 'fuelOrb',
   size: 50,
-  image: `../assets/images/orbs/fuel-orb.png`,
+  image: `../assets/images/orbs/fuel-orb-v2.png`,
   points: 0,
   health: 0,
   fuel: 10,
@@ -153,7 +203,7 @@ const fuelOrb = {
 const healthOrb = {
   type: 'healthOrb',
   size: 50,
-  image: `../assets/images/orbs/health-orb.png`,
+  image: `../assets/images/orbs/health-orb-v2.png`,
   points: 0,
   health: 20,
   fuel: 0,

@@ -51,6 +51,47 @@ $retro: 'Press Start 2P';
   }
 }
 
+#distance-wrapper {
+  width: auto;
+  height: auto;
+  // border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  top: 2%;
+  left: 75%;
+  transform: translate(-50%);
+  position: fixed;
+
+  #distance-text-container{
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    #distance-text {
+      font-size: 15px;
+      font-family: $retro;
+      color: grey;
+    }
+  }
+  #distance-container {
+    margin-left: 10px;
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    #distance-num {
+      font-size: 15px;
+      font-family: $retro;
+      color: grey;
+    }
+  }
+}
+
 #star-container {
   // z-index: 1;
   // margin-top: -5%;

@@ -10,11 +10,13 @@ export {
   pause,
   relativityStatus,
   blackTollStatus,
-  score
+  score,
+  travelDistance
 }
 
 
 let pause = false;
+let travelDistance = document.getElementById('distance-num')
 let score = document.getElementById('score')
 let debreeOne = document.getElementById('object-one');
 let debreeTwo = document.getElementById('object-two');

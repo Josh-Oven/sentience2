@@ -90,7 +90,7 @@ let detectCharacterMovement = () => {
     moveCharacter(-1, 0);
   }
 
-  if ( keys[keys.RIGHT] && character.x <= windowWidth-shipRect.width) {
+  if ( keys[keys.RIGHT] && character.x <= windowWidth-(shipRect.width + 10)) {
     moveCharacter(1, 0);
   }
 

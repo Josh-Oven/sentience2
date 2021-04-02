@@ -7,6 +7,7 @@ export {
 import * as abilities from './abilities.js';
 import * as characterMovement from './character-movement.js';
 import * as groundWork from './groundwork.js';
+import * as objects from './objects.js';
 let score = groundWork.score;
 let windowWidth = groundWork.windowWidth
 let debreeOne = groundWork.debreeOne;
@@ -138,9 +139,10 @@ let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
   }
 
   if (item1.id === 'spaceDebree' && relativityStatus === false) {
-    spaceship.style.border = '2px solid red';
+    objects.healthBar.removeHealth();
+    // spaceship.style.border = '2px solid red';
     setTimeout(()=>{
-      spaceship.style.border = 'none';
+      // spaceship.style.border = 'none';
     },2000)
   }
 
@@ -149,6 +151,10 @@ let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
     if (item1.id === 'pointOrb') {
       newScore += 10;
       score.innerHTML = newScore;
+    } else if (item1.id === 'healthOrb'){
+      objects.healthBar.addHealth();
+    } else if (item1.id === 'fuelOrb'){
+      objects.fuelBar.addFuel();
     }
     console.log(item1.id)
     item1.remove()
