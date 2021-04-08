@@ -21,6 +21,69 @@ $retro: 'Press Start 2P';
   // position: fixed;
 }
 
+#resource-container {
+  width: 30%;
+  height: 6%;
+  // border: 1px solid white;
+  position: fixed;
+  left: 8.5%;
+  top: 1%;
+  z-index: 20;
+}
+
+#resource-text-container {
+  width: 30%;
+  height: 100%;
+  // border: 1px solid white;
+  position: absolute;
+  // left: -30%;
+
+  p {
+    font-size: 15px;
+    font-family: $retro;
+    color: grey;
+  }
+}
+
+#health-bar-container {
+  top: 10%;
+  width: 70%;
+  height: 30%;
+  border: 1px solid red;
+  position: absolute;
+  overflow: hidden;
+  margin-bottom: 10px;
+  right: 0;
+  padding-bottom: 10;
+
+  #health-slider {
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    position: absolute;
+    // left: -100%;
+  }
+}
+
+#fuel-bar-container {
+  top: 58%;
+  width: 70%;
+  height: 30%;
+  border: 1px solid yellow;
+  position: absolute;
+  // margin-top: 1%;
+  overflow: hidden;
+  right: 0;
+
+  #fuel-slider {
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+    position: absolute;
+    left: -100%;
+  }
+}
+
 #spaceship-container {
   position: fixed;
   width: 13%;
@@ -29,39 +92,6 @@ $retro: 'Press Start 2P';
   top: 50%; right: 50%;
   // transform: translate(50%,-50%);
   z-index: 8;
-
-  #health-bar-container {
-    width: 13%;
-    height: 1%;
-    border: 1px solid red;
-    position: fixed;
-    overflow: hidden;
-
-    #health-slider {
-      width: 100%;
-      height: 100%;
-      background-color: red;
-      position: absolute;
-      // left: -100%;
-    }
-  }
-
-  #fuel-bar-container {
-    width: 13%;
-    height: 1%;
-    border: 1px solid yellow;
-    position: fixed;
-    margin-top: 1%;
-    overflow: hidden;
-
-    #fuel-slider {
-      width: 100%;
-      height: 100%;
-      background-color: yellow;
-      position: absolute;
-      left: -100%;
-    }
-  }
 }
 
 #spaceship {
@@ -155,4 +185,71 @@ $retro: 'Press Start 2P';
 @keyframes title-blink {
   from {color:black}
   to {color: violet}
+}
+
+@keyframes laser-grow {
+  from {width: 0px}
+  to {width: 2020px}
+}
+
+#laser-test-container {
+  width: 200vw;
+  height: 75px;
+  // border: 1px solid white;
+  position: absolute;
+  // transform: translate(50%)
+  // top: 20%;
+  right: 110%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  animation-name:laser-grow;
+  animation-duration:1s;
+  over-flow: hidden;
+
+  #end-container{
+    width: 75px;
+    height: 100%;
+    // border: 1px solid yellow;
+    // position: absolute;
+
+    #end {
+      height: 100%;
+      width: 75px;
+      background-image: url('../assets/images/abilities/laser2-end.gif');
+      background-size: cover;
+      // position: absolute;
+      left: 0;
+    }
+  }
+
+
+  #new-mid {
+    height: 100%;
+    width: 75px;
+    background-image: url('../assets/images/abilities/laser2-mid-white.gif');
+    background-size: cover;
+  }
+
+  #beginning {
+    height: 100%;
+    width: 75px;
+    // border: 1px solid yellow;
+    background-image: url('../assets/images/abilities/laser2.gif');
+    background-size: cover;
+    right: 0;
+    // position: absolute;
+  }
+
+}
+
+#boost-container {
+  width: 150px;
+  height: 75px;
+  // border: 1px solid black;
+  background-image: url('../assets/images/abilities/boost.gif');
+  background-size: cover;
+  top: -10%;
+  right: -170px;
+  position: absolute;
 }
