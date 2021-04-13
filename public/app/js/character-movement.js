@@ -134,7 +134,7 @@ let detectCharacterMovement = () => {
     console.log('blacktoll')
     blackTollStatus = true;
     returnBlackTollStatus();
-    abilities.blackToll();
+    abilities.blackHoleMovement();
 
     setTimeout(()=>{
       blackTollStatus = false;

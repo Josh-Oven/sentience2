@@ -1,7 +1,8 @@
 export {
   relativity,
   blackToll,
-  laser
+  laser,
+  blackHoleMovement
 }
 
 import * as tracker from './position-tracker.js'
@@ -16,10 +17,14 @@ let debreeTwo = groundWork.debreeTwo;
 let debreeThree = groundWork.debreeThree;
 let debreeFour = groundWork.debreeFour;
 let objectScale = groundWork.objectScale;
+let pause = groundWork.pause;
+let objectsScale = groundWork.objectScale;
+let playArea = groundWork.playArea;
 import * as characterMovement from './character-movement.js'
 let returnRelativityStatus = characterMovement.returnRelativityStatus;
 let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 let returnLaserStatus = characterMovement.returnLaserStatus;
+let shipRect = spaceship.getBoundingClientRect()
 
 let relativity = (debree) => {
 
@@ -57,7 +62,15 @@ let blackToll = () => {
   let shipRect = spaceship.getBoundingClientRect();
   let blackHole = blackTollObject.css();
   blackHole.id = 'black-toll'
-  spaceship.appendChild(blackHole)
+  return blackHole
+}
+
+let blackHoleMovement = () => {
+  let shipRect = spaceship.getBoundingClientRect()
+  let blackHole = blackToll();
+  console.log(blackHole)
+  playArea.appendChild(blackHole)
+
   setTimeout(()=>{
     let blackTollStatus = returnBlackTollStatus();
     let blackHoleElement = document.getElementById('black-toll');
@@ -66,7 +79,24 @@ let blackToll = () => {
     blackHoleElement.remove();
     console.log(blackHole);
   },7000)
-  return blackHole
+
+  let location = (shipRect.left)-(objectScale*8)
+  blackHole.style.left = `${location}px`
+  let speed = 2.5;
+  let distance = 0;
+  let interval = setInterval(()=>{
+
+    let blackTollStatus = returnBlackTollStatus();
+    returnBlackTollStatus();
+    if (blackTollStatus === false) {
+      clearInterval(interval)
+      interval = 0;
+      return;
+    } else {
+      blackHole.style.left = `${location}px`
+      location -= speed;
+    }
+  },50)
 }
 
 //// IN ORDER TO START TRACKING ON ABILITY ACTIVATION YOURE GOING TO HAVE TO BUILD A FUNCTION THAT FINDS ALL CURRENT SPACE DEBREE ON THE DOM, AND ADDS THEM TO POSITION TRACKER AFTER THE ABILITIES HAVE ACTIVATED ////

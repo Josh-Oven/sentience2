@@ -17,6 +17,8 @@ export {
 import * as groundWork from './groundwork.js';
 let objectScale = groundWork.objectScale;
 
+let shipRect = groundWork.spaceship.getBoundingClientRect();
+
 const spaceship = {
   currentBuffs: [],
   currentDebuffs: [],
@@ -227,7 +229,6 @@ const healthOrb = {
 }
 
 ///////////// abilities /////////////
-// let relativityHtml = document.getElementById('relativity');
 const relativity = {
   thumbnail: '../assets/images/abilities/relativity_thumb.png',
   cooldown: 20000,
@@ -236,10 +237,11 @@ const relativity = {
 
 const blackToll = {
   thumbnail: '../assets/images/abilities/black-toll-thumb.png',
-  image: '../assets/images/abilities/black-toll-light-animation.gif',
+  image: '../assets/images/abilities/black-toll-light-big.gif',
   cooldown: 20000,
   html: document.getElementById('black-toll'),
   css: function(){
+    let shipRect = groundWork.spaceship.getBoundingClientRect();
     let template = document.createElement('div')
     let style = template.style;
     style.backgroundPosition = 'center center';
@@ -247,10 +249,10 @@ const blackToll = {
     style.backgroundImage = `url(${this.image})`;
     style.backgroundSize = 'cover';
     style.position = 'absolute';
-    style.height = '150px';
-    style.width = '150px';
-    style.left = '-125%';
-    style.top = '-50%';
+    style.height = `${objectScale*8}px`;
+    style.width = `${objectScale*8}px`;
+    // style.left = `${shipRect.left-(objectScale*8)}px`;
+    style.top = `${shipRect.bottom-(objectScale*4.5)}px`;
     return template;
   }
 }
