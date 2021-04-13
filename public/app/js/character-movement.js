@@ -3,8 +3,8 @@ export {
   keys,
   moveCharacter,
   returnRelativityStatus,
-  returnBlackTollStatus
-  // cooldownActivate
+  returnBlackTollStatus,
+  returnLaserStatus
 }
 
 import * as groundWork from './groundwork.js';
@@ -14,13 +14,16 @@ let windowWidth = groundWork.windowWidth;
 let windowHeight = groundWork.windowHeight;
 let relativityStatus = groundWork.relativityStatus;
 let blackTollStatus = groundWork.blackTollStatus;
+let laserStatus = groundWork.laserStatus;
 import * as objects from './objects.js';
 import * as abilities from './abilities.js'
 let relativityIcon = objects.relativity;
 let blackTollIcon = objects.blackToll;
+let laserIcon = objects.laser;
 
 let cooldownBlock = document.getElementById('cooldown-block')
 let tollCooldownBlock = document.getElementById('cooldown-block-blacktoll')
+let laserCooldownBlock = document.getElementById('cooldown-block-laser')
 
 const keys = {};
 keys.UP = 38;
@@ -29,6 +32,7 @@ keys.RIGHT = 39;
 keys.DOWN = 40;
 keys.RELATIVITY = 32;
 keys.BLACKTOLL = 87;
+keys.LASER = 83;
 keys.PAUSE = 27;
 
 let shipRect = spaceship.getBoundingClientRect();
@@ -144,6 +148,26 @@ let detectCharacterMovement = () => {
     },blackTollIcon.cooldown)
     return blackTollStatus;
   }
+
+  if (keys[keys.LASER]) {
+    laserCooldownBlock.style.display = 'block';
+    keys.LASER = 0;
+    console.log('laser activating')
+    laserStatus = true;
+    returnLaserStatus();
+    abilities.laser();
+
+    setTimeout(()=>{
+      laserStatus = false;
+      returnLaserStatus();
+    },5000)
+
+    setTimeout(()=>{
+      laserCooldownBlock.style.display = 'none';
+      keys.LASER = 83;
+    },laserIcon.cooldown)
+    return laserStatus;
+  }
 };
 
 let returnRelativityStatus = () => {
@@ -153,6 +177,10 @@ let returnRelativityStatus = () => {
 
 let returnBlackTollStatus = () => {
   return blackTollStatus;
+}
+
+let returnLaserStatus = () => {
+  return laserStatus;
 }
 
 let returnPauseStatus = () => {

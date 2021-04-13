@@ -11,7 +11,8 @@ export {
   relativityStatus,
   blackTollStatus,
   score,
-  travelDistance
+  travelDistance,
+  objectScale
 }
 
 
@@ -28,3 +29,10 @@ let windowHeight = window.innerHeight;
 let windowWidth = window.innerWidth;
 let relativityStatus = false;
 let blackTollStatus = false;
+let laserStatus = false;
+
+let getPercentage = (num, per) => {
+  return (num/100)*per;
+}
+let objectScale = getPercentage(windowWidth, 5);
+console.log(objectScale)

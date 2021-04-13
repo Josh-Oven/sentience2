@@ -223,6 +223,28 @@ $retro: 'Press Start 2P';
       opacity: .9;
     }
   }
+
+  #laser-icon {
+    margin-left: 10px;
+    width: 75px;
+    height: 75px;
+    border-radius: 5px;
+    background-image: url('../assets/images/abilities/laser2-thumb.gif');
+    background-size: cover;
+    overflow: hidden;
+
+    #cooldown-block-laser {
+      display: none;
+      // position: absolute;
+      width: 75px;
+      height: 75px;
+      background-color: black;
+      border-radius: 5px;
+      animation: cooldown 30s;
+      opacity: .9;
+      margin-right: 1px;
+    }
+  }
 }
 
 @keyframes cooldown {

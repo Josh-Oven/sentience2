@@ -192,53 +192,26 @@ $retro: 'Press Start 2P';
   to {width: 2020px}
 }
 
-#laser-test-container {
-  width: 200vw;
-  height: 75px;
-  // border: 1px solid white;
-  position: absolute;
-  // transform: translate(50%)
-  // top: 20%;
-  right: 110%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  animation-name:laser-grow;
-  animation-duration:1s;
-  over-flow: hidden;
+#laser-container {
+  // animation-name:laser-grow;
+  // animation-duration:1s;
 
-  #end-container{
-    width: 75px;
-    height: 100%;
-    // border: 1px solid yellow;
-    // position: absolute;
+  #laser-left-container{
+    // width: 77.5px;
+    // height: 100%;
 
-    #end {
-      height: 100%;
-      width: 75px;
-      background-image: url('../assets/images/abilities/laser2-end.gif');
-      background-size: cover;
-      // position: absolute;
-      left: 0;
+    #laser-left {
+
     }
   }
 
 
-  #new-mid {
-    height: 100%;
-    width: 75px;
-    background-image: url('../assets/images/abilities/laser2-mid-white.gif');
-    background-size: cover;
+  #laser-mid {
+
   }
 
-  #beginning {
-    height: 100%;
-    width: 75px;
-    // border: 1px solid yellow;
-    background-image: url('../assets/images/abilities/laser2.gif');
-    background-size: cover;
-    right: 0;
-    // position: absolute;
+  #laser-right {
+
   }
 
 }
@@ -252,4 +225,5 @@ $retro: 'Press Start 2P';
   top: -10%;
   right: -170px;
   position: absolute;
+  display: none;
 }

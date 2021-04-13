@@ -10,6 +10,7 @@ import * as groundWork from './groundwork.js'
 import * as characterMovement from './character-movement.js'
 let returnRelativityStatus = characterMovement.returnRelativityStatus;
 let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
+let returnLaserStatus = characterMovement.returnLaserStatus;
 
 let Orb = objects.Orb;
 let pointOrb = objects.pointOrb;
@@ -61,6 +62,7 @@ let appendSpaceDebree = () => {
   let template = createSpaceDebreeTemplate();
   let blackTollStatus = returnBlackTollStatus();
   let relativityStatus = returnRelativityStatus();
+  let laserStatus = returnLaserStatus();
   let spaceDebree = document.createElement('div');
   spaceDebree = template._css;
   spaceDebree.id = `spaceDebree`;
@@ -69,6 +71,10 @@ let appendSpaceDebree = () => {
 
     if (blackTollStatus === true) {
       positionTracker(document.getElementById('black-toll'), spaceDebree)
+    }
+
+    if (laserStatus === true) {
+      positionTracker(document.getElementById('laser-container'), spaceDebree)
     }
 
     if (debreeOne.style.backgroundImage != '') {

@@ -10,8 +10,12 @@ export {
   asteroid,
   salvage,
   healthBar,
-  fuelBar
+  fuelBar,
+  laser
 }
+
+import * as groundWork from './groundwork.js';
+let objectScale = groundWork.objectScale;
 
 const spaceship = {
   currentBuffs: [],
@@ -103,7 +107,7 @@ class SpaceDebree {
 
 const asteroid = {
   size: function(){
-    return Math.floor(Math.random() * (75 - 30) + 30);
+    return Math.floor(Math.random() * (objectScale/1.5 - (objectScale/2)) + (objectScale/2));
   },
   speed: 5,
   image: ['../assets/images/space-debree/asteroid4.png', '../assets/images/space-debree/asteroid1_150.png', '../assets/images/space-debree/asteroid2_150.png'],
@@ -125,7 +129,7 @@ const asteroid = {
 
 const salvage = {
   size: function(){
-    return Math.floor(Math.random() * (75 - 30) + 30);
+    return Math.floor(Math.random() * (objectScale/1 - (objectScale/2)) + (objectScale/2));
   },
   speed: 3,
   image: ['../assets/images/space-debree/metal-salvage1.gif', '../assets/images/space-debree/metal-salvage2.png'],
@@ -158,7 +162,7 @@ class Orb {
 
 const pointOrb = {
   type: 'pointOrb',
-  size: 50,
+  size: objectScale/1.5,
   image: `../assets/images/orbs/point-orb-v2.png`,
   points: 50,
   health: 0,
@@ -180,7 +184,7 @@ const pointOrb = {
 
 const fuelOrb = {
   type: 'fuelOrb',
-  size: 50,
+  size: objectScale/1.5,
   image: `../assets/images/orbs/fuel-orb-v2.png`,
   points: 0,
   health: 0,
@@ -202,7 +206,7 @@ const fuelOrb = {
 
 const healthOrb = {
   type: 'healthOrb',
-  size: 50,
+  size: objectScale/1.5,
   image: `../assets/images/orbs/health-orb-v2.png`,
   points: 0,
   health: 20,
@@ -247,6 +251,67 @@ const blackToll = {
     style.width = '150px';
     style.left = '-125%';
     style.top = '-50%';
+    return template;
+  }
+}
+
+const laser = {
+  thumbnail: '../assets/images/abilities/laser2-mid.gif',
+  image: ['../assets/images/abilities/laser2-end.gif', '../assets/images/abilities/laser2-mid-white.gif', '../assets/images/abilities/laser2.gif'],
+  cooldown: 30000,
+  html: document.getElementById('laser-container'),
+  css: function(){
+    let template = document.createElement('div')
+    let style = template.style;
+    // style.backgroundColor = 'white';
+    style.position = 'absolute';
+    style.height = `${objectScale}px`;
+    style.width = '200vw';
+    style.right = '110%';
+    style.top = `-${objectScale - objectScale}px`;
+    style.display = 'flex';
+    style.justifyContent = 'flex-end';
+    style.alignItems = 'center';
+    style.overFlow = 'hidden';
+    style.paddingRight = `${objectScale}px`
+    return template;
+  },
+  leftCss: function(){
+    let template = document.createElement('div')
+    let style = template.style;
+    style.height = `${objectScale}px`;
+    style.width = `${objectScale}px`;
+    style.backgroundPosition = 'center center';
+    style.backgroundRepeat = 'no-repeat';
+    style.backgroundImage = `url(${this.image[0]})`;
+    style.backgroundSize = 'cover';
+    style.left = 0;
+    return template;
+  },
+  midCss: function(){
+    let template = document.createElement('div')
+    let style = template.style;
+    style.height = `${objectScale}px`;
+    style.width = `${objectScale}px`;
+    style.backgroundPosition = 'center center';
+    style.backgroundRepeat = 'no-repeat';
+    style.backgroundImage = `url(${this.image[1]})`;
+    style.backgroundSize = 'cover';
+    style.position = 'absolute';
+    style.right = 0;
+    return template;
+  },
+  rightCss: function(){
+    let template = document.createElement('div')
+    let style = template.style;
+    style.height = `${objectScale}px`;
+    style.width = `${objectScale}px`;
+    style.backgroundPosition = 'center center';
+    style.backgroundRepeat = 'no-repeat';
+    style.backgroundImage = `url(${this.image[2]})`;
+    style.backgroundSize = 'cover';
+    style.right = 0;
+    style.position = 'absolute';
     return template;
   }
 }
