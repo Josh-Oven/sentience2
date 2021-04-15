@@ -124,7 +124,7 @@ const asteroid = {
     style.position = 'fixed';
     style.height = `${size}px`;
     style.width = `${size}px`;
-    style.left = `-${size}px`;
+    style.left = `-${10}%`;
     return template;
   }
 }
@@ -146,7 +146,7 @@ const salvage = {
     style.position = 'fixed';
     style.height = `${size}px`;
     style.width = `${size}px`;
-    style.left = `-${size}px`;
+    style.left = `-${10}%`;
     return template;
   }
 }
@@ -179,7 +179,7 @@ const pointOrb = {
     style.position = 'fixed';
     style.height = `${this.size}px`;
     style.width = `${this.size}px`;
-    style.left = `-${this.size}px`;
+    style.left = `-${this.size}%`;
     return template;
   }
 }
@@ -201,7 +201,7 @@ const fuelOrb = {
     style.position = 'fixed';
     style.height = `${this.size}px`;
     style.width = `${this.size}px`;
-    style.left = `-${this.size}px`;
+    style.left = `-${this.size}%`;
     return template;
   }
 }
@@ -223,7 +223,7 @@ const healthOrb = {
     style.position = 'fixed';
     style.height = `${this.size}px`;
     style.width = `${this.size}px`;
-    style.left = `-${this.size}pxpx`;
+    style.left = `-${this.size}%`;
     return template;
   }
 }

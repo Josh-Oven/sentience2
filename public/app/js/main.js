@@ -40,8 +40,8 @@ let setTravelDistance = () => {
 }
 
 let objectMovement = () => {
-  let location = -50;
-  let debreeSpeed = 5;
+  let location = -10;
+  let debreeSpeed = .5;
   let debree = appendSpaceDebree(relativityStatus)
   // let orb = appendOrb();
   let distance = windowWidth;
@@ -57,16 +57,16 @@ let objectMovement = () => {
       return;
     } else {
       location += debreeSpeed;
-      debree.style.left = `${location}px`;
+      debree.style.left = `${location}%`;
       // orb.style.left = `${location}px`;
       // console.log(debree.style.left)
     }
-  },1000/150)
+  },1000/100)
 }
 
 let orbMovement = () => {
-  let location = -50;
-  let orbSpeed = 3;
+  let location = -10;
+  let orbSpeed = .2;
   let orb = appendOrb();
   let distance = windowWidth;
   let distanceTraveled = 0;
@@ -79,7 +79,7 @@ let orbMovement = () => {
       return;
     } else {
       location += orbSpeed;
-      orb.style.left = `${location}px`;
+      orb.style.left = `${location}%`;
     }
   },1000/150)
 }

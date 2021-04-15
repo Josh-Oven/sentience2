@@ -34,5 +34,5 @@ let laserStatus = false;
 let getPercentage = (num, per) => {
   return (num/100)*per;
 }
-let objectScale = getPercentage(windowWidth, 5);
+let objectScale = getPercentage(windowHeight, 8);
 console.log(objectScale)
