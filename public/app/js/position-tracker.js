@@ -17,6 +17,7 @@ let debreeFour = groundWork.debreeFour;
 let returnRelativityStatus = characterMovement.returnRelativityStatus;
 let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 let returnLaserStatus = characterMovement.returnLaserStatus;
+let returnBoostStatus = characterMovement.returnBoostStatus;
 let relativity = abilities.relativity;
 
 console.log(objects.laser.html)
@@ -119,7 +120,7 @@ let positionTracker = (item1, item2, relativityStatus) => {
 
 /// asteroid collision
 let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
-  // relativityStatus;
+  let boostStatus = returnBoostStatus();
   if (item1 === spaceship) {
     console.log('spaceship hit')
   }
@@ -133,15 +134,21 @@ let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
       console.log('blocked!')
     }
   }
-  asteroid.remove()
-  // clearInterval(interval)
-  // console.log(interval)
+  if (boostStatus === false){
+    asteroid.remove()
+  }
 }
 ///////////////////////
 
 /// spaceship collision
 let newScore = 0;
 let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
+  let boostStatus = returnBoostStatus();
+
+  if(boostStatus === true && item1.id != 'pointOrb' && item1.id != 'fuelOrb' && item1.id != 'healthOrb'){
+    console.log('too slow')
+    return;
+  }
 
   if (item1.id === 'spaceDebree' && relativityStatus === true){
     relativity(item1)
@@ -149,10 +156,6 @@ let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
 
   if (item1.id === 'spaceDebree' && relativityStatus === false) {
     objects.healthBar.removeHealth();
-    // spaceship.style.border = '2px solid red';
-    setTimeout(()=>{
-      // spaceship.style.border = 'none';
-    },2000)
   }
 
   if (item1.id === 'pointOrb' || item1.id === 'fuelOrb' || item1.id === 'healthOrb'){
@@ -165,7 +168,7 @@ let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
     } else if (item1.id === 'fuelOrb'){
       objects.fuelBar.addFuel();
     }
-    console.log(item1.id)
+    // console.log(item1.id)
     item1.remove()
   }
 }

@@ -11,7 +11,8 @@ export {
   salvage,
   healthBar,
   fuelBar,
-  laser
+  laser,
+  boost
 }
 
 import * as groundWork from './groundwork.js';
@@ -64,7 +65,6 @@ const fuelBar = {
       return;
     } else {
       this.currentSegments += 1;
-      console.log(this.currentSegments)
       let fuelPercentage = this.currentSegments * 5;
       this.html.style.left = `${fuelPercentage - 100}%`
     }
@@ -74,8 +74,8 @@ const fuelBar = {
       return;
     } else {
       this.currentSegments -= 1;
-      let healthPercentage = this.currentSegments * 10;
-      this.html.style.left = `${healthPercentage - 100}%`
+      let fuelPercentage = this.currentSegments * 5;
+      this.html.style.left = `${fuelPercentage - 100}%`
     }
   }
 }
@@ -314,6 +314,28 @@ const laser = {
     style.backgroundSize = 'cover';
     style.right = 0;
     style.position = 'absolute';
+    return template;
+  }
+}
+
+const boost = {
+  thumbnail: '../assets/images/abilities/boost.gif',
+  image: '../assets/images/abilities/boost.gif',
+  cooldown: 20000,
+  html: document.getElementById('boost-container'),
+  css: function(){
+    let shipRect = groundWork.spaceship.getBoundingClientRect();
+    let template = document.createElement('div')
+    let style = template.style;
+    style.backgroundPosition = 'center center';
+    style.backgroundRepeat = 'no-repeat';
+    style.backgroundImage = `url(${this.image})`;
+    style.backgroundSize = 'cover';
+    style.position = 'absolute';
+    style.height = `${objectScale}px`;
+    style.width = `${objectScale*2}px`;
+    style.left = `${shipRect.width + (objectScale/2)}px`;
+    style.top = `-${objectScale-objectScale}px`;
     return template;
   }
 }

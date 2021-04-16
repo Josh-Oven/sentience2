@@ -4,6 +4,7 @@ import * as starBackground from './star-background.js';
 import * as groundWork from './groundwork.js'
 import * as characterMovement from './character-movement.js'
 let detectCharacterMovement = characterMovement.detectCharacterMovement;
+let returnBoostStatus = characterMovement.returnBoostStatus;
 // let cooldownActivate = characterMovement.cooldownActivate;
 let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
@@ -17,6 +18,7 @@ let windowHeight = groundWork.windowHeight;
 let windowWidth = groundWork.windowWidth;
 let pause = groundWork.pause;
 let relativityStatus = groundWork.relativityStatus;
+let boostStatus = groundWork.boostStatus;
 let cooldownBlock = document.getElementById('cooldown-block');
 let travelDistance = groundWork.travelDistance;
 
@@ -35,13 +37,24 @@ setBoundaries(windowHeight, windowWidth)
 
 let shipDistance = 0;
 let setTravelDistance = () => {
-  shipDistance += 1;
+  let boostStatus = returnBoostStatus();
+  if (boostStatus === false){
+    shipDistance += 1;
+  } else if (boostStatus === true){
+    shipDistance+= 10;
+  }
   travelDistance.innerHTML = `  ${shipDistance}ly`;
 }
 
 let objectMovement = () => {
-  let location = -10;
   let debreeSpeed = .5;
+  let boostStatus = returnBoostStatus();
+  if (boostStatus === true){
+    debreeSpeed = 1.5;
+  } else if (boostStatus === false) {
+    debreeSpeed = .5
+  }
+  let location = -10;
   let debree = appendSpaceDebree(relativityStatus)
   // let orb = appendOrb();
   let distance = windowWidth;
@@ -67,6 +80,12 @@ let objectMovement = () => {
 let orbMovement = () => {
   let location = -10;
   let orbSpeed = .2;
+  let boostStatus = returnBoostStatus();
+  if (boostStatus === true){
+    orbSpeed = .4;
+  } else if (boostStatus === false) {
+  orbSpeed = .2
+  }
   let orb = appendOrb();
   let distance = windowWidth;
   let distanceTraveled = 0;

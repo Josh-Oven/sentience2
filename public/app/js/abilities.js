@@ -2,7 +2,8 @@ export {
   relativity,
   blackToll,
   laser,
-  blackHoleMovement
+  blackHoleMovement,
+  boost
 }
 
 import * as tracker from './position-tracker.js'
@@ -11,6 +12,8 @@ let spaceship = groundwork.spaceship
 import * as objects from './objects.js'
 let blackTollObject = objects.blackToll
 let laserObject = objects.laser
+let boostObject = objects.boost
+let fuelBar = objects.fuelBar;
 import * as groundWork from './groundwork.js';
 let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
@@ -24,6 +27,7 @@ import * as characterMovement from './character-movement.js'
 let returnRelativityStatus = characterMovement.returnRelativityStatus;
 let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 let returnLaserStatus = characterMovement.returnLaserStatus;
+let returnBoostStatus = characterMovement.returnBoostStatus;
 let shipRect = spaceship.getBoundingClientRect()
 
 let relativity = (debree) => {
@@ -144,17 +148,30 @@ let removeAllChildNodes = (parent) => {
     }
 }
 
-// let laserFeed = (section) => {
-//   let neededPosition = lastLaserPosition + objectScale;
-//
-//   let interval = setInterval(()=>{
-//     if(section.style.right >= neededPosition){
-//       clearInterval(interval)
-//       interval = 0;
-//       section.style.right = neededPosition;
-//       return section;
-//     } else {
-//       section.style.right = lastLaserPosition+1;
-//     }
-//   },1)
-// }
+let boost = () => {
+  console.log('fuel', fuelBar.currentSegments)
+  let fuel = fuelBar.currentSegments * 500;
+  let shipRect = spaceship.getBoundingClientRect();
+  let boost = boostObject.css();
+  boost.id = 'boost'
+  spaceship.appendChild(boost)
+
+  let interval = setInterval(()=>{
+    if (fuelBar.currentSegments === 0) {
+      clearInterval(interval);
+      interval = 0;
+      console.log('interval, done')
+    } else {
+      fuelBar.removeFuel();
+    }
+  },500)
+
+    setTimeout(()=>{
+      let boostStatus = returnLaserStatus();
+      boostStatus = false;
+      returnBoostStatus();
+      boost.remove();
+      console.log('timoute, done')
+    },fuel)
+  return boost
+}

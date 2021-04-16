@@ -10,8 +10,8 @@
     <div id='resource-container'>
 
       <div id='resource-text-container'>
-        <p style='margin-bottom: 10%; margin-top: 5%'>HEALTH:</p>
-        <p>FUEL:</p>
+        <p id='health-text' style='margin-bottom: 10%; margin-top: 5%'>HEALTH:</p>
+        <p id='fuel-text'>FUEL:</p>
       </div>
       <div id='health-bar-container'>
         <div id='health-slider'></div>
@@ -22,26 +22,35 @@
 
     </div>
 
-    <div id='score-wrapper'>
-      <div id='score-text-container'>
-        <p id='score-text'>SCORE:</p>
+    <div id='score-distance-wrapper'>
+
+      <div id ='distance-wrapper'>
+        <div id ='distance-text-container'>
+          <p id='distance-text'>DISTANCE </p>
+          <p id='distance-text2'style='margin-left: 5%'>TRAVELED: </p>
+        </div>
+        <div id='distance-container'>
+          <p id='distance-num'></p>
+        </div>
       </div>
-      <div id='score-container'>
-        <p id='score'></p>
+
+      <div id='score-wrapper'>
+        <div id='score-text-container'>
+          <p id='score-text'>SCORE:</p>
+        </div>
+        <div id='score-container'>
+          <p id='score'></p>
+        </div>
       </div>
+
     </div>
 
-    <div id ='distance-wrapper'>
-      <div id ='distance-text-container'>
-        <p id=distance-text>Distance Traveled: </p>
-      </div>
-      <div id='distance-container'>
-        <p id='distance-num'></p>
-      </div>
-    </div>
+
 
     <div id ='pause-button-container'>
-      <div id='pause-button'></div>
+      <div id='pause-button'>
+        <p id='pause-button-text'>PAUSE</p>
+      </div>
     </div>
 
     <div id='idle-screen'>
@@ -63,38 +72,6 @@
 
       <div id='spaceship-container'>
 
-        <!-- <div id='laser-container'>
-
-          <div id='laser-left-container'>
-            <div id='laser-left'></div>
-          </div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-mid'></div>
-          <div id='laser-right'></div>
-        </div> -->
-
         <img id='spaceship'src='../assets/images/spaceship-complete.gif' />
 
         <div id='relativity-container'>
@@ -115,12 +92,19 @@
 
       <div id='relativity'>
         <div id='cooldown-block'></div>
+        <div id='relativity-ready-border'></div>
       </div>
       <div id='blacktoll-icon'>
         <div id='cooldown-block-blacktoll'></div>
+        <div id='blacktoll-ready-border'></div>
       </div>
       <div id='laser-icon'>
         <div id='cooldown-block-laser'></div>
+        <div id='laser-ready-border'></div>
+      </div>
+      <div id='boost-icon'>
+        <div id='cooldown-block-boost'></div>
+        <div id='boost-ready-border'></div>
       </div>
 
     </div>

@@ -4,7 +4,8 @@ export {
   moveCharacter,
   returnRelativityStatus,
   returnBlackTollStatus,
-  returnLaserStatus
+  returnLaserStatus,
+  returnBoostStatus
 }
 
 import * as groundWork from './groundwork.js';
@@ -15,15 +16,23 @@ let windowHeight = groundWork.windowHeight;
 let relativityStatus = groundWork.relativityStatus;
 let blackTollStatus = groundWork.blackTollStatus;
 let laserStatus = groundWork.laserStatus;
+let boostStatus = groundWork.boostStatus;
+let objectScale = groundWork.objectScale;
 import * as objects from './objects.js';
 import * as abilities from './abilities.js'
 let relativityIcon = objects.relativity;
 let blackTollIcon = objects.blackToll;
 let laserIcon = objects.laser;
+let boostIcon = objects.boost;
 
 let cooldownBlock = document.getElementById('cooldown-block')
 let tollCooldownBlock = document.getElementById('cooldown-block-blacktoll')
 let laserCooldownBlock = document.getElementById('cooldown-block-laser')
+let relativityReady = document.getElementById('relativity-ready-border')
+let blackTollReady = document.getElementById('blacktoll-ready-border')
+let laserReady = document.getElementById('laser-ready-border')
+let boostCooldownBlock = document.getElementById('cooldown-block-boost')
+let boostReady = document.getElementById('boost-ready-border')
 
 const keys = {};
 keys.UP = 38;
@@ -34,6 +43,7 @@ keys.RELATIVITY = 32;
 keys.BLACKTOLL = 87;
 keys.LASER = 83;
 keys.PAUSE = 27;
+keys.BOOST = 65;
 
 let shipRect = spaceship.getBoundingClientRect();
 let charX = shipRect.left + shipRect.width / 2;
@@ -42,7 +52,7 @@ let charY = shipRect.top + shipRect.height / 2;
 let character = {
   x: charX,
   y: charY,
-  speedMultiplier: 5,
+  speedMultiplier: objectScale/13,
   element: spaceship
 };
 
@@ -109,6 +119,8 @@ let detectCharacterMovement = () => {
   if (keys[keys.RELATIVITY]) {
     console.log('relativity activating');
     cooldownBlock.style.display = 'block';
+    relativityReady.style.display = 'none';
+
     relativityStatus = true;
     keys.RELATIVITY = 0;
     spaceship.style.border = '2px solid yellow';
@@ -123,6 +135,7 @@ let detectCharacterMovement = () => {
     setTimeout(()=>{
       keys.RELATIVITY = 32;
       cooldownBlock.style.display = 'none'
+      relativityReady.style.display = 'flex';
     },relativityIcon.cooldown)
 
     return relativityStatus;
@@ -130,6 +143,7 @@ let detectCharacterMovement = () => {
 
   if (keys[keys.BLACKTOLL]) {
     tollCooldownBlock.style.display = 'block';
+    blackTollReady.style.display = 'none';
     keys.BLACKTOLL = 0;
     console.log('blacktoll')
     blackTollStatus = true;
@@ -144,6 +158,7 @@ let detectCharacterMovement = () => {
 
     setTimeout(()=>{
       tollCooldownBlock.style.display = 'none';
+      blackTollReady.style.display = 'flex';
       keys.BLACKTOLL = 87;
     },blackTollIcon.cooldown)
     return blackTollStatus;
@@ -151,6 +166,7 @@ let detectCharacterMovement = () => {
 
   if (keys[keys.LASER]) {
     laserCooldownBlock.style.display = 'block';
+    laserReady.style.display = 'none';
     keys.LASER = 0;
     console.log('laser activating')
     laserStatus = true;
@@ -164,9 +180,32 @@ let detectCharacterMovement = () => {
 
     setTimeout(()=>{
       laserCooldownBlock.style.display = 'none';
+      laserReady.style.display = 'flex';
       keys.LASER = 83;
     },laserIcon.cooldown)
     return laserStatus;
+  }
+
+  if (keys[keys.BOOST]) {
+    boostCooldownBlock.style.display = 'block';
+    boostReady.style.display = 'none';
+    keys.BOOST = 0;
+    // console.log('boost activating')
+    boostStatus = true;
+    returnBoostStatus();
+    abilities.boost();
+
+    setTimeout(()=>{
+      boostStatus = false;
+      returnBoostStatus();
+    },5000)
+
+    setTimeout(()=>{
+      boostCooldownBlock.style.display = 'none';
+      boostReady.style.display = 'flex';
+      keys.BOOST = 65;
+    },boostIcon.cooldown)
+    return boostStatus;
   }
 };
 
@@ -181,6 +220,10 @@ let returnBlackTollStatus = () => {
 
 let returnLaserStatus = () => {
   return laserStatus;
+}
+
+let returnBoostStatus = () => {
+  return boostStatus;
 }
 
 let returnPauseStatus = () => {

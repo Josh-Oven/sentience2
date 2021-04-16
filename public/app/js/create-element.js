@@ -11,6 +11,7 @@ import * as characterMovement from './character-movement.js'
 let returnRelativityStatus = characterMovement.returnRelativityStatus;
 let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 let returnLaserStatus = characterMovement.returnLaserStatus;
+let returnBoostStatus = characterMovement.returnBoostStatus;
 
 let Orb = objects.Orb;
 let pointOrb = objects.pointOrb;
@@ -62,6 +63,7 @@ let appendSpaceDebree = () => {
   let template = createSpaceDebreeTemplate();
   let blackTollStatus = returnBlackTollStatus();
   let relativityStatus = returnRelativityStatus();
+  let boostStatus =  returnBoostStatus();
   let laserStatus = returnLaserStatus();
   let spaceDebree = document.createElement('div');
   spaceDebree = template._css;

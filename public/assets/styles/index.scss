@@ -22,34 +22,44 @@ $retro: 'Press Start 2P';
 }
 
 #resource-container {
-  width: 30%;
+  width: 99%;
   height: 6%;
   // border: 1px solid white;
+  // background-color: rgba(0, 0, 0, .5);
   position: fixed;
-  left: 8.5%;
+  left: .5%;
   top: 1%;
   z-index: 20;
 }
 
 #resource-text-container {
-  width: 30%;
+  width: auto;
   height: 100%;
   // border: 1px solid white;
   position: absolute;
+  margin-right: 10px;
   // left: -30%;
 
-  p {
+  #health-text {
     font-size: 15px;
     font-family: $retro;
-    color: grey;
+    color: white;
+    width: 100%;
+  }
+  #fuel-text {
+    font-size: 15px;
+    font-family: $retro;
+    color: white;
+    width: 100%;
   }
 }
 
 #health-bar-container {
   top: 10%;
-  width: 70%;
+  margin-right: 68%;
+  width: 25%;
   height: 30%;
-  border: 1px solid red;
+  border: 1px solid white;
   position: absolute;
   overflow: hidden;
   margin-bottom: 10px;
@@ -67,9 +77,10 @@ $retro: 'Press Start 2P';
 
 #fuel-bar-container {
   top: 58%;
-  width: 70%;
+  margin-right: 70%;
+  width: 25%;
   height: 30%;
-  border: 1px solid yellow;
+  border: 1px solid white;
   position: absolute;
   // margin-top: 1%;
   overflow: hidden;
@@ -216,14 +227,14 @@ $retro: 'Press Start 2P';
 
 }
 
-#boost-container {
-  width: 150px;
-  height: 75px;
-  // border: 1px solid black;
-  background-image: url('../assets/images/abilities/boost.gif');
-  background-size: cover;
-  top: -10%;
-  right: -170px;
-  position: absolute;
-  display: none;
-}
+// #boost-container {
+//   width: 150px;
+//   height: 75px;
+//   // border: 1px solid black;
+//   background-image: url('../assets/images/abilities/boost.gif');
+//   background-size: cover;
+//   top: -10%;
+//   right: -170px;
+//   position: absolute;
+//   display: none;
+// }

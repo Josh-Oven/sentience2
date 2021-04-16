@@ -10,17 +10,31 @@ $retro: 'Press Start 2P';
   overflow: hidden;
 }
 
-#score-wrapper {
-  width: auto;
+#score-distance-wrapper {
+  width: 20%;
   height: auto;
   // border: 1px solid white;
   position: fixed;
   display: flex;
+  // justify-content: space-around;
+  // align-items: flex-start;
+  flex-wrap: wrap;
+  top: 8%;
+  left: .5%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+#score-wrapper {
+  width: auto;
+  height: auto;
+  // border: 1px solid white;
+  display: flex;
+  // right: 0;
   align-items: center;
   justify-content: space-around;
-  top: 1%;
-  left: 50%;
-  transform: translate(-50%);
+  // margin-left: -2%;
+
+
 
   #score-text-container {
     width: auto;
@@ -30,7 +44,7 @@ $retro: 'Press Start 2P';
     justify-content: space-around;
 
     #score-text {
-      font-size: 30px;
+      font-size: 100%;
       font-family: $retro;
       color: white;
     }
@@ -44,7 +58,7 @@ $retro: 'Press Start 2P';
     justify-content: space-around;
 
     #score {
-      font-size: 30px;
+      font-size: 100%;
       font-family: $retro;
       color: violet;
     }
@@ -58,10 +72,8 @@ $retro: 'Press Start 2P';
   display: flex;
   align-items: center;
   justify-content: space-around;
-  top: 2%;
-  left: 75%;
-  transform: translate(-50%);
-  position: fixed;
+  margin-bottom: 2%;
+  margin-left: 1.5%;
 
   #distance-text-container{
     width: auto;
@@ -71,9 +83,14 @@ $retro: 'Press Start 2P';
     justify-content: space-around;
 
     #distance-text {
-      font-size: 15px;
+      font-size: 100%;
       font-family: $retro;
-      color: grey;
+      color: white;
+    }
+    #distance-text2{
+      font-size: 100%;
+      font-family: $retro;
+      color: white;
     }
   }
   #distance-container {
@@ -85,9 +102,9 @@ $retro: 'Press Start 2P';
     justify-content: space-around;
 
     #distance-num {
-      font-size: 15px;
+      font-size: 100%;
       font-family: $retro;
-      color: grey;
+      color: white;
     }
   }
 }
@@ -115,7 +132,6 @@ $retro: 'Press Start 2P';
 #idle-screen {
   width: 100%;
   height: 100vh;
-  margin-top: -60px;
   position: fixed;
   // border: 1px solid black;
   background-color: rgba(0, 0, 0, .9);
@@ -138,22 +154,31 @@ $retro: 'Press Start 2P';
 }
 
 #pause-button-container {
-  // border:1px solid white;
-  width: 50px;
-  height: 50px;
+  border: 1px solid white;
+  width: auto;
+  height: auto;
   position: fixed;
-  margin-top: 10px;
-  margin-left: 10px;
-  // border: 1px solid black;
+  top: 1.5%;
+  right: .5%;
+  padding: .5% 1% .5% 1%;
+
+  background: rgba(0, 0, 0, .5);
   z-index: 20;
 }
 
 #pause-button {
-  width: 100%;
-  height: 100%;
-  background: violet;
-  border-radius: 50%;
+  width: auto;
+  height: auto;
+  // background: violet;
+  // border-radius: 50%;
+  cursor: pointer;
   z-index: 20;
+
+  #pause-button-text {
+    font-family: $retro;
+    color: violet;
+    // font-size: 100px;
+  }
 }
 
 #idle-pause-button-container {
@@ -176,16 +201,16 @@ $retro: 'Press Start 2P';
   position: absolute;
   display: flex;
   justify-content: space-around;
-  left: 40%;
-  bottom: 100px;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 5%;
   width: auto;
-  height: 75px;
   // border: 1px solid yellow;
   z-index: 10;
 
   #relativity {
     width: 75px;
-    height: 75px;
+    height: auto;
     border-radius: 5px;
     background-image: url('../assets/images/abilities/relativity_thumb.png');
     background-size: cover;
@@ -194,19 +219,28 @@ $retro: 'Press Start 2P';
     #cooldown-block {
       display: none;
       // position: absolute;
-      width: 75px;
-      height: 75px;
+      width: 100%;
+      height: 100%;
       background-color: black;
       border-radius: 5px;
       animation: cooldown 21s;
       opacity: .9;
     }
+
+    #relativity-ready-border {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      background-image: url('../assets/images/abilities/thumb-border.gif');
+      background-size: cover;
+    }
+
   }
 
   #blacktoll-icon {
     margin-left: 10px;
     width: 75px;
-    height: 75px;
+    height: auto;
     border-radius: 5px;
     background-image: url('../assets/images/abilities/black-toll-thumb.png');
     background-size: cover;
@@ -215,19 +249,27 @@ $retro: 'Press Start 2P';
     #cooldown-block-blacktoll {
       display: none;
       // position: absolute;
-      width: 75px;
-      height: 75px;
+      width: 100%;
+      height: 100%;
       background-color: black;
       border-radius: 5px;
       animation: cooldown 21s;
       opacity: .9;
+    }
+
+    #blacktoll-ready-border {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      background-image: url('../assets/images/abilities/thumb-border.gif');
+      background-size: cover;
     }
   }
 
   #laser-icon {
     margin-left: 10px;
     width: 75px;
-    height: 75px;
+    height: auto;
     border-radius: 5px;
     background-image: url('../assets/images/abilities/laser2-thumb.gif');
     background-size: cover;
@@ -236,17 +278,53 @@ $retro: 'Press Start 2P';
     #cooldown-block-laser {
       display: none;
       // position: absolute;
-      width: 75px;
-      height: 75px;
+      width: 100%;
+      height: 100%;
       background-color: black;
       border-radius: 5px;
       animation: cooldown 30s;
       opacity: .9;
       margin-right: 1px;
     }
-  }
-}
 
+    #laser-ready-border {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      background-image: url('../assets/images/abilities/thumb-border.gif');
+      background-size: cover;
+    }
+  }
+
+  #boost-icon {
+    width: 75px;
+    height: auto;
+    border-radius: 5px;
+    background-image: url('../assets/images/abilities/boost.gif');
+    background-size: cover;
+    overflow: hidden;
+    margin-left: 10px;
+
+    #cooldown-block-boost {
+      display: none;
+      // position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      border-radius: 5px;
+      animation: cooldown 21s;
+      opacity: .9;
+    }
+
+    #boost-ready-border {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      background-image: url('../assets/images/abilities/thumb-border.gif');
+      background-size: cover;
+    }
+}
+}
 @keyframes cooldown {
   from {margin-left: 0%}
   to {margin-left: 100%}

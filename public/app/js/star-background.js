@@ -1,6 +1,10 @@
 export {
   starPopulate
 }
+
+import * as groundWork from './groundwork.js'
+let objectScale = groundWork.objectScale;
+
   let starRow = document.getElementById('star-row');
   let starContainer = document.getElementById('star-container');
 
@@ -14,7 +18,7 @@ export {
 
   let createStar = () => {
     let colors = ['white', 'white']
-    let sizes = ['5px', '10px', '15px']
+    let sizes = [`${objectScale/10}px`, `${objectScale/8}px`, `${objectScale/5}px`]
     let color = colors[Math.floor(Math.random() * 2)]
     let size = sizes[Math.floor(Math.random() * 3)]
     let brightness = `.${Math.floor(Math.random() * 10)}`
@@ -43,11 +47,11 @@ export {
 
     starContainer.appendChild(newStar)
     starNum++;
-    left = Math.floor(Math.random() * 100);
+    left = Math.floor(Math.random() * objectScale/.7);
   }
 
 let starPopulate = () => {
-  for(let i = 0; i < 400; i++){
+  for(let i = 0; i < (objectScale*20); i++){
     appendStar();
   }
 }
