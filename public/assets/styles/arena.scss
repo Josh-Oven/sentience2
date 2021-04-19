@@ -223,7 +223,7 @@ $retro: 'Press Start 2P';
       height: 100%;
       background-color: black;
       border-radius: 5px;
-      animation: cooldown 21s;
+      animation: cooldown 20s linear;
       opacity: .9;
     }
 
@@ -253,7 +253,7 @@ $retro: 'Press Start 2P';
       height: 100%;
       background-color: black;
       border-radius: 5px;
-      animation: cooldown 21s;
+      animation: cooldown 20s linear;
       opacity: .9;
     }
 
@@ -282,7 +282,7 @@ $retro: 'Press Start 2P';
       height: 100%;
       background-color: black;
       border-radius: 5px;
-      animation: cooldown 30s;
+      animation: cooldown 30s linear;
       opacity: .9;
       margin-right: 1px;
     }
@@ -312,7 +312,7 @@ $retro: 'Press Start 2P';
       height: 100%;
       background-color: black;
       border-radius: 5px;
-      animation: cooldown 21s;
+      animation: cooldown 20s linear;
       opacity: .9;
     }
 
@@ -328,4 +328,22 @@ $retro: 'Press Start 2P';
 @keyframes cooldown {
   from {margin-left: 0%}
   to {margin-left: 100%}
+}
+
+#blackhole-test-container {
+  background-image: url('../assets/images/blackhole.gif');
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  right: -150vh;
+  width: 100vh;
+  height: 100vh;
+  // animation: blackhole-rotate 60s infinite linear;
+  border-radius: 50%;
+}
+
+@keyframes blackhole-rotate {
+  0%{transform:  rotate(360deg)}
+  50% {transform: rotate(0deg)}
+  100% {transform: rotate(-360deg)}
 }

@@ -20,7 +20,7 @@ let returnLaserStatus = characterMovement.returnLaserStatus;
 let returnBoostStatus = characterMovement.returnBoostStatus;
 let relativity = abilities.relativity;
 
-console.log(objects.laser.html)
+// console.log(objects.laser.html)
 
 let positionTracker = (item1, item2, relativityStatus) => {
   // console.log('position', relativityStatus)

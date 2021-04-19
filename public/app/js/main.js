@@ -3,6 +3,7 @@ import * as createElement from './create-element.js';
 import * as starBackground from './star-background.js';
 import * as groundWork from './groundwork.js'
 import * as characterMovement from './character-movement.js'
+import * as abilities from './abilities.js';
 let detectCharacterMovement = characterMovement.detectCharacterMovement;
 let returnBoostStatus = characterMovement.returnBoostStatus;
 // let cooldownActivate = characterMovement.cooldownActivate;
@@ -50,9 +51,9 @@ let objectMovement = () => {
   let debreeSpeed = .5;
   let boostStatus = returnBoostStatus();
   if (boostStatus === true){
-    debreeSpeed = 1.5;
+    debreeSpeed = 2.5;
   } else if (boostStatus === false) {
-    debreeSpeed = .5
+    debreeSpeed = 1
   }
   let location = -10;
   let debree = appendSpaceDebree(relativityStatus)
@@ -74,17 +75,17 @@ let objectMovement = () => {
       // orb.style.left = `${location}px`;
       // console.log(debree.style.left)
     }
-  },1000/100)
+  },1000/75)
 }
 
 let orbMovement = () => {
   let location = -10;
-  let orbSpeed = .2;
+  let orbSpeed = .4;
   let boostStatus = returnBoostStatus();
   if (boostStatus === true){
-    orbSpeed = .4;
+    orbSpeed = .5;
   } else if (boostStatus === false) {
-  orbSpeed = .2
+  orbSpeed = .5
   }
   let orb = appendOrb();
   let distance = windowWidth;
@@ -100,7 +101,7 @@ let orbMovement = () => {
       location += orbSpeed;
       orb.style.left = `${location}%`;
     }
-  },1000/150)
+  },1000/75)
 }
 
 /// game loop
@@ -161,7 +162,7 @@ let characterLoop = setInterval(function(){
     detectCharacterMovement();
     setTravelDistance();
   }
-}, 1000/150);
+}, 1000/75);
 
 
 let idleScreen = document.getElementById('idle-screen');

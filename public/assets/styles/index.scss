@@ -121,50 +121,67 @@ $retro: 'Press Start 2P';
     // border: 1px solid yellow;
     animation-iteration-count:infinite;
     animation-timing-function:linear;
-    animation-name:orbit;
-    animation-duration:.7s;
+    // animation-name:orbit;
+    animation-duration:2s;
 
     #object-one {
-      position: absolute;
+      position: fixed;
       // top: 5%;
       left: 45%;
       width: 15%;
       height: 15%;
-      // border-radius: 50%;
-      // background-color: gray;
+      animation-iteration-count:infinite;
+      animation-timing-function:linear;
+      // animation-name:negative-orbit;
+      animation-duration:2s;
+      border :1px solid white;
     }
     #object-two {
-      position: absolute;
+      position: fixed;
       top: 90%;
       left: 45%;
       width: 15%;
       height: 15%;
-      // border-radius: 50%;
-      // background-color: gray;
+      animation-iteration-count:infinite;
+      animation-timing-function:linear;
+      // animation-name:negative-orbit;
+      animation-duration:2s;
+      border :1px solid white;
     }
     #object-three {
-      position: absolute;
+      position: fixed;
       top: 45%;
       left: 90%;
       width: 15%;
       height: 15%;
-      // border-radius: 50%;
-      // background-color: gray;
+      animation-iteration-count:infinite;
+      animation-timing-function:linear;
+      // animation-name:negative-orbit;
+      animation-duration:2s;
+      border :1px solid white;
     }
     #object-four {
-      position: absolute;
+      position: fixed;
       top: 45%;
       // left: 5%;
       width: 15%;
       height: 15%;
-      // border-radius: 50%;
-      // background-color: gray;
+      animation-iteration-count:infinite;
+      animation-timing-function:linear;
+      // animation-name:negative-orbit;
+      animation-duration:2s;
+      border :1px solid white;
     }
   }
 
   @keyframes orbit {
   from { transform:rotate(0deg)}
   to { transform:rotate(360deg) }
+  }
+
+  @keyframes negative-orbit {
+  from { transform:rotate(0deg)}
+  to { transform:rotate(-360deg) }
   }
 
 #title-container {

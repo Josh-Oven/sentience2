@@ -28,6 +28,7 @@ let returnRelativityStatus = characterMovement.returnRelativityStatus;
 let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 let returnLaserStatus = characterMovement.returnLaserStatus;
 let returnBoostStatus = characterMovement.returnBoostStatus;
+let returnPauseStatus = characterMovement.returnPauseStatus;
 let shipRect = spaceship.getBoundingClientRect()
 
 let relativity = (debree) => {
@@ -167,7 +168,7 @@ let boost = () => {
   },500)
 
     setTimeout(()=>{
-      let boostStatus = returnLaserStatus();
+      let boostStatus = returnBoostStatus();
       boostStatus = false;
       returnBoostStatus();
       boost.remove();
@@ -175,3 +176,18 @@ let boost = () => {
     },fuel)
   return boost
 }
+
+let blackHole = (element, rect) => {
+  let boostStatus = returnBoostStatus();
+  if (boostStatus === false){
+    element.style.left = `${rect.left - .1}px`
+  } else if (boostStatus === true){
+    element.style.left = `${rect.left + 1}px`
+  }
+}
+
+let blackHoleElement = document.getElementById('blackhole-test-container')
+setInterval(()=>{
+  let blackHoleRect = blackHoleElement.getBoundingClientRect();
+  blackHole(blackHoleElement, blackHoleRect)
+},1000/75)

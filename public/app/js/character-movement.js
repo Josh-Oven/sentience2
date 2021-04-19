@@ -5,7 +5,8 @@ export {
   returnRelativityStatus,
   returnBlackTollStatus,
   returnLaserStatus,
-  returnBoostStatus
+  returnBoostStatus,
+  returnPauseStatus
 }
 
 import * as groundWork from './groundwork.js';
@@ -52,7 +53,7 @@ let charY = shipRect.top + shipRect.height / 2;
 let character = {
   x: charX,
   y: charY,
-  speedMultiplier: objectScale/13,
+  speedMultiplier: objectScale/8,
   element: spaceship
 };
 
