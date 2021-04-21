@@ -3,7 +3,8 @@ export {
   blackToll,
   laser,
   blackHoleMovement,
-  boost
+  boost,
+  relativityDebree
 }
 
 import * as tracker from './position-tracker.js'
@@ -14,6 +15,7 @@ let blackTollObject = objects.blackToll
 let laserObject = objects.laser
 let boostObject = objects.boost
 let fuelBar = objects.fuelBar;
+let relativityObject = objects.relativity;
 import * as groundWork from './groundwork.js';
 let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
@@ -31,38 +33,103 @@ let returnBoostStatus = characterMovement.returnBoostStatus;
 let returnPauseStatus = characterMovement.returnPauseStatus;
 let shipRect = spaceship.getBoundingClientRect()
 
-let relativity = (debree) => {
+//////////////////// RELATIVITY ////////////////////////
+let debree1 = relativityObject.debree1;
+let debree2 = relativityObject.debree2;
+let debree3 = relativityObject.debree3;
+let debree4 = relativityObject.debree4;
+let debree5 = relativityObject.debree5;
+let debree6 = relativityObject.debree6;
+let debree7 = relativityObject.debree7;
+let debree8 = relativityObject.debree8;
 
-  if (debreeOne.style.backgroundImage === '') {
-    // debreeOne.style.transform = `rotate(90deg)`;
-    debreeOne.style.backgroundImage = debree.style.backgroundImage;
-    debreeOne.style.backgroundSize = debree.style.backgroundSize;
-    debreeOne.style.backgroundRepeat = debree.style.backgroundRepeat;
-    debreeOne.style.backgroundPosition = debree.style.backgroundPosition;
+let debreeArray = [debree1, debree2, debree3, debree4, debree5, debree6, debree7, debree8]
+let debreeTemplate = relativityObject.debreeCss();
+
+let relativity = () => {
+  let relativityElement = relativityObject.css();
+  relativityElement.id = 'relativity';
+  spaceship.appendChild(relativityElement)
+
+  let counter = 0;
+  for(let i = 0; i < debreeArray.length; i++){
+    relativityCreate();
   }
-  else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage === '') {
-    // debreeTwo.style.transform = `rotate(90deg)`;
-    debreeTwo.style.backgroundImage = debree.style.backgroundImage;
-    debreeTwo.style.backgroundSize = debree.style.backgroundSize;
-    debreeTwo.style.backgroundRepeat = debree.style.backgroundRepeat;
-    debreeTwo.style.backgroundPosition = debree.style.backgroundPosition;
-  }
-  else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage != '' && debreeThree.style.backgroundImage === '') {
-    // debreeThree.style.transform = `rotate(90deg)`;
-    debreeThree.style.backgroundImage = debree.style.backgroundImage;
-    debreeThree.style.backgroundSize = debree.style.backgroundSize;
-    debreeThree.style.backgroundRepeat = debree.style.backgroundRepeat;
-    debreeThree.style.backgroundPosition = debree.style.backgroundPosition;
-  }
-  else if (debreeOne.style.backgroundImage != '' && debreeTwo.style.backgroundImage != '' && debreeThree.style.backgroundImage != '') {
-    // debreeFour.style.transform = `rotate(90deg)`;
-    debreeFour.style.backgroundImage = debree.style.backgroundImage;
-    debreeFour.style.backgroundSize = debree.style.backgroundSize;
-    debreeFour.style.backgroundRepeat = debree.style.backgroundRepeat;
-    debreeFour.style.backgroundPosition = debree.style.backgroundPosition;
-  }
+
+  setTimeout(()=>{
+    relativityElement.remove();
+  },60000)
+
+  return relativityElement
 }
 
+let counter = 0;
+let relativityCreate = () => {
+  let debree = debreeArray[counter].position(debreeTemplate)
+  let newDebree = debree;
+  newDebree.id = `relativityDebree${counter}`
+  document.getElementById('relativity').appendChild(newDebree)
+  console.log(debreeArray[counter])
+  counter++;
+  return;
+}
+
+let relativityDebree = (debree) => {
+  let container = document.getElementById('relativity')
+  let image = debree.style.backgroundImage;
+
+  if (debree1.status == false){
+    debree1.status = true;
+    let template = debree1.position(baseTemplate)
+    template.style.backgroundImage = image;
+    document.getElementById('relativity').appendChild(template)
+  }
+  else if (debree2.status == false && debree1.status == true){
+    debree2.status = true;
+    let template = debree2.position(baseTemplate)
+    template.style.backgroundImage = image;
+    document.getElementById('relativity').appendChild(template)
+  }
+  else if (debree3.status == false && debree2.status == true){
+    debree3.status = true;
+    let template = debree3.position(baseTemplate)
+    template.style.backgroundImage = image;
+    document.getElementById('relativity').appendChild(template)
+  }
+  else if (debree4.status == false && debree3.status == true){
+    debree4.status = true;
+    let template = debree4.position(baseTemplate)
+    template.style.backgroundImage = image;
+    document.getElementById('relativity').appendChild(template)
+  }
+  else if (debree5.status == false && debree4.status == true){
+    debree5.status = true;
+    let template = debree5.position(baseTemplate)
+    template.style.backgroundImage = image;
+    document.getElementById('relativity').appendChild(template)
+  }
+  else if (debree6.status == false && debree5.status == true){
+    debree6.status = true;
+    let template = debree6.position(baseTemplate)
+    template.style.backgroundImage = image;
+    document.getElementById('relativity').appendChild(template)
+  }
+  else if (debree7.status == false && debree6.status == true){
+    debree7.status = true;
+    let template = debree7.position(baseTemplate)
+    template.style.backgroundImage = image;
+    document.getElementById('relativity').appendChild(template)
+  }
+  else if (debree8.status == false && debree7.status == true){
+    debree8.status = true;
+    let template = debree8.position(baseTemplate)
+    template.style.backgroundImage = image;
+    document.getElementById('relativity').appendChild(template)
+  }
+}
+//////////////////////////////////////////////////////
+
+//////////////////// BLACKTOLL ////////////////////////
 let blackToll = () => {
   let shipRect = spaceship.getBoundingClientRect();
   let blackHole = blackTollObject.css();
@@ -103,9 +170,11 @@ let blackHoleMovement = () => {
     }
   },50)
 }
+//////////////////////////////////////////////////////
 
 //// IN ORDER TO START TRACKING ON ABILITY ACTIVATION YOURE GOING TO HAVE TO BUILD A FUNCTION THAT FINDS ALL CURRENT SPACE DEBREE ON THE DOM, AND ADDS THEM TO POSITION TRACKER AFTER THE ABILITIES HAVE ACTIVATED ////
 
+//////////////////// LASER ////////////////////////
 let laser = () => {
   let lastLaserPosition = 0;
   let laserContainer = laserObject.css()
@@ -148,7 +217,9 @@ let removeAllChildNodes = (parent) => {
         parent.removeChild(parent.firstChild);
     }
 }
+////////////////////////////////////////////////////
 
+//////////////////// BOOST ////////////////////////
 let boost = () => {
   console.log('fuel', fuelBar.currentSegments)
   let fuel = fuelBar.currentSegments * 500;
@@ -176,7 +247,9 @@ let boost = () => {
     },fuel)
   return boost
 }
+////////////////////////////////////////////////////
 
+//////////////////// BIG BLACK HOLE ////////////////////////
 let blackHole = (element, rect) => {
   let boostStatus = returnBoostStatus();
   if (boostStatus === false){
@@ -191,3 +264,4 @@ setInterval(()=>{
   let blackHoleRect = blackHoleElement.getBoundingClientRect();
   blackHole(blackHoleElement, blackHoleRect)
 },1000/75)
+////////////////////////////////////////////////////

@@ -214,7 +214,7 @@ const healthOrb = {
   health: 20,
   fuel: 0,
   css: function(){
-    let template = document.createElement('div')
+    let template = document.createElement('div');
     let style = template.style;
     style.backgroundPosition = 'center center';
     style.backgroundRepeat = 'no-repeat';
@@ -232,7 +232,96 @@ const healthOrb = {
 const relativity = {
   thumbnail: '../assets/images/abilities/relativity_thumb.png',
   cooldown: 20000,
-  html: document.getElementById('relativity')
+  html: document.getElementById('relativity'),
+  css: function(){
+    let template = document.createElement('div');
+    let style = template.style;
+    style.position = 'aboslute';
+    style.width = `${objectScale*3.5}px`;
+    style.height = `${objectScale*3.5}px`;
+    style.left = `50%`;
+    style.transform = 'translate(-35%, -60%)';
+    style.borderRadius = `50%`;
+    style.border = '1px solid yellow';
+    return template;
+  },
+  debreeCss: function (){
+    let template = document.createElement('div');
+    let style = template.style;
+    style.backgroundPosition = 'center center';
+    style.backgroundRepeat = 'no-repeat';
+    style.backgroundSize = 'cover';
+    style.position =  'fixed';
+    style.width = `${15}%`;
+    style.height = `${15}%`;
+    style.border = '1px solid white';
+    return template;
+  },
+  debree1: {
+    status: false,
+    position: function(template){
+      template.style.left = '50%';
+      template.style.transform = 'translate(-50%)';
+      return template;
+    }
+  },
+  debree2: {
+    status: false,
+    position: function(template){
+      template.style.top = '85%';
+      template.style.left = '50%';
+      template.style.transform = 'translate(-50%)';
+      return template;
+    }
+  },
+  debree3: {
+    status: false,
+    position: function(template){
+      template.style.top = '42.5%';
+      template.style.right = 0;
+      return template;
+    }
+  },
+  debree4: {
+    status: false,
+    position: function(template){
+      template.style.top = '42.5%';
+      template.style.left = 0;
+      return template;
+    }
+  },
+  debree5: {
+    status: false,
+    position: function(template){
+      template.style.top = '15%';
+      template.style.right = '15%';
+      return template;
+    }
+  },
+  debree6: {
+    status: false,
+    position: function(template){
+      template.style.left = '15%';
+      template.style.bottom = '15%';
+      return template;
+    }
+  },
+  debree7: {
+    status: false,
+    position: function(template){
+      template.style.top = '15%';
+      template.style.left = '15%';
+      return template;
+    }
+  },
+  debree8: {
+    status: false,
+    position: function(template){
+      template.style.right = '15%';
+      template.style.bottom = '15%';
+      return template;
+    }
+  }
 }
 
 const blackToll = {

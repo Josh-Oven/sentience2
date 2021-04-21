@@ -19,6 +19,7 @@ let returnBlackTollStatus = characterMovement.returnBlackTollStatus;
 let returnLaserStatus = characterMovement.returnLaserStatus;
 let returnBoostStatus = characterMovement.returnBoostStatus;
 let relativity = abilities.relativity;
+let relativityDebree = abilities.relativityDebree;
 
 // console.log(objects.laser.html)
 
@@ -151,7 +152,7 @@ let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
   }
 
   if (item1.id === 'spaceDebree' && relativityStatus === true){
-    relativity(item1)
+    relativityDebree(item1);
   }
 
   if (item1.id === 'spaceDebree' && relativityStatus === false) {

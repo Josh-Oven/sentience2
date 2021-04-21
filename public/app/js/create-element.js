@@ -79,24 +79,8 @@ let appendSpaceDebree = () => {
       positionTracker(document.getElementById('laser-container'), spaceDebree)
     }
 
-    if (debreeOne.style.backgroundImage != '') {
-      positionTracker(debreeOne, spaceDebree, relativityStatus)
-    }
-
-    if (debreeTwo.style.backgroundImage != '') {
-      positionTracker(debreeTwo, spaceDebree, relativityStatus)
-    }
-
-    if (debreeThree.style.backgroundImage != '') {
-      positionTracker(debreeThree, spaceDebree, relativityStatus)
-    }
-
-    if (debreeFour.style.backgroundImage != '') {
-      positionTracker(debreeFour, spaceDebree, relativityStatus)
-    }
-
     playArea.appendChild(spaceDebree)
-    positionTracker(spaceship, spaceDebree, relativityStatus)
+    positionTracker(spaceship, spaceDebree)
   return spaceDebree
 }
 

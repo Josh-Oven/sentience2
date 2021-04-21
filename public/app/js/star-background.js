@@ -18,7 +18,7 @@ let objectScale = groundWork.objectScale;
 
   let createStar = () => {
     let colors = ['white', 'white']
-    let sizes = [`${objectScale/10}px`, `${objectScale/8}px`, `${objectScale/5}px`]
+    let sizes = [`${objectScale/12}px`, `${objectScale/10}px`, `${objectScale/7}px`]
     let color = colors[Math.floor(Math.random() * 2)]
     let size = sizes[Math.floor(Math.random() * 3)]
     let brightness = `.${Math.floor(Math.random() * 10)}`
@@ -47,7 +47,7 @@ let objectScale = groundWork.objectScale;
 
     starContainer.appendChild(newStar)
     starNum++;
-    left = Math.floor(Math.random() * objectScale/.7);
+    left = Math.floor(Math.random() * objectScale/.9);
   }
 
 let starPopulate = () => {

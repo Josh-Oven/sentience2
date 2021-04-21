@@ -121,17 +121,17 @@ let detectCharacterMovement = () => {
     console.log('relativity activating');
     cooldownBlock.style.display = 'block';
     relativityReady.style.display = 'none';
-
     relativityStatus = true;
     keys.RELATIVITY = 0;
     spaceship.style.border = '2px solid yellow';
     returnRelativityStatus();
+    abilities.relativity();
 
     setTimeout(()=>{
       relativityStatus = false;
       spaceship.style.border = 'none';
       returnRelativityStatus();
-    },6000)
+    },60000)
 
     setTimeout(()=>{
       keys.RELATIVITY = 32;

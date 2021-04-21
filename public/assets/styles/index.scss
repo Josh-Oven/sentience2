@@ -97,11 +97,10 @@ $retro: 'Press Start 2P';
 
 #spaceship-container {
   position: fixed;
-  width: 13%;
-  // height: 93.5px;
-  // border: 1px solid white;
-  top: 50%; right: 50%;
-  // transform: translate(50%,-50%);
+  width: 13vw;
+  height: 5vw;
+  top: 50%;
+  right: 50%;
   z-index: 8;
 }
 
@@ -110,69 +109,118 @@ $retro: 'Press Start 2P';
   height: 100%;
 }
 
-  #relativity-container {
-    position: absolute;
-    top: -215%;
-    left: -60%;
-    // transform: translate(50%,-50%);
-    width: 220.5%;
-    height: 551%;
-    border-radius: 50%;
-    // border: 1px solid yellow;
-    animation-iteration-count:infinite;
-    animation-timing-function:linear;
-    // animation-name:orbit;
-    animation-duration:2s;
-
-    #object-one {
-      position: fixed;
-      // top: 5%;
-      left: 45%;
-      width: 15%;
-      height: 15%;
-      animation-iteration-count:infinite;
-      animation-timing-function:linear;
-      // animation-name:negative-orbit;
-      animation-duration:2s;
-      border :1px solid white;
-    }
-    #object-two {
-      position: fixed;
-      top: 90%;
-      left: 45%;
-      width: 15%;
-      height: 15%;
-      animation-iteration-count:infinite;
-      animation-timing-function:linear;
-      // animation-name:negative-orbit;
-      animation-duration:2s;
-      border :1px solid white;
-    }
-    #object-three {
-      position: fixed;
-      top: 45%;
-      left: 90%;
-      width: 15%;
-      height: 15%;
-      animation-iteration-count:infinite;
-      animation-timing-function:linear;
-      // animation-name:negative-orbit;
-      animation-duration:2s;
-      border :1px solid white;
-    }
-    #object-four {
-      position: fixed;
-      top: 45%;
-      // left: 5%;
-      width: 15%;
-      height: 15%;
-      animation-iteration-count:infinite;
-      animation-timing-function:linear;
-      // animation-name:negative-orbit;
-      animation-duration:2s;
-      border :1px solid white;
-    }
-  }
+  // #relativity-container {
+  //   position: absolute;
+  //   left: 50%;
+  //   transform: translate(-50%, -60%);
+  //   width: 350px;
+  //   height: 350px;
+  //   border-radius: 50%;
+  //   border: 1px solid yellow;
+  //   animation-iteration-count:infinite;
+  //   animation-timing-function:linear;
+  //   // animation-name:orbit;
+  //   animation-duration:2s;
+  //
+  //   #object-one {
+  //     position: fixed;
+  //     left: 50%;
+  //     transform: translate(-50%);
+  //     width: 15%;
+  //     height: 15%;
+  //     animation-iteration-count:infinite;
+  //     animation-timing-function:linear;
+  //     // animation-name:negative-orbit;
+  //     animation-duration:2s;
+  //     border :1px solid white;
+  //   }
+  //   #object-two {
+  //     position: fixed;
+  //     top: 85%;
+  //     left: 50%;
+  //     transform: translate(-50%);
+  //     width: 15%;
+  //     height: 15%;
+  //     animation-iteration-count:infinite;
+  //     animation-timing-function:linear;
+  //     // animation-name:negative-orbit;
+  //     animation-duration:2s;
+  //     border :1px solid white;
+  //   }
+  //   #object-three {
+  //     position: fixed;
+  //     right:0;
+  //     top: 42.5%;
+  //     width: 15%;
+  //     // transform: translate(0, 25%);
+  //     height: 15%;
+  //     animation-iteration-count:infinite;
+  //     animation-timing-function:linear;
+  //     // animation-name:negative-orbit;
+  //     animation-duration:2s;
+  //     border :1px solid white;
+  //   }
+  //   #object-four {
+  //     position: fixed;
+  //     top: 42.5%;
+  //     left: 0;
+  //     width: 15%;
+  //     height: 15%;
+  //     animation-iteration-count:infinite;
+  //     animation-timing-function:linear;
+  //     // animation-name:negative-orbit;
+  //     animation-duration:2s;
+  //     border :1px solid white;
+  //   }
+  //   #object-five {
+  //     position: fixed;
+  //     top: 15%;
+  //     right: 15%;
+  //     width: 15%;
+  //     height: 15%;
+  //     animation-iteration-count:infinite;
+  //     animation-timing-function:linear;
+  //     // animation-name:negative-orbit;
+  //     animation-duration:2s;
+  //     border :1px solid white;
+  //   }
+  //   #object-six {
+  //     position: fixed;
+  //     bottom: 15%;
+  //     left: 15%;
+  //     width: 15%;
+  //     height: 15%;
+  //     animation-iteration-count:infinite;
+  //     animation-timing-function:linear;
+  //     // animation-name:negative-orbit;
+  //     animation-duration:2s;
+  //     border :1px solid white;
+  //   }
+  //   #object-seven {
+  //     position: fixed;
+  //     top: 15%;
+  //     left: 15%;
+  //     width: 15%;
+  //     height: 15%;
+  //     animation-iteration-count:infinite;
+  //     animation-timing-function:linear;
+  //     // animation-name:negative-orbit;
+  //     animation-duration:2s;
+  //     border :1px solid white;
+  //   }
+  //   #object-eight {
+  //     position: fixed;
+  //     bottom: 15%;
+  //     right: 15%;
+  //     width: 15%;
+  //     height: 15%;
+  //     animation-iteration-count:infinite;
+  //     animation-timing-function:linear;
+  //     // animation-name:negative-orbit;
+  //     animation-duration:2s;
+  //     border :1px solid white;
+  //   }
+  // }
 
   @keyframes orbit {
   from { transform:rotate(0deg)}

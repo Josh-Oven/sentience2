@@ -27,7 +27,7 @@ let debreeFour = document.getElementById('object-four');
 let playArea = document.getElementById('play-area');
 let spaceship = document.getElementById('spaceship-container');
 let abilityBar = document.getElementById('ability-bar');
-let relativityThumb = document.getElementById('relativity');
+let relativityThumb = document.getElementById('relativity-icon');
 let blackTollThumb = document.getElementById('blacktoll-icon');
 let laserThumb = document.getElementById('laser-icon');
 let boostThumb = document.getElementById('boost-icon');
@@ -49,7 +49,7 @@ let boostStatus = false;
 let getPercentage = (num, per) => {
   return (num/100)*per;
 }
-let objectScale = getPercentage(windowHeight, 8);
+let objectScale = getPercentage(windowHeight, 10);
 console.log(objectScale)
 
 let uiFontSize = objectScale/5;
