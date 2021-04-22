@@ -52,6 +52,10 @@ let getPercentage = (num, per) => {
 let objectScale = getPercentage(windowHeight, 10);
 console.log(objectScale)
 
+spaceship.style.width = `${objectScale*2.7}px`;
+spaceship.style.height = `${objectScale}px`;
+
+
 let uiFontSize = objectScale/5;
 pauseText.style.fontSize = `${uiFontSize}px`
 healthText.style.fontSize = `${uiFontSize}px`

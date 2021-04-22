@@ -31,12 +31,6 @@ let positionTracker = (item1, item2, relativityStatus) => {
     let blackTollStatus = returnBlackTollStatus();
     let laserStatus = returnLaserStatus();
 
-    // if (laserStatus === true) {
-    //   let laser = objects.laser.html
-    //   positionTracker(laser, item2)
-    // }
-
-    // console.log(interval)
     let item1Rect = item1.getBoundingClientRect();
     let oneT = item1Rect.top
     let oneR = item1Rect.right
@@ -126,15 +120,6 @@ let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
     console.log('spaceship hit')
   }
 
-  if (item1 === debreeOne || item1 === debreeTwo || item1 === debreeThree || item1 === debreeFour) {
-    if (relativityStatus === true){
-      asteroid.remove()
-      return;
-    } else {
-      item1.style.backgroundImage = '';
-      console.log('blocked!')
-    }
-  }
   if (boostStatus === false){
     asteroid.remove()
   }

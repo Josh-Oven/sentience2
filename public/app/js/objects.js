@@ -236,13 +236,13 @@ const relativity = {
   css: function(){
     let template = document.createElement('div');
     let style = template.style;
-    style.position = 'aboslute';
-    style.width = `${objectScale*3.5}px`;
-    style.height = `${objectScale*3.5}px`;
+    style.position = 'absolute';
+    style.width = `${objectScale*4.5}px`;
+    style.height = `${objectScale*4.5}px`;
     style.left = `50%`;
-    style.transform = 'translate(-35%, -60%)';
+    style.transform = 'translate(-50%, -62.5%)';
     style.borderRadius = `50%`;
-    style.border = '1px solid yellow';
+    // style.border = '1px solid yellow';
     return template;
   },
   debreeCss: function (){
@@ -251,10 +251,11 @@ const relativity = {
     style.backgroundPosition = 'center center';
     style.backgroundRepeat = 'no-repeat';
     style.backgroundSize = 'cover';
+    style.backgroundImage = '';
     style.position =  'fixed';
     style.width = `${15}%`;
     style.height = `${15}%`;
-    style.border = '1px solid white';
+    // style.border = '1px solid white';
     return template;
   },
   debree1: {
@@ -293,32 +294,32 @@ const relativity = {
   debree5: {
     status: false,
     position: function(template){
-      template.style.top = '15%';
-      template.style.right = '15%';
+      template.style.top = '12.5%';
+      template.style.right = '12.5%';
       return template;
     }
   },
   debree6: {
     status: false,
     position: function(template){
-      template.style.left = '15%';
-      template.style.bottom = '15%';
+      template.style.left = '12.5%';
+      template.style.bottom = '12.5%';
       return template;
     }
   },
   debree7: {
     status: false,
     position: function(template){
-      template.style.top = '15%';
-      template.style.left = '15%';
+      template.style.top = '12.5%';
+      template.style.left = '12.5%';
       return template;
     }
   },
   debree8: {
     status: false,
     position: function(template){
-      template.style.right = '15%';
-      template.style.bottom = '15%';
+      template.style.right = '12.5%';
+      template.style.bottom = '12.5%';
       return template;
     }
   }

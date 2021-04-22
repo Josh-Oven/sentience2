@@ -34,44 +34,34 @@ let returnPauseStatus = characterMovement.returnPauseStatus;
 let shipRect = spaceship.getBoundingClientRect()
 
 //////////////////// RELATIVITY ////////////////////////
-let debree1 = relativityObject.debree1;
-let debree2 = relativityObject.debree2;
-let debree3 = relativityObject.debree3;
-let debree4 = relativityObject.debree4;
-let debree5 = relativityObject.debree5;
-let debree6 = relativityObject.debree6;
-let debree7 = relativityObject.debree7;
-let debree8 = relativityObject.debree8;
-
+let debree1 = relativityObject.debree1
+let debree2 = relativityObject.debree2
+let debree3 = relativityObject.debree3
+let debree4 = relativityObject.debree4
+let debree5 = relativityObject.debree5
+let debree6 = relativityObject.debree6
+let debree7 = relativityObject.debree7
+let debree8 = relativityObject.debree8
 let debreeArray = [debree1, debree2, debree3, debree4, debree5, debree6, debree7, debree8]
-let debreeTemplate = relativityObject.debreeCss();
 
 let relativity = () => {
+
+  let debreeTemplate = relativityObject.debreeCss;
   let relativityElement = relativityObject.css();
   relativityElement.id = 'relativity';
   spaceship.appendChild(relativityElement)
 
-  let counter = 0;
-  for(let i = 0; i < debreeArray.length; i++){
-    relativityCreate();
+  for (let i = 0; i < debreeArray.length; i++){
+    let debree = debreeArray[i].position(debreeTemplate());
+    debree.id = `relativityDebree${i}`
+    relativityElement.innerHTML += debree.outerHTML;
   }
 
   setTimeout(()=>{
-    relativityElement.remove();
-  },60000)
+    // relativityElement.remove();
+  },6000)
 
   return relativityElement
-}
-
-let counter = 0;
-let relativityCreate = () => {
-  let debree = debreeArray[counter].position(debreeTemplate)
-  let newDebree = debree;
-  newDebree.id = `relativityDebree${counter}`
-  document.getElementById('relativity').appendChild(newDebree)
-  console.log(debreeArray[counter])
-  counter++;
-  return;
 }
 
 let relativityDebree = (debree) => {
@@ -80,52 +70,68 @@ let relativityDebree = (debree) => {
 
   if (debree1.status == false){
     debree1.status = true;
-    let template = debree1.position(baseTemplate)
-    template.style.backgroundImage = image;
-    document.getElementById('relativity').appendChild(template)
+    let container = document.getElementById('relativityDebree0')
+    container.style.backgroundImage = image;
   }
   else if (debree2.status == false && debree1.status == true){
     debree2.status = true;
-    let template = debree2.position(baseTemplate)
-    template.style.backgroundImage = image;
-    document.getElementById('relativity').appendChild(template)
+    let container = document.getElementById('relativityDebree1')
+    container.style.backgroundImage = image;
   }
   else if (debree3.status == false && debree2.status == true){
     debree3.status = true;
-    let template = debree3.position(baseTemplate)
-    template.style.backgroundImage = image;
-    document.getElementById('relativity').appendChild(template)
+    let container = document.getElementById('relativityDebree2')
+    container.style.backgroundImage = image;
   }
   else if (debree4.status == false && debree3.status == true){
     debree4.status = true;
-    let template = debree4.position(baseTemplate)
-    template.style.backgroundImage = image;
-    document.getElementById('relativity').appendChild(template)
+    let container = document.getElementById('relativityDebree3')
+    container.style.backgroundImage = image;
   }
   else if (debree5.status == false && debree4.status == true){
     debree5.status = true;
-    let template = debree5.position(baseTemplate)
-    template.style.backgroundImage = image;
-    document.getElementById('relativity').appendChild(template)
+    let container = document.getElementById('relativityDebree4')
+    container.style.backgroundImage = image;
   }
   else if (debree6.status == false && debree5.status == true){
     debree6.status = true;
-    let template = debree6.position(baseTemplate)
-    template.style.backgroundImage = image;
-    document.getElementById('relativity').appendChild(template)
+    let container = document.getElementById('relativityDebree5')
+    container.style.backgroundImage = image;
   }
   else if (debree7.status == false && debree6.status == true){
     debree7.status = true;
-    let template = debree7.position(baseTemplate)
-    template.style.backgroundImage = image;
-    document.getElementById('relativity').appendChild(template)
+    let container = document.getElementById('relativityDebree6')
+    container.style.backgroundImage = image;
   }
   else if (debree8.status == false && debree7.status == true){
     debree8.status = true;
-    let template = debree8.position(baseTemplate)
-    template.style.backgroundImage = image;
-    document.getElementById('relativity').appendChild(template)
+    let container = document.getElementById('relativityDebree7')
+    container.style.backgroundImage = image;
   }
+
+  // let interval = setInterval(()=>{
+  //   let container1 = document.getElementById('relativityDebree0');
+  //   let container2 = document.getElementById('relativityDebree4');
+  //   let container3 = document.getElementById('relativityDebree2');
+  //   let container4 = document.getElementById('relativityDebree7');
+  //   let container5 = document.getElementById('relativityDebree1');
+  //   let container6 = document.getElementById('relativityDebree5');
+  //   let container7 = document.getElementById('relativityDebree3');
+  //   let container8 = document.getElementById('relativityDebree6');
+  //
+  //   container2.style.backgroundImage = container1.style.backgroundImage;
+  //
+  //   container1.style.backgroundImage = '';
+  //
+  //   container3.style.backgroundImage = container2.style.backgroundImage;
+  //
+  //   container2.style.backgroundImage = '';
+  //
+  //   container4.style.backgroundImage = container3.style.backgroundImage;
+  //
+  //   container3.style.backgroundImage = '';
+  //
+  // },300)
 }
 //////////////////////////////////////////////////////
 
