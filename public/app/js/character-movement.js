@@ -40,11 +40,12 @@ keys.UP = 38;
 keys.LEFT = 37;
 keys.RIGHT = 39;
 keys.DOWN = 40;
-keys.RELATIVITY = 32;
-keys.BLACKTOLL = 87;
+keys.RELATIVITY;
+keys.BLACKTOLL = 65;
 keys.LASER = 83;
 keys.PAUSE = 27;
-keys.BOOST = 65;
+keys.BOOST = 68;
+keys.JUMP = 32;
 
 let shipRect = spaceship.getBoundingClientRect();
 let charX = shipRect.left + shipRect.width / 2;
@@ -101,46 +102,84 @@ let detectCharacterMovement = () => {
   }
   // console.log('yeeeet', playAreaHeight)
   if (keys[keys.LEFT] && character.x >= 0) {
-    // console.log(character.x, windowWidth)
     moveCharacter(-1, 0);
+    if(keys[keys.JUMP]){
+      moveCharacter(-20, 0);
+      cooldownBlock.style.display = 'block';
+      relativityReady.style.display = 'none';
+      keys.JUMP = 0;
+      setTimeout(()=>{
+        keys.JUMP = 32;
+        cooldownBlock.style.display = 'none'
+        relativityReady.style.display = 'flex';
+      },2000)
+    }
   }
 
   if ( keys[keys.RIGHT] && character.x <= windowWidth-(shipRect.width + 10)) {
     moveCharacter(1, 0);
+    if(keys[keys.JUMP]){
+      moveCharacter(20, 0);
+      cooldownBlock.style.display = 'block';
+      relativityReady.style.display = 'none';
+      keys.JUMP = 0;
+      setTimeout(()=>{
+        keys.JUMP = 32;
+        cooldownBlock.style.display = 'none'
+        relativityReady.style.display = 'flex';
+      },2000)
+    }
   }
 
   if ( keys[keys.UP] && character.y >= 1) {
     moveCharacter(0, -1);
+    if(keys[keys.JUMP]){
+      moveCharacter(0, -10);
+      cooldownBlock.style.display = 'block';
+      relativityReady.style.display = 'none';
+      keys.JUMP = 0;
+      setTimeout(()=>{
+        keys.JUMP = 32;
+        cooldownBlock.style.display = 'none'
+        relativityReady.style.display = 'flex';
+      },2000)
+    }
   }
 
   if ( keys[keys.DOWN] && shipRect.bottom <= windowHeight) {
     moveCharacter(0, 1);
+    if(keys[keys.JUMP]){
+      moveCharacter(0, 10);
+      cooldownBlock.style.display = 'block';
+      relativityReady.style.display = 'none';
+      keys.JUMP = 0;
+      setTimeout(()=>{
+        keys.JUMP = 32;
+        cooldownBlock.style.display = 'none'
+        relativityReady.style.display = 'flex';
+      },2000)
+    }
   }
 
-  if (keys[keys.RELATIVITY]) {
-    console.log('relativity activating');
-    cooldownBlock.style.display = 'block';
-    relativityReady.style.display = 'none';
-    relativityStatus = true;
-    keys.RELATIVITY = 0;
-    spaceship.style.border = '2px solid yellow';
-    returnRelativityStatus();
-    abilities.relativity();
-
-    setTimeout(()=>{
-      relativityStatus = false;
-      spaceship.style.border = 'none';
-      returnRelativityStatus();
-    },60000)
-
-    setTimeout(()=>{
-      keys.RELATIVITY = 32;
-      cooldownBlock.style.display = 'none'
-      relativityReady.style.display = 'flex';
-    },relativityIcon.cooldown)
-
-    return relativityStatus;
-  }
+  // if (keys[keys.JUMP]) {
+  //   console.log('relativity activating');
+  //
+  //   relativityStatus = true;
+  //   keys.RELATIVITY = 0;
+  //   spaceship.style.border = '2px solid yellow';
+  //   returnRelativityStatus();
+  //   abilities.relativity();
+  //
+  //   setTimeout(()=>{
+  //     relativityStatus = false;
+  //     spaceship.style.border = 'none';
+  //     returnRelativityStatus();
+  //   },60000)
+  //
+  //
+  //
+  //   return relativityStatus;
+  // }
 
   if (keys[keys.BLACKTOLL]) {
     tollCooldownBlock.style.display = 'block';
@@ -160,7 +199,7 @@ let detectCharacterMovement = () => {
     setTimeout(()=>{
       tollCooldownBlock.style.display = 'none';
       blackTollReady.style.display = 'flex';
-      keys.BLACKTOLL = 87;
+      keys.BLACKTOLL = 65;
     },blackTollIcon.cooldown)
     return blackTollStatus;
   }
@@ -204,7 +243,7 @@ let detectCharacterMovement = () => {
     setTimeout(()=>{
       boostCooldownBlock.style.display = 'none';
       boostReady.style.display = 'flex';
-      keys.BOOST = 65;
+      keys.BOOST = 68;
     },boostIcon.cooldown)
     return boostStatus;
   }

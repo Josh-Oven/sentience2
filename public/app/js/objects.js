@@ -115,6 +115,7 @@ const asteroid = {
   image: ['../assets/images/space-debree/asteroid4.png', '../assets/images/space-debree/asteroid1_150.png', '../assets/images/space-debree/asteroid2_150.png'],
   css: function(){
     let template = document.createElement('div')
+    template.classList.add('spaceDebree');
     let style = template.style;
     let size = this.size()
     style.backgroundPosition = 'center center';
@@ -137,6 +138,7 @@ const salvage = {
   image: ['../assets/images/space-debree/metal-salvage1.gif', '../assets/images/space-debree/metal-salvage2.png'],
   css: function(){
     let template = document.createElement('div')
+    template.classList.add('spaceDebree');
     let style = template.style;
     let size = this.size()
     style.backgroundPosition = 'center center';
@@ -237,11 +239,11 @@ const relativity = {
     let template = document.createElement('div');
     let style = template.style;
     style.position = 'absolute';
-    style.width = `${objectScale*4.5}px`;
-    style.height = `${objectScale*4.5}px`;
+    style.width = `${objectScale*5}px`;
+    style.height = `${objectScale*5}px`;
     style.left = `50%`;
     style.transform = 'translate(-50%, -62.5%)';
-    style.borderRadius = `50%`;
+    // style.borderRadius = `50%`;
     // style.border = '1px solid yellow';
     return template;
   },
@@ -252,14 +254,16 @@ const relativity = {
     style.backgroundRepeat = 'no-repeat';
     style.backgroundSize = 'cover';
     style.backgroundImage = '';
-    style.position =  'fixed';
-    style.width = `${15}%`;
-    style.height = `${15}%`;
-    // style.border = '1px solid white';
+    style.position =  'absolute';
+    style.width = `${objectScale/1.1}px`;
+    style.height = `${objectScale/1.1}px`;
     return template;
   },
   debree1: {
     status: false,
+    html: function(){
+      return document.getElementById('relativityDebree0');
+    },
     position: function(template){
       template.style.left = '50%';
       template.style.transform = 'translate(-50%)';
@@ -268,6 +272,7 @@ const relativity = {
   },
   debree2: {
     status: false,
+    html: document.getElementById('relativityDebree1'),
     position: function(template){
       template.style.top = '85%';
       template.style.left = '50%';
@@ -277,6 +282,7 @@ const relativity = {
   },
   debree3: {
     status: false,
+    html: document.getElementById('relativityDebree2'),
     position: function(template){
       template.style.top = '42.5%';
       template.style.right = 0;
@@ -285,6 +291,7 @@ const relativity = {
   },
   debree4: {
     status: false,
+    html: document.getElementById('relativityDebree3'),
     position: function(template){
       template.style.top = '42.5%';
       template.style.left = 0;
@@ -293,6 +300,7 @@ const relativity = {
   },
   debree5: {
     status: false,
+    html: document.getElementById('relativityDebree4'),
     position: function(template){
       template.style.top = '12.5%';
       template.style.right = '12.5%';
@@ -301,6 +309,7 @@ const relativity = {
   },
   debree6: {
     status: false,
+    html: document.getElementById('relativityDebree5'),
     position: function(template){
       template.style.left = '12.5%';
       template.style.bottom = '12.5%';
@@ -309,6 +318,9 @@ const relativity = {
   },
   debree7: {
     status: false,
+    html: function(){
+      return document.getElementById('relativityDebree6');
+    },
     position: function(template){
       template.style.top = '12.5%';
       template.style.left = '12.5%';
@@ -317,6 +329,7 @@ const relativity = {
   },
   debree8: {
     status: false,
+    html: document.getElementById('relativityDebree7'),
     position: function(template){
       template.style.right = '12.5%';
       template.style.bottom = '12.5%';

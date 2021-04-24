@@ -4,6 +4,7 @@ import * as starBackground from './star-background.js';
 import * as groundWork from './groundwork.js'
 import * as characterMovement from './character-movement.js'
 import * as abilities from './abilities.js';
+import * as objects from './objects.js'
 let detectCharacterMovement = characterMovement.detectCharacterMovement;
 let returnBoostStatus = characterMovement.returnBoostStatus;
 // let cooldownActivate = characterMovement.cooldownActivate;

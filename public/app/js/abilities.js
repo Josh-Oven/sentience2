@@ -11,6 +11,7 @@ import * as tracker from './position-tracker.js'
 import * as groundwork from './groundwork.js'
 let spaceship = groundwork.spaceship
 import * as objects from './objects.js'
+let objectSpeed = objects.objectSpeed;
 let blackTollObject = objects.blackToll
 let laserObject = objects.laser
 let boostObject = objects.boost
@@ -64,9 +65,9 @@ let relativity = () => {
   return relativityElement
 }
 
-let relativityDebree = (debree) => {
+let relativityDebree = (spaceDebree) => {
   let container = document.getElementById('relativity')
-  let image = debree.style.backgroundImage;
+  let image = spaceDebree.style.backgroundImage;
 
   if (debree1.status == false){
     debree1.status = true;
@@ -148,6 +149,7 @@ let blackHoleMovement = () => {
   let blackHole = blackToll();
   console.log(blackHole)
   playArea.appendChild(blackHole)
+  debreeFinder(blackHole);
 
   setTimeout(()=>{
     let blackTollStatus = returnBlackTollStatus();
@@ -182,6 +184,7 @@ let blackHoleMovement = () => {
 
 //////////////////// LASER ////////////////////////
 let laser = () => {
+
   let lastLaserPosition = 0;
   let laserContainer = laserObject.css()
   laserContainer.id = 'laser-container';
@@ -215,6 +218,7 @@ let laser = () => {
     removeAllChildNodes(laserContainer)
     laserContainer.remove();
   },5000)
+  debreeFinder(laserContainer);
   return laserContainer;
 }
 
@@ -233,6 +237,7 @@ let boost = () => {
   let boost = boostObject.css();
   boost.id = 'boost'
   spaceship.appendChild(boost)
+  debreeFinder(boost);
 
   let interval = setInterval(()=>{
     if (fuelBar.currentSegments === 0) {
@@ -271,3 +276,13 @@ setInterval(()=>{
   blackHole(blackHoleElement, blackHoleRect)
 },1000/75)
 ////////////////////////////////////////////////////
+
+///////////////////// debreeFinder ///////////////
+
+let debreeFinder = (ability) => {
+  let group = document.getElementsByClassName('spaceDebree')
+  for (let i = 0; i < group.length; i++) {
+    console.log(group[i])
+      tracker.positionTracker(ability, group[i])
+  }
+}

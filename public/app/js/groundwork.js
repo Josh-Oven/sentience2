@@ -13,7 +13,8 @@ export {
   score,
   travelDistance,
   objectScale,
-  boostStatus
+  boostStatus,
+  objectSpeed
 }
 
 
@@ -51,6 +52,8 @@ let getPercentage = (num, per) => {
 }
 let objectScale = getPercentage(windowHeight, 10);
 console.log(objectScale)
+let objectSpeed = getPercentage(windowWidth, 1)
+console.log(objectSpeed)
 
 spaceship.style.width = `${objectScale*2.7}px`;
 spaceship.style.height = `${objectScale}px`;

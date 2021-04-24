@@ -8,6 +8,7 @@ import * as abilities from './abilities.js';
 import * as characterMovement from './character-movement.js';
 import * as groundWork from './groundwork.js';
 import * as objects from './objects.js';
+let relativityObject = objects.relativity;
 let score = groundWork.score;
 let windowWidth = groundWork.windowWidth
 let debreeOne = groundWork.debreeOne;
@@ -118,6 +119,12 @@ let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
   let boostStatus = returnBoostStatus();
   if (item1 === spaceship) {
     console.log('spaceship hit')
+  }
+
+  if (item1.id === 'relativityDebree0' || item1.id === 'relativityDebree1' || item1.id === 'relativityDebree2' || item1.id === 'relativityDebree3' || item1.id === 'relativityDebree4' || item1.id === 'relativityDebree5' || item1.id === 'relativityDebree6' || item1.id === 'relativityDebree7') {
+    console.log('relativityDebree collision')
+    relativityObject.debree1.status = false;
+    item1.remove();
   }
 
   if (boostStatus === false){

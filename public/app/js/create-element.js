@@ -18,6 +18,7 @@ let pointOrb = objects.pointOrb;
 let fuelOrb = objects.fuelOrb;
 let healthOrb = objects.healthOrb;
 
+let relativityObject = objects.relativity;
 let positionTracker = tracker.positionTracker;
 let SpaceDebree = objects.SpaceDebree;
 let asteroid = objects.asteroid;
@@ -70,6 +71,13 @@ let appendSpaceDebree = () => {
   spaceDebree.id = `spaceDebree`;
   spaceDebree.style.transform = `rotate(${Math.floor(Math.random() * 361)}deg)`
   spaceDebree.style.top = `${Math.floor(Math.random() * (windowHeight - (template._size/2)))}px`;
+
+  if (relativityStatus === true) {
+    if (relativityObject.debree1.status === true){
+      console.log('tracking')
+      positionTracker(relativityObject.debree1.html(), spaceDebree)
+    }
+  }
 
     if (blackTollStatus === true) {
       positionTracker(document.getElementById('black-toll'), spaceDebree)
