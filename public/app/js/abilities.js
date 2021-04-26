@@ -44,6 +44,7 @@ let debree6 = relativityObject.debree6
 let debree7 = relativityObject.debree7
 let debree8 = relativityObject.debree8
 let debreeArray = [debree1, debree2, debree3, debree4, debree5, debree6, debree7, debree8]
+let newDebreeArray = [];
 
 let relativity = () => {
 
@@ -73,66 +74,73 @@ let relativityDebree = (spaceDebree) => {
     debree1.status = true;
     let container = document.getElementById('relativityDebree0')
     container.style.backgroundImage = image;
+    newDebreeArray.push(container)
   }
   else if (debree2.status == false && debree1.status == true){
     debree2.status = true;
     let container = document.getElementById('relativityDebree1')
     container.style.backgroundImage = image;
+    newDebreeArray.push(container)
   }
   else if (debree3.status == false && debree2.status == true){
     debree3.status = true;
     let container = document.getElementById('relativityDebree2')
     container.style.backgroundImage = image;
+    newDebreeArray.push(container)
   }
   else if (debree4.status == false && debree3.status == true){
     debree4.status = true;
     let container = document.getElementById('relativityDebree3')
     container.style.backgroundImage = image;
+    newDebreeArray.push(container)
   }
   else if (debree5.status == false && debree4.status == true){
     debree5.status = true;
     let container = document.getElementById('relativityDebree4')
     container.style.backgroundImage = image;
+    newDebreeArray.push(container)
   }
   else if (debree6.status == false && debree5.status == true){
     debree6.status = true;
     let container = document.getElementById('relativityDebree5')
     container.style.backgroundImage = image;
+    newDebreeArray.push(container)
   }
   else if (debree7.status == false && debree6.status == true){
     debree7.status = true;
     let container = document.getElementById('relativityDebree6')
     container.style.backgroundImage = image;
+    newDebreeArray.push(container)
   }
   else if (debree8.status == false && debree7.status == true){
     debree8.status = true;
     let container = document.getElementById('relativityDebree7')
     container.style.backgroundImage = image;
+    newDebreeArray.push(container)
   }
 
-  // let interval = setInterval(()=>{
-  //   let container1 = document.getElementById('relativityDebree0');
-  //   let container2 = document.getElementById('relativityDebree4');
-  //   let container3 = document.getElementById('relativityDebree2');
-  //   let container4 = document.getElementById('relativityDebree7');
-  //   let container5 = document.getElementById('relativityDebree1');
-  //   let container6 = document.getElementById('relativityDebree5');
-  //   let container7 = document.getElementById('relativityDebree3');
-  //   let container8 = document.getElementById('relativityDebree6');
-  //
-  //   container2.style.backgroundImage = container1.style.backgroundImage;
-  //
-  //   container1.style.backgroundImage = '';
-  //
-  //   container3.style.backgroundImage = container2.style.backgroundImage;
-  //
-  //   container2.style.backgroundImage = '';
-  //
-  //   container4.style.backgroundImage = container3.style.backgroundImage;
-  //
-  //   container3.style.backgroundImage = '';
-  //
-  // },300)
+  let container1 = document.getElementById('relativityDebree0');
+  let container2 = document.getElementById('relativityDebree4');
+  let container3 = document.getElementById('relativityDebree2');
+  let container4 = document.getElementById('relativityDebree7');
+  let container5 = document.getElementById('relativityDebree1');
+  let container6 = document.getElementById('relativityDebree5');
+  let container7 = document.getElementById('relativityDebree3');
+  let container8 = document.getElementById('relativityDebree6');
+  let interval = setInterval(()=>{
+
+    if (returnRelativityStatus() === false){
+      container1.style.backgroundImage = newDebreeArray[7].style.backgroundImage;
+      container2.style.backgroundImage = newDebreeArray[0].style.backgroundImage;
+      container3.style.backgroundImage = newDebreeArray[1].style.backgroundImage;
+      container4.style.backgroundImage = newDebreeArray[2].style.backgroundImage;
+      container5.style.backgroundImage = newDebreeArray[3].style.backgroundImage;
+      container6.style.backgroundImage = newDebreeArray[4].style.backgroundImage;
+      container7.style.backgroundImage = newDebreeArray[5].style.backgroundImage;
+      container8.style.backgroundImage = newDebreeArray[6].style.backgroundImage;
+    }
+
+  },1000)
 }
 //////////////////////////////////////////////////////
 
@@ -261,19 +269,27 @@ let boost = () => {
 ////////////////////////////////////////////////////
 
 //////////////////// BIG BLACK HOLE ////////////////////////
+let counter = 150;
 let blackHole = (element, rect) => {
   let boostStatus = returnBoostStatus();
   if (boostStatus === false){
-    element.style.left = `${rect.left - .1}px`
+    counter -= .015;
+    element.style.right = `${-counter}vh`
   } else if (boostStatus === true){
-    element.style.left = `${rect.left + 1}px`
+    counter += .15;
+    element.style.right = `${-counter}vh`
   }
 }
 
 let blackHoleElement = document.getElementById('blackhole-test-container')
 setInterval(()=>{
-  let blackHoleRect = blackHoleElement.getBoundingClientRect();
-  blackHole(blackHoleElement, blackHoleRect)
+  let pause = returnPauseStatus();
+  if (pause === true){
+    return;
+  } else {
+    let blackHoleRect = blackHoleElement.getBoundingClientRect();
+    blackHole(blackHoleElement, blackHoleRect)
+  }
 },1000/75)
 ////////////////////////////////////////////////////
 

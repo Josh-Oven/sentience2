@@ -80,25 +80,6 @@ const fuelBar = {
   }
 }
 
-// class Collectables {
-//   constructor(css) {
-//     this._css = function(){
-//       let template = document.createElement('div')
-//       let style = template.style;
-//       let size = this.size()
-//       style.backgroundPosition = 'center center';
-//       style.backgroundRepeat = 'no-repeat';
-//       style.backgroundImage = `url(${this.image[Math.floor(Math.random() * this.image.length)]})`;
-//       style.backgroundSize = 'cover';
-//       style.position = 'fixed';
-//       style.height = `${size}px`;
-//       style.width = `${size}px`;
-//       style.left = `-${size}px`;
-//       return template;
-//     }
-//   }
-// }
-
 class SpaceDebree {
   constructor(size, speed, css){
     this._size = size;
@@ -182,6 +163,7 @@ const pointOrb = {
     style.height = `${this.size}px`;
     style.width = `${this.size}px`;
     style.left = `-${this.size}%`;
+    style.zIndex = 100;
     return template;
   }
 }
@@ -204,6 +186,7 @@ const fuelOrb = {
     style.height = `${this.size}px`;
     style.width = `${this.size}px`;
     style.left = `-${this.size}%`;
+    style.zIndex = 100;
     return template;
   }
 }
@@ -226,6 +209,7 @@ const healthOrb = {
     style.height = `${this.size}px`;
     style.width = `${this.size}px`;
     style.left = `-${this.size}%`;
+    style.zIndex = 100;
     return template;
   }
 }
@@ -352,8 +336,8 @@ const blackToll = {
     style.backgroundImage = `url(${this.image})`;
     style.backgroundSize = 'cover';
     style.position = 'absolute';
-    style.height = `${objectScale*8}px`;
-    style.width = `${objectScale*8}px`;
+    style.height = `${objectScale*6}px`;
+    style.width = `${objectScale*6}px`;
     // style.left = `${shipRect.left-(objectScale*8)}px`;
     style.top = `${shipRect.bottom-(objectScale*4.5)}px`;
     return template;
@@ -442,36 +426,3 @@ const boost = {
     return template;
   }
 }
-
-
-
-// const asteroid = {
-//   currentBuffs: [],
-//   currentDebuffs: [],
-//   availableBuffs: [],
-//   availableDebuffs: []
-// }
-
-// const debuff = {
-//     name: 'Shield Sabotage',
-//     desc: `Stops target shields from recharging for ${this.duration}.`,
-//     img: 'img',
-//     family: 'family',
-//     type: 'type',
-//     duration: 10 + ' seconds'
-// }
-
-// console.log(typeof(10 + 'seconds'))
-// console.log(debuff.desc)
-
-// class Debuff {
-//   constructor(name, desc, img, family, type){
-//     this.name = name;
-//     this.desc = desc;
-//     this.img = img;
-//     this.family = family;
-//     this.type = type;
-//   }
-// }
-//
-// let asteroidCss = '';

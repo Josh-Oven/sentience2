@@ -19,6 +19,7 @@ let blackTollStatus = groundWork.blackTollStatus;
 let laserStatus = groundWork.laserStatus;
 let boostStatus = groundWork.boostStatus;
 let objectScale = groundWork.objectScale;
+let objectSpeed = groundWork.objectSpeed;
 import * as objects from './objects.js';
 import * as abilities from './abilities.js'
 let relativityIcon = objects.relativity;
@@ -40,7 +41,7 @@ keys.UP = 38;
 keys.LEFT = 37;
 keys.RIGHT = 39;
 keys.DOWN = 40;
-keys.RELATIVITY;
+// keys.RELATIVITY = 32;
 keys.BLACKTOLL = 65;
 keys.LASER = 83;
 keys.PAUSE = 27;
@@ -54,7 +55,7 @@ let charY = shipRect.top + shipRect.height / 2;
 let character = {
   x: charX,
   y: charY,
-  speedMultiplier: objectScale/8,
+  speedMultiplier: objectSpeed/1.4,
   element: spaceship
 };
 
@@ -71,7 +72,6 @@ document.body.onkeydown = function(e){
   keys[kc] = e.type == 'keydown';
 };
 
-/// character movement update
 let moveCharacter = function(dx, dy){
   character.x += (dx||0) * character.speedMultiplier;
   character.y += (dy||0) * character.speedMultiplier;
@@ -79,7 +79,6 @@ let moveCharacter = function(dx, dy){
   character.element.style.top = `${character.y}px`;
 };
 
-/// character control
 let detectCharacterMovement = () => {
   let shipRect = spaceship.getBoundingClientRect();
   let idleScreen = document.getElementById('idle-screen');
@@ -161,25 +160,24 @@ let detectCharacterMovement = () => {
     }
   }
 
-  // if (keys[keys.JUMP]) {
-  //   console.log('relativity activating');
-  //
-  //   relativityStatus = true;
-  //   keys.RELATIVITY = 0;
-  //   spaceship.style.border = '2px solid yellow';
-  //   returnRelativityStatus();
-  //   abilities.relativity();
-  //
-  //   setTimeout(()=>{
-  //     relativityStatus = false;
-  //     spaceship.style.border = 'none';
-  //     returnRelativityStatus();
-  //   },60000)
-  //
-  //
-  //
-  //   return relativityStatus;
-  // }
+  if (keys[keys.RELATIVITY]) {
+    console.log('relativity activating');
+    relativityStatus = true;
+    keys.RELATIVITY = 0;
+    spaceship.style.border = '2px solid yellow';
+    returnRelativityStatus();
+    abilities.relativity();
+
+    setTimeout(()=>{
+      relativityStatus = false;
+      spaceship.style.border = 'none';
+      returnRelativityStatus();
+    },10000)
+
+
+
+    return relativityStatus;
+  }
 
   if (keys[keys.BLACKTOLL]) {
     tollCooldownBlock.style.display = 'block';

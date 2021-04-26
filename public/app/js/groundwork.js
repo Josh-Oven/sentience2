@@ -14,7 +14,8 @@ export {
   travelDistance,
   objectScale,
   boostStatus,
-  objectSpeed
+  objectSpeed,
+  endScreen
 }
 
 
@@ -46,6 +47,7 @@ let relativityStatus = false;
 let blackTollStatus = false;
 let laserStatus = false;
 let boostStatus = false;
+let endScreen = document.getElementById('end-screen');
 
 let getPercentage = (num, per) => {
   return (num/100)*per;

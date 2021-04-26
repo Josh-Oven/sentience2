@@ -22,7 +22,10 @@ let pause = groundWork.pause;
 let relativityStatus = groundWork.relativityStatus;
 let boostStatus = groundWork.boostStatus;
 let cooldownBlock = document.getElementById('cooldown-block');
+let playAgainButton = document.getElementById('play-again-button');
 let travelDistance = groundWork.travelDistance;
+let endScreen = groundWork.endScreen;
+let end = false;
 
 starBackground.starPopulate();
 
@@ -45,7 +48,7 @@ let setTravelDistance = () => {
   } else if (boostStatus === true){
     shipDistance+= 10;
   }
-  travelDistance.innerHTML = `  ${shipDistance}ly`;
+  travelDistance.innerHTML = `  ${shipDistance}(LY)`;
 }
 
 let objectMovement = () => {
@@ -62,7 +65,7 @@ let objectMovement = () => {
   let distance = windowWidth;
   let distanceTraveled = 0;
   let interval = setInterval(function(){
-    if(location > distance && pause === false){
+    if(location > (distance*2) && pause === false){
       clearInterval(interval);
       interval = 0;
       // orb.remove();
@@ -157,14 +160,53 @@ let orbLoop = setInterval(function(){
 
 let characterLoop = setInterval(function(){
   if (pause === true){
-    // clearInterval(characterLoop);
     return
-  } else if (pause === false){
+  }
+  else if (end === true){
+    clearInterval(characterLoop);
+    characterLoop = 0;
+    return;
+  }
+  else if (pause === false){
     detectCharacterMovement();
     setTravelDistance();
   }
 }, 1000/75);
 
+let endCounter = 0;
+let endLoop = setInterval(()=>{
+  if (objects.healthBar.currentSegments == 0){
+    end = true;
+    pause = true;
+    console.log(end)
+    endScreen.style.display = 'flex';
+    endScreen.style.backgroundColor = `rgba(0,0,0,${endCounter})`
+    endCounter+=.1;
+    console.log(endCounter)
+    if (endCounter > 0.9){
+      clearInterval(endLoop)
+      endLoop = 0;
+      scoreCount();
+    }
+  }
+},200)
+
+let scoreCount = () => {
+  let totalDistance = document.getElementById('total-distance');
+  let totalScore = document.getElementById('total-score');
+  let finalScore = document.getElementById('final-score');
+
+  console.log(positionTracker.newScore)
+  playAgainButton.style.display = 'flex';
+
+  totalDistance.innerHTML = `DISTANCE: ${travelDistance.innerHTML}`;
+  totalScore.innerHTML = `SCORE: ${groundWork.score.innerHTML}`;
+  finalScore.innerHTML = `FINAL SCORE: ${Math.floor(shipDistance/(positionTracker.newScore/2))}`;
+}
+
+playAgainButton.addEventListener('click',(()=>{
+  window.location.reload();
+}))
 
 let idleScreen = document.getElementById('idle-screen');
 let pauseButton = document.getElementById('pause-button');

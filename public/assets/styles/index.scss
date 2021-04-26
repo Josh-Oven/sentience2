@@ -18,7 +18,9 @@ $retro: 'Press Start 2P';
 
 #play-area {
   overflow: hidden;
-  // position: fixed;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
 }
 
 #resource-container {
@@ -109,119 +111,6 @@ $retro: 'Press Start 2P';
   height: 100%;
 }
 
-  // #relativity-container {
-  //   position: absolute;
-  //   left: 50%;
-  //   transform: translate(-50%, -60%);
-  //   width: 350px;
-  //   height: 350px;
-  //   border-radius: 50%;
-  //   border: 1px solid yellow;
-  //   animation-iteration-count:infinite;
-  //   animation-timing-function:linear;
-  //   // animation-name:orbit;
-  //   animation-duration:2s;
-  //
-  //   #object-one {
-  //     position: fixed;
-  //     left: 50%;
-  //     transform: translate(-50%);
-  //     width: 15%;
-  //     height: 15%;
-  //     animation-iteration-count:infinite;
-  //     animation-timing-function:linear;
-  //     // animation-name:negative-orbit;
-  //     animation-duration:2s;
-  //     border :1px solid white;
-  //   }
-  //   #object-two {
-  //     position: fixed;
-  //     top: 85%;
-  //     left: 50%;
-  //     transform: translate(-50%);
-  //     width: 15%;
-  //     height: 15%;
-  //     animation-iteration-count:infinite;
-  //     animation-timing-function:linear;
-  //     // animation-name:negative-orbit;
-  //     animation-duration:2s;
-  //     border :1px solid white;
-  //   }
-  //   #object-three {
-  //     position: fixed;
-  //     right:0;
-  //     top: 42.5%;
-  //     width: 15%;
-  //     // transform: translate(0, 25%);
-  //     height: 15%;
-  //     animation-iteration-count:infinite;
-  //     animation-timing-function:linear;
-  //     // animation-name:negative-orbit;
-  //     animation-duration:2s;
-  //     border :1px solid white;
-  //   }
-  //   #object-four {
-  //     position: fixed;
-  //     top: 42.5%;
-  //     left: 0;
-  //     width: 15%;
-  //     height: 15%;
-  //     animation-iteration-count:infinite;
-  //     animation-timing-function:linear;
-  //     // animation-name:negative-orbit;
-  //     animation-duration:2s;
-  //     border :1px solid white;
-  //   }
-  //   #object-five {
-  //     position: fixed;
-  //     top: 15%;
-  //     right: 15%;
-  //     width: 15%;
-  //     height: 15%;
-  //     animation-iteration-count:infinite;
-  //     animation-timing-function:linear;
-  //     // animation-name:negative-orbit;
-  //     animation-duration:2s;
-  //     border :1px solid white;
-  //   }
-  //   #object-six {
-  //     position: fixed;
-  //     bottom: 15%;
-  //     left: 15%;
-  //     width: 15%;
-  //     height: 15%;
-  //     animation-iteration-count:infinite;
-  //     animation-timing-function:linear;
-  //     // animation-name:negative-orbit;
-  //     animation-duration:2s;
-  //     border :1px solid white;
-  //   }
-  //   #object-seven {
-  //     position: fixed;
-  //     top: 15%;
-  //     left: 15%;
-  //     width: 15%;
-  //     height: 15%;
-  //     animation-iteration-count:infinite;
-  //     animation-timing-function:linear;
-  //     // animation-name:negative-orbit;
-  //     animation-duration:2s;
-  //     border :1px solid white;
-  //   }
-  //   #object-eight {
-  //     position: fixed;
-  //     bottom: 15%;
-  //     right: 15%;
-  //     width: 15%;
-  //     height: 15%;
-  //     animation-iteration-count:infinite;
-  //     animation-timing-function:linear;
-  //     // animation-name:negative-orbit;
-  //     animation-duration:2s;
-  //     border :1px solid white;
-  //   }
-  // }
-
   @keyframes orbit {
   from { transform:rotate(0deg)}
   to { transform:rotate(360deg) }
@@ -258,6 +147,92 @@ $retro: 'Press Start 2P';
   // animation-iteration-count: infinite;
 }
 
+#end-screen {
+  position: fixed;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 200;
+
+  #end-screen-title-container {
+    width: 100%;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 80%);
+    // border: 1px solid white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    p {
+      font-family: $retro;
+      color: red;
+      font-size: 100px;
+    }
+  }
+
+  #end-screen-inner-container {
+    width: 70vh;
+    height: 60vh;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: rgba(0,0,0,.9);
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    // z-index: 201;
+
+    .end-stat-container {
+      width: 100%;
+      height: auto;
+      // border: 1px solid white;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      // margin-top: 30px;
+
+      #total-distance {
+        font-family: $retro;
+        color: white;
+        font-size: 30px;
+      }
+      #total-score {
+        font-family: $retro;
+        color: white;
+        font-size: 30px;
+      }
+      #final-score {
+        font-family: $retro;
+        color: yellow;
+        font-size: 30px;
+      }
+    }
+
+    #play-again-button {
+      display: none;
+      width: 30%;
+      height: 10%;
+      border: 1px solid white;
+      border-radius: 2.5px;
+      // display: flex;
+      align-items: center;
+      justify-content: space-around;
+      cursor: pointer;
+
+      p {
+        font-family: $retro;
+        color: white;
+        font-size: 25px;
+      }
+    }
+  }
+}
+
 @keyframes title-blink {
   from {color:black}
   to {color: violet}
@@ -267,39 +242,3 @@ $retro: 'Press Start 2P';
   from {width: 0px}
   to {width: 2020px}
 }
-
-#laser-container {
-  // animation-name:laser-grow;
-  // animation-duration:1s;
-
-  #laser-left-container{
-    // width: 77.5px;
-    // height: 100%;
-
-    #laser-left {
-
-    }
-  }
-
-
-  #laser-mid {
-
-  }
-
-  #laser-right {
-
-  }
-
-}
-
-// #boost-container {
-//   width: 150px;
-//   height: 75px;
-//   // border: 1px solid black;
-//   background-image: url('../assets/images/abilities/boost.gif');
-//   background-size: cover;
-//   top: -10%;
-//   right: -170px;
-//   position: absolute;
-//   display: none;
-// }

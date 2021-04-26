@@ -72,12 +72,12 @@ let appendSpaceDebree = () => {
   spaceDebree.style.transform = `rotate(${Math.floor(Math.random() * 361)}deg)`
   spaceDebree.style.top = `${Math.floor(Math.random() * (windowHeight - (template._size/2)))}px`;
 
-  if (relativityStatus === true) {
-    if (relativityObject.debree1.status === true){
-      console.log('tracking')
-      positionTracker(relativityObject.debree1.html(), spaceDebree)
-    }
-  }
+  // if (relativityStatus === true) {
+  //   if (relativityObject.debree1.status === true){
+  //     console.log('tracking')
+  //     positionTracker(relativityObject.debree1.html(), spaceDebree)
+  //   }
+  // }
 
     if (blackTollStatus === true) {
       positionTracker(document.getElementById('black-toll'), spaceDebree)
@@ -103,3 +103,5 @@ let appendOrb = () => {
   positionTracker(spaceship, orb)
 return orb;
 }
+
+positionTracker(spaceship, document.getElementById('blackhole-test-container'))

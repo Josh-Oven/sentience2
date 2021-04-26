@@ -1,7 +1,8 @@
 export {
   positionTracker,
   asteroidCollision,
-  spaceshipCollision
+  spaceshipCollision,
+  newScore
 }
 
 import * as abilities from './abilities.js';
@@ -21,6 +22,7 @@ let returnLaserStatus = characterMovement.returnLaserStatus;
 let returnBoostStatus = characterMovement.returnBoostStatus;
 let relativity = abilities.relativity;
 let relativityDebree = abilities.relativityDebree;
+let objectScale = groundWork.objectScale;
 
 // console.log(objects.laser.html)
 
@@ -96,6 +98,10 @@ let positionTracker = (item1, item2, relativityStatus) => {
       }
     }
 
+    if (item2 === document.getElementById('blackhole-test-container') && oneR > twoL && distance < objectScale*5.5) {
+      collision = true;
+    }
+
     // asteroid collision //
     if (item2.id === 'spaceDebree' && collision === true) {
       asteroidCollision(item2, item1, interval, relativityStatus)
@@ -108,8 +114,9 @@ let positionTracker = (item1, item2, relativityStatus) => {
       // clearInterval(interval);
     }
 
+
     collision = false;
-  },1000/150)
+  },1000/75)
 }
 
 ///////////////////// collisions //////////////////
@@ -138,27 +145,37 @@ let newScore = 0;
 let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
   let boostStatus = returnBoostStatus();
 
-  if(boostStatus === true && item1.id != 'pointOrb' && item1.id != 'fuelOrb' && item1.id != 'healthOrb'){
+  if(item1 === document.getElementById('blackhole-test-container')){
+    if(boostStatus == true){
+      return;
+    }else {
+      console.log('biggy')
+      objects.healthBar.removeHealth();
+    }
+
+  }else if(boostStatus === true && item1.id != 'pointOrb' && item1.id != 'fuelOrb' && item1.id != 'healthOrb'){
     console.log('too slow')
     return;
-  }
-
-  if (item1.id === 'spaceDebree' && relativityStatus === true){
+  }else if (item1.id === 'spaceDebree' && relativityStatus === true){
     relativityDebree(item1);
-  }
-
-  if (item1.id === 'spaceDebree' && relativityStatus === false) {
+  }else if (item1.id === 'spaceDebree' && relativityStatus === false) {
     objects.healthBar.removeHealth();
-  }
-
-  if (item1.id === 'pointOrb' || item1.id === 'fuelOrb' || item1.id === 'healthOrb'){
+  }else if (item1.id === 'pointOrb' || item1.id === 'fuelOrb' || item1.id === 'healthOrb'){
 
     if (item1.id === 'pointOrb') {
       newScore += 10;
       score.innerHTML = newScore;
     } else if (item1.id === 'healthOrb'){
+      if (objects.healthBar.currentSegments == 10){
+        newScore += 5;
+        score.innerHTML = newScore;
+      }
       objects.healthBar.addHealth();
     } else if (item1.id === 'fuelOrb'){
+      if(objects.fuelBar.currnetSegments == 20){
+        newScore += 5;
+        score.innerHTML = newScore;
+      }
       objects.fuelBar.addFuel();
     }
     // console.log(item1.id)
