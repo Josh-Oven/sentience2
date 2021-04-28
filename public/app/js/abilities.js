@@ -33,6 +33,7 @@ let returnLaserStatus = characterMovement.returnLaserStatus;
 let returnBoostStatus = characterMovement.returnBoostStatus;
 let returnPauseStatus = characterMovement.returnPauseStatus;
 let shipRect = spaceship.getBoundingClientRect()
+let boostStatus = groundWork.boostStatus;
 
 //////////////////// RELATIVITY ////////////////////////
 let debree1 = relativityObject.debree1
@@ -188,8 +189,6 @@ let blackHoleMovement = () => {
 }
 //////////////////////////////////////////////////////
 
-//// IN ORDER TO START TRACKING ON ABILITY ACTIVATION YOURE GOING TO HAVE TO BUILD A FUNCTION THAT FINDS ALL CURRENT SPACE DEBREE ON THE DOM, AND ADDS THEM TO POSITION TRACKER AFTER THE ABILITIES HAVE ACTIVATED ////
-
 //////////////////// LASER ////////////////////////
 let laser = () => {
 
@@ -239,7 +238,9 @@ let removeAllChildNodes = (parent) => {
 
 //////////////////// BOOST ////////////////////////
 let boost = () => {
-  console.log('fuel', fuelBar.currentSegments)
+  boostStatus = true;
+  returnBoostStatus();
+  // console.log('fuel', fuelBar.currentSegments)
   let fuel = fuelBar.currentSegments * 500;
   let shipRect = spaceship.getBoundingClientRect();
   let boost = boostObject.css();
@@ -248,22 +249,22 @@ let boost = () => {
   debreeFinder(boost);
 
   let interval = setInterval(()=>{
+    console.log(fuelBar.currentSegments)
     if (fuelBar.currentSegments === 0) {
       clearInterval(interval);
       interval = 0;
-      console.log('interval, done')
+      // console.log('interval, done')
     } else {
       fuelBar.removeFuel();
     }
   },500)
 
     setTimeout(()=>{
-      let boostStatus = returnBoostStatus();
       boostStatus = false;
       returnBoostStatus();
       boost.remove();
-      console.log('timoute, done')
-    },fuel)
+      // console.log('timoute, done')
+    },fuel+1000)
   return boost
 }
 ////////////////////////////////////////////////////
@@ -271,7 +272,7 @@ let boost = () => {
 //////////////////// BIG BLACK HOLE ////////////////////////
 let counter = 150;
 let blackHole = (element, rect) => {
-  let boostStatus = returnBoostStatus();
+  returnBoostStatus();
   if (boostStatus === false){
     counter -= .015;
     element.style.right = `${-counter}vh`

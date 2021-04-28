@@ -20,12 +20,12 @@ let windowHeight = groundWork.windowHeight;
 let windowWidth = groundWork.windowWidth;
 let pause = groundWork.pause;
 let relativityStatus = groundWork.relativityStatus;
-let boostStatus = groundWork.boostStatus;
 let cooldownBlock = document.getElementById('cooldown-block');
 let playAgainButton = document.getElementById('play-again-button');
 let travelDistance = groundWork.travelDistance;
 let endScreen = groundWork.endScreen;
 let end = false;
+let boostStatus = groundWork.boostStatus;
 
 starBackground.starPopulate();
 
@@ -42,18 +42,18 @@ setBoundaries(windowHeight, windowWidth)
 
 let shipDistance = 0;
 let setTravelDistance = () => {
-  let boostStatus = returnBoostStatus();
+  returnBoostStatus();
   if (boostStatus === false){
     shipDistance += 1;
   } else if (boostStatus === true){
-    shipDistance+= 10;
+    shipDistance+= 15;
   }
   travelDistance.innerHTML = `  ${shipDistance}(LY)`;
 }
 
 let objectMovement = () => {
-  let debreeSpeed = .5;
-  let boostStatus = returnBoostStatus();
+  let debreeSpeed;
+  returnBoostStatus()
   if (boostStatus === true){
     debreeSpeed = 2.5;
   } else if (boostStatus === false) {
@@ -65,6 +65,7 @@ let objectMovement = () => {
   let distance = windowWidth;
   let distanceTraveled = 0;
   let interval = setInterval(function(){
+    returnBoostStatus()
     if(location > (distance*2) && pause === false){
       clearInterval(interval);
       interval = 0;
@@ -80,6 +81,7 @@ let objectMovement = () => {
       // console.log(debree.style.left)
     }
   },1000/75)
+  return boostStatus;
 }
 
 let orbMovement = () => {
@@ -201,7 +203,7 @@ let scoreCount = () => {
 
   totalDistance.innerHTML = `DISTANCE: ${travelDistance.innerHTML}`;
   totalScore.innerHTML = `SCORE: ${groundWork.score.innerHTML}`;
-  finalScore.innerHTML = `FINAL SCORE: ${Math.floor(shipDistance/(positionTracker.newScore/2))}`;
+  finalScore.innerHTML = `FINAL SCORE: ${Math.floor((shipDistance/(positionTracker.newScore/2))+positionTracker.newScore)}`;
 }
 
 playAgainButton.addEventListener('click',(()=>{

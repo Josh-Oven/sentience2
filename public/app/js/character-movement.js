@@ -26,6 +26,7 @@ let relativityIcon = objects.relativity;
 let blackTollIcon = objects.blackToll;
 let laserIcon = objects.laser;
 let boostIcon = objects.boost;
+let fuelBar = objects.fuelBar;
 
 let cooldownBlock = document.getElementById('cooldown-block')
 let tollCooldownBlock = document.getElementById('cooldown-block-blacktoll')
@@ -233,10 +234,10 @@ let detectCharacterMovement = () => {
     returnBoostStatus();
     abilities.boost();
 
-    setTimeout(()=>{
+    if (fuelBar.currentSegments === 0){
       boostStatus = false;
       returnBoostStatus();
-    },5000)
+    }
 
     setTimeout(()=>{
       boostCooldownBlock.style.display = 'none';

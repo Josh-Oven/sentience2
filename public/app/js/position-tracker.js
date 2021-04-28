@@ -23,6 +23,7 @@ let returnBoostStatus = characterMovement.returnBoostStatus;
 let relativity = abilities.relativity;
 let relativityDebree = abilities.relativityDebree;
 let objectScale = groundWork.objectScale;
+let boostStatus = groundWork.boostStatus;
 
 // console.log(objects.laser.html)
 
@@ -123,7 +124,7 @@ let positionTracker = (item1, item2, relativityStatus) => {
 
 /// asteroid collision
 let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
-  let boostStatus = returnBoostStatus();
+  returnBoostStatus();
   if (item1 === spaceship) {
     console.log('spaceship hit')
   }
@@ -143,7 +144,7 @@ let asteroidCollision = (asteroid, item1, interval, relativityStatus) => {
 /// spaceship collision
 let newScore = 0;
 let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
-  let boostStatus = returnBoostStatus();
+  returnBoostStatus();
 
   if(item1 === document.getElementById('blackhole-test-container')){
     if(boostStatus == true){
@@ -153,14 +154,18 @@ let spaceshipCollision = (spaceship, item1, interval, relativityStatus) => {
       objects.healthBar.removeHealth();
     }
 
-  }else if(boostStatus === true && item1.id != 'pointOrb' && item1.id != 'fuelOrb' && item1.id != 'healthOrb'){
+  }
+  else if(boostStatus === true && item1.id != 'pointOrb' && item1.id != 'fuelOrb' && item1.id != 'healthOrb'){
     console.log('too slow')
     return;
-  }else if (item1.id === 'spaceDebree' && relativityStatus === true){
+  }
+  else if (item1.id === 'spaceDebree' && relativityStatus === true){
     relativityDebree(item1);
-  }else if (item1.id === 'spaceDebree' && relativityStatus === false) {
+  }
+  else if (item1.id === 'spaceDebree' && relativityStatus === false) {
     objects.healthBar.removeHealth();
-  }else if (item1.id === 'pointOrb' || item1.id === 'fuelOrb' || item1.id === 'healthOrb'){
+  }
+  else if (item1.id === 'pointOrb' || item1.id === 'fuelOrb' || item1.id === 'healthOrb'){
 
     if (item1.id === 'pointOrb') {
       newScore += 10;
