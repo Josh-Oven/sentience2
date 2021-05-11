@@ -55,6 +55,11 @@ let guideText = document.getElementsByClassName('guide-text');
 let guideImage = document.getElementsByClassName('guide-image');
 let guideSpan = document.getElementsByClassName('guide-span');
 let gameGuide = document.getElementById('game-guide-container');
+let endScreenTitle = document.getElementById('end-screen-title');
+let totalDistance = document.getElementById('total-distance');
+let totalScore = document.getElementById('total-score');
+let finalScore = document.getElementById('final-score');
+let pauseTitle = document.getElementById('pause-text');
 
 
 let getPercentage = (num, per) => {
@@ -79,8 +84,13 @@ distanceText2.style.fontSize = `${uiFontSize}px`
 distanceNum.style.fontSize = `${uiFontSize}px`
 scoreNum.style.fontSize = `${uiFontSize}px`
 scoreText.style.fontSize = `${uiFontSize}px`
+totalDistance.style.fontSize = `${uiFontSize*1.5}px`
+totalScore.style.fontSize = `${uiFontSize*1.5}px`
+finalScore.style.fontSize = `${uiFontSize*1.5}px`
+endScreenTitle.style.fontSize = `${uiFontSize*5}px`
+pauseTitle.style.fontSize = `${uiFontSize*5}px`
 
-gameGuide.style.width = `${objectScale*10}px`
+gameGuide.style.width = `${objectScale*8}px`
   for(let i = 0; i < guideTitles.length; i++){
     guideTitles[i].style.fontSize = `${uiFontSize*1.5}px`;
   }

@@ -7,6 +7,7 @@ import * as abilities from './abilities.js';
 import * as objects from './objects.js'
 let detectCharacterMovement = characterMovement.detectCharacterMovement;
 let returnBoostStatus = characterMovement.returnBoostStatus;
+let returnPauseStatus = characterMovement.returnPauseStatus;
 // let cooldownActivate = characterMovement.cooldownActivate;
 let debreeOne = groundWork.debreeOne;
 let debreeTwo = groundWork.debreeTwo;
@@ -42,10 +43,10 @@ setBoundaries(windowHeight, windowWidth)
 
 let shipDistance = 0;
 let setTravelDistance = () => {
-  // boostStatus = returnBoostStatus();
-  if (boostStatus === false){
+  let boostStatus = groundWork.boostStatus;
+  if (groundWork.boostStatus === false){
     shipDistance += 1;
-  } else if (boostStatus === true){
+  } else if (groundWork.boostStatus === true){
     shipDistance += 15;
   }
   travelDistance.innerHTML = `  ${shipDistance}(LY)`;
@@ -215,10 +216,13 @@ let pauseButton = document.getElementById('pause-button');
 let idlePauseButton = document.getElementById('idle-pause-button');
 idleScreen.style.display = 'none';
 
+
 pauseButton.addEventListener('click', (()=>{
   idleScreen.style.display = 'flex';
   groundWork.gameGuide.style.display = 'flex';
   pause = true;
+  returnPauseStatus();
+  // groundWork.pause = true;
   console.log('pause')
 }));
 
@@ -226,6 +230,8 @@ idlePauseButton.addEventListener('click', (()=>{
   idleScreen.style.display = 'none';
   groundWork.gameGuide.style.display = 'none';
   pause = false;
+  returnPauseStatus();
+  // groundWork.pause = false;
   // characterLoop()
   // debreeLoop();
 }));

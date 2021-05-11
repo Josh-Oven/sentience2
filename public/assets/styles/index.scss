@@ -166,10 +166,10 @@ $retro: 'Press Start 2P';
     justify-content: space-around;
     align-items: center;
 
-    p {
+    #end-screen-title {
       font-family: $retro;
       color: red;
-      font-size: 100px;
+      // font-size: 100px;
     }
   }
 

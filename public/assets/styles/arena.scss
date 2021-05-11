@@ -141,17 +141,18 @@ $retro: 'Press Start 2P';
 
 #pause-text-container {
   position: fixed;
-  width: 588px;
+  width: auto;
   height: auto;
   // border: 1px solid black;
-  top: 5%; right: 50%;
-  transform: translate(50%);
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 #pause-text {
   font-family: $retro;
   color: violet;
-  font-size: 100px;
+  // font-size: 100px;
 }
 
 #pause-button-container {
