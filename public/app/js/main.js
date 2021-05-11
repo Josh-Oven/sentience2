@@ -42,30 +42,31 @@ setBoundaries(windowHeight, windowWidth)
 
 let shipDistance = 0;
 let setTravelDistance = () => {
-  returnBoostStatus();
+  // boostStatus = returnBoostStatus();
   if (boostStatus === false){
     shipDistance += 1;
   } else if (boostStatus === true){
-    shipDistance+= 15;
+    shipDistance += 15;
   }
   travelDistance.innerHTML = `  ${shipDistance}(LY)`;
 }
 
+let debreeSpeed;
 let objectMovement = () => {
-  let debreeSpeed;
-  returnBoostStatus()
-  if (boostStatus === true){
-    debreeSpeed = 2.5;
-  } else if (boostStatus === false) {
-    debreeSpeed = 1
-  }
+  // boostStatus = returnBoostStatus()
+
   let location = -10;
   let debree = appendSpaceDebree(relativityStatus)
   // let orb = appendOrb();
   let distance = windowWidth;
   let distanceTraveled = 0;
   let interval = setInterval(function(){
-    returnBoostStatus()
+    returnBoostStatus();
+    if (boostStatus === true){
+      debreeSpeed = 2.5;
+    } else if (boostStatus === false) {
+      debreeSpeed = 1
+    }
     if(location > (distance*2) && pause === false){
       clearInterval(interval);
       interval = 0;
@@ -81,7 +82,6 @@ let objectMovement = () => {
       // console.log(debree.style.left)
     }
   },1000/75)
-  return boostStatus;
 }
 
 let orbMovement = () => {
@@ -217,12 +217,14 @@ idleScreen.style.display = 'none';
 
 pauseButton.addEventListener('click', (()=>{
   idleScreen.style.display = 'flex';
+  groundWork.gameGuide.style.display = 'flex';
   pause = true;
   console.log('pause')
 }));
 
 idlePauseButton.addEventListener('click', (()=>{
   idleScreen.style.display = 'none';
+  groundWork.gameGuide.style.display = 'none';
   pause = false;
   // characterLoop()
   // debreeLoop();

@@ -144,8 +144,8 @@ $retro: 'Press Start 2P';
   width: 588px;
   height: auto;
   // border: 1px solid black;
-  top: 50%; right: 50%;
-  transform: translate(50%,-50%);
+  top: 5%; right: 50%;
+  transform: translate(50%);
 }
 
 #pause-text {
@@ -162,7 +162,6 @@ $retro: 'Press Start 2P';
   top: 1.5%;
   right: .5%;
   padding: .5% 1% .5% 1%;
-
   background: rgba(0, 0, 0, .5);
   z-index: 20;
 }
@@ -183,19 +182,30 @@ $retro: 'Press Start 2P';
 }
 
 #idle-pause-button-container {
-  width: 50px;
-  height: 50px;
-  top: 60%; right: 50%;
-  transform: translate(50%,-50%);
+  border: 1px solid white;
+  width: auto;
+  height: auto;
   position: fixed;
+  top: 1.5%;
+  right: 1%;
+  padding: .5% 1% .5% 1%;
+  background: rgba(0, 0, 0, .5);
+  z-index: 20;
 }
 
 #idle-pause-button {
-  width: 100%;
-  height: 100%;
-  background: yellow;
-  border-radius: 50%;
-  // z-index: 11;
+  width: auto;
+  height: auto;
+  // background: violet;
+  // border-radius: 50%;
+  cursor: pointer;
+  z-index: 20;
+
+  #play-button-text {
+    font-family: $retro;
+    color: violet;
+    // font-size: 100px;
+  }
 }
 
 #ability-bar {
@@ -347,4 +357,107 @@ $retro: 'Press Start 2P';
   0%{transform:  rotate(360deg)}
   50% {transform: rotate(0deg)}
   100% {transform: rotate(-360deg)}
+}
+
+#game-guide-container {
+  // width:  50vw;
+  height: 70vh;
+  background: rgba(0,0,0,.99);
+  position: fixed;
+  z-index: 200;
+  border: 1px solid violet;
+  left: 50%;
+  bottom: 5%;
+  transform: translate(-50%);
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+  padding-left: -40px;
+  padding-top: 20px;
+
+  .game-guide-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: scroll;
+    margin-right: -5%;
+    // padding-left: 40px;
+    // box-sizing: content-box;
+    // border: 1px solid white;
+
+  .text-block {
+    // padding-left: -80px;
+    width: 98%;
+    height: auto;
+    // border-bottom: 1px solid white;
+    display: flex;
+    flex-wrap: wrap;
+    // align-items: baseline;
+    justify-content: space-around;
+    // margin-left: 150px;
+    margin-bottom: 10%;
+
+    .title-container {
+      width: 100%;
+      height: auto;
+      // border: 1px solid red;
+      margin-bottom: 5%;
+
+      .guide-title {
+        font-family: $retro;
+        color: violet;
+        // font-size: 1.5em;
+        // border-bottom: 1px solid yellow;
+      }
+    }
+
+    .text-container {
+      width: 100%;
+      height: auto;
+      // border: 1px solid yellow;
+
+      .guide-text {
+        text-indent: 30px;
+        line-height: 30px;
+        font-family: $retro;
+        color: white;
+        width: 95%;
+        // font-size: 18px;
+        margin-bottom: 5%;
+      }
+    }
+
+    .image-container {
+      width: auto;
+      height: auto;
+      // border: 1px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5%;
+
+      .guide-text {
+        text-indent: 30px;
+        line-height: 30px;
+        font-family: $retro;
+        color: white;
+        // font-size: 18px;
+        margin-bottom: 0px;
+        // margin-left: -250px;
+      }
+
+
+      .guide-image {
+        margin-right: 50px;
+        // width: 75px;
+        // height: 75px;
+      }
+    }
+  }
+}
 }
